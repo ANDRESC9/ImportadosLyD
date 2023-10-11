@@ -1,0 +1,32 @@
+<div *ngIf="!is_load" class="load">
+    <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
+</div>
+<table class="table_style">
+    <thead>
+        <tr>
+            <th class="column justify_center">Fecha</th> 
+            <th class="column justify_center">Nombre</th>  
+            <th class="column justify_center">Valor</th> 
+            <th class="column justify_center">Abono</th> 
+            <th class="column justify_center">Saldo</th>
+            <th class="column_icons justify_center">Abonar</th> 
+            <th class="column_icons justify_center">Saldar</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let credit of credits">
+            <td class="column justify_center">{{credit.date_debts}}</td>
+            <td class="column justify_left">{{ credit.names_ +" " +credit.lastnames}}</td>
+            <td class="column justify_right">{{credit.value_}}</td>
+            <td class="column justify_right">{{credit.pass}}</td>
+            <td class="column justify_right">{{credit.balance}}</td>
+            <td class="column_icons justify_center" (click)="pass(credit)"><img src="../../../assets/icon/necesitar.png" alt=""></td>
+            <td class="column_icons justify_center"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
+        </tr>
+    </tbody>
+</table>
+
+<section class="hidden" [ngClass]="{'show_table': add_class}">
+    <app-pay-part  [info_credit] = "credit_" (close)="close_children($event)"></app-pay-part>
+</section>
+ 

@@ -1,0 +1,9 @@
+<form class="form_style" [formGroup]="form_credit" (ngSubmit)="send()">
+    <select name="" id="" formControlName="id_debtor">
+        <option value="" selected>Seleccione</option>
+        <option *ngFor="let debtor of debtors" value='{{debtor.id_debtors}}'>{{debtor.names_ + " " +debtor.lastnames}}</option>
+    </select>
+    <input type="text" id="cantidad" formControlName="value" placeholder="Cantidad" required>
+    <button type="submit" (click)="close_window()">Enviar</button>
+    <span class="close" (click)="close_window()"><img src="../../../assets/icon/cerrar.png" alt=""></span>
+</form> 

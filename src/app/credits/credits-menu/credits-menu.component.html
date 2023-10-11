@@ -1,0 +1,22 @@
+<section class="main_menu">
+    <div class="option_menu">
+        <h1>Créditos</h1>
+        <ul>
+            <li (click)="open_table()">Nuevo crédito</li>
+            <li (click)="open_table()">Nuevo deudor</li>
+            <li (click)="show_pays()">Créditos pagados</li>
+        </ul> 
+    </div>
+    <div class="filter">
+        <a href=""><img src="../../../assets/icon/controles-deslizantes.png" alt=""></a>
+    </div>
+</section>
+<section class="table_container">
+    <router-outlet></router-outlet>
+</section>
+<section class="hidden" [ngClass]="{'show_table': add_class}">
+    <app-new-credit (close_modal)="close($event)"></app-new-credit>
+</section>
+<section>
+    <app-credits-filter></app-credits-filter>
+</section>
