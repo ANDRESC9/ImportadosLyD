@@ -109,7 +109,7 @@ button:hover {
 
 /* Estilo del menu principal */
 .main_menu {
-    padding: 2% 0;
+    padding: 2% 3%;
     width: 1800px;
     background-color: white;
     margin: 2% 0 0 0;
@@ -117,30 +117,25 @@ button:hover {
     border-top-right-radius: 40px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    gap: 2%;
 }
 
-.main_menu .option_menu {
-    display: flex;
-    align-items: center;
-    gap: 5%;
-}
-
-.main_menu .option_menu h1 {
+.main_menu  h1 {
     font-size: 1.8rem;
     font-weight: 500;
 }
 
-.main_menu .option_menu ul {
+.main_menu  ul {
     display: flex;
-    gap: 5%;
+    align-items: center;
+    gap: 2%;
 }
 
-.main_menu .option_menu ul li {
+.main_menu ul li {
     background-color: var(--main_color);
     color: #fff;
-    width: 230px;
-    padding: 3% 0;
+    width: 200px;
+    padding: 2% 0;
     border-radius: 40px;
     display: grid;
     place-items: center;
@@ -148,19 +143,16 @@ button:hover {
     cursor: pointer;
 }
 
-.main_menu .option_menu ul li:hover {
+.main_menu  ul li:hover {
     background-color: var(--hover_color);
 }
 
-
-.filter a {
-    display: flex;
-    align-items: center;
+.filter {
     position: relative;
-    left: 380%;
+    left: 39%;
 }
 
-.filter a img {
+.filter img {
     height: 50px;
     width: 50px;
 }
@@ -297,16 +289,33 @@ form{
     box-shadow: 0 0 5px rgba(132, 0, 255, 0.5);
 }
 
-.btn{
-    background-color: var(--success_color);
-    color: #fff;
-    width: 200px;
-    padding: 3% 0;
-    border-radius: 40px;
-    display: grid;
-    place-items: center;
-    text-transform: uppercase;
-    cursor: pointer;
+.form_style input[type="date"] {
+    padding: 2%;
+    border: 1px solid #ccc;
+    border-radius: 3%;
+    font-size: 16px;
+    width: 180px;
+}
+
+.form_style input[type="date"]:focus,
+.form_style select:focus {
+    border: 2px solid var(--main_color);
+}
+
+.form_style .show_info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+}
+
+.form_style h2 {
+    padding-bottom: 3%;
+}
+
+.form_style span {
+    font-size: 1.2rem;
+    line-height: 2.5rem;
 }
 
 /* Estilo Modal */
