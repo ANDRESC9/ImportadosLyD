@@ -40,7 +40,9 @@ export class ApiService<T> {
       names_: 'string',
       lastnames: 'string',
       pass: 0,
-      balance: 0
+      balance: 0,
+      date_last_pass : new Date(),
+      date_paid_off : new Date()
     });
    }
 
