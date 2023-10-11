@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Credit } from '../interfaces/credit';
+import { LoadModalsService } from '../Services/load-modals.service';
 
 
 @Component({
@@ -10,8 +11,9 @@ import { Credit } from '../interfaces/credit';
 })
 export class CreditsMenuComponent {
   add_class : boolean = false;
+  open_filter_modal : boolean = false;
 
-  constructor(private api : ApiService<Credit>){}
+  constructor(private api : ApiService<Credit>, private modals : LoadModalsService){}
   ngOnInit(){
    
   }
@@ -29,6 +31,16 @@ export class CreditsMenuComponent {
   show_pays(){
 
     
+  }
+
+  open_filter(){
+    
+    this.modals.open_modal(true)
+
+    this.modals.get_status()
+      .subscribe(state =>{
+        this.open_filter_modal = state
+      })
   }
 }
 
