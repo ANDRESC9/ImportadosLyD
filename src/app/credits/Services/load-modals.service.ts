@@ -8,10 +8,13 @@ export class LoadModalsService {
 
   private open_filter : boolean = false;
   private open_filter$! : BehaviorSubject<boolean>
+
+  private loader_status : boolean = false;
+  private loader_status$! : BehaviorSubject<boolean>
   constructor() {
 
     this.open_filter$ = new BehaviorSubject<boolean>(false)
-
+    this.loader_status$ = new BehaviorSubject<boolean>(false)
    }
 
    open_modal(state : boolean){
@@ -24,5 +27,17 @@ export class LoadModalsService {
    get_status() : Observable<boolean>{
 
     return this.open_filter$.asObservable()
+   }
+
+   set_status_loader(state : boolean){
+
+    this.loader_status = state
+    this.loader_status$.next(state)
+   }
+
+   get_loader_status() : Observable<boolean>{
+
+    return this.loader_status$.asObservable()
+
    }
 }

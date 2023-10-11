@@ -21,9 +21,7 @@ export class CreditsTableComponent {
 
   ngOnInit(){
 
-    let params = new HttpParams()
-      .set('action', "")
-    this.api.getAllPost("https://fruverapp.onrender.com/api/debtorscredits/", params)
+    this.api.getAllPost("https://fruverapp.onrender.com/api/debtorscredits/")
     this.api.get_all()
       .subscribe((data: Response) =>{
         
