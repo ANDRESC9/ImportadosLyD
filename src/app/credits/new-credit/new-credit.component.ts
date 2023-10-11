@@ -31,7 +31,7 @@ export class NewCreditComponent {
 
   ngOnInit(){
 
-    this.api.load_debtors("https://fruverapp.onrender.com/api/debtors/")
+    this.api.load_debtors()
     
     this.api.get_debtors()
       .subscribe(data =>{

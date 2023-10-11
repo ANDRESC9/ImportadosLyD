@@ -1,15 +1,12 @@
 <section class="main_menu">
-    <div class="option_menu">
-        <h1>Créditos</h1>
-        <ul>
-            <li (click)="open_table()">Nuevo crédito</li>
-            <li (click)="open_table()">Nuevo deudor</li>
-            <li (click)="show_pays()">Créditos pagados</li>
-        </ul> 
-    </div>
-    <div class="filter">
-        <a href=""><img src="../../../assets/icon/controles-deslizantes.png" alt=""></a>
-    </div>
+    <h1>Créditos</h1>
+    <ul>
+        <li><a (click)="show_credits()">Créditos</a></li>
+        <li (click)="show_pays()">Créditos pagados</li>
+        <li (click)="open_table()">Nuevo crédito</li>
+        <li (click)="open_table()">Nuevo deudor</li>
+    </ul> 
+    <a (click)="open_filter()" class="filter"><img src="../../../assets/icon/controles-deslizantes.png" alt=""></a>
 </section>
 <section class="table_container">
     <router-outlet></router-outlet>
@@ -17,6 +14,10 @@
 <section class="hidden" [ngClass]="{'show_table': add_class}">
     <app-new-credit (close_modal)="close($event)"></app-new-credit>
 </section>
-<section>
+<section class="hidden" [ngClass]="{'show_table': open_filter_modal}">
     <app-credits-filter></app-credits-filter>
 </section>
+
+<div *ngIf="!loader_status" class="load">
+    <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
+</div>

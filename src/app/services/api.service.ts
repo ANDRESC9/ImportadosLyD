@@ -4,6 +4,7 @@ import { Observable, tap, BehaviorSubject } from 'rxjs';
 import { Response } from '../interfaces/response';
 import { Debtor } from '../credits/interfaces/debtor';
 import { Credit } from '../credits/interfaces/credit';
+import { ApiConfigService } from './api-config.service';
 
 //Inyecta dependencias de la raíz
 @Injectable({
@@ -21,7 +22,7 @@ export class ApiService<T> {
   private info_credit! : Credit;
   private info_Credit$!: BehaviorSubject<Credit>
 
-  constructor(protected http : HttpClient) {
+  constructor(protected http : HttpClient, private conf : ApiConfigService) {
 
 
     this.suject$ = new BehaviorSubject<Response>({
@@ -43,9 +44,9 @@ export class ApiService<T> {
     });
    }
 
-  getAllPost(url : string, params? : HttpParams) {
+  getAllPost(url : string) {
 
-    this.http.get<Response>(url, {params: params})
+    this.http.get<Response>(url)
     .subscribe((response : Response)=>{
 
       this.records = response
@@ -65,9 +66,9 @@ export class ApiService<T> {
     return this.info_Credit$.asObservable()
   }
 
-  load_debtors(url : string){
+  load_debtors(){
 
-    this.http.get<Response>(url)
+    this.http.get<Response>(this.conf.base_url + "debtors/")
     .subscribe((response : Response)=>{
 
       this.debtors = response.Data
