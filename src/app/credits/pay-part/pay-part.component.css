@@ -1,22 +1,5 @@
-.show_info {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-left: 5%;
-}
-
-h2 {
-    padding-bottom: 3%;
-}
-
-span {
-    font-size: 1.2rem;
-    line-height: 2.5rem;
-}
-
 .form_style input[type="text"] {
     width: 50%;
-    
 }
 
 .pass_style {

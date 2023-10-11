@@ -55,6 +55,12 @@ export class CreditsMenuComponent {
 
   }
 
+  show_credits(){
+
+    this.api.getAllPost("https://fruverapp.onrender.com/api/debtorscredits/")
+
+  }
+
   open_filter(){
     
     this.modals.open_modal(true)

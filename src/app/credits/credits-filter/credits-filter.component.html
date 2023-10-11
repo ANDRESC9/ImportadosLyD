@@ -1,19 +1,16 @@
-<section class="filter_style">
-    <div>
-        <form [formGroup]="form_filter" (ngSubmit)="send()">
-            <span>Filtro por fecha</span>
-            <input type="date" formControlName="date_filter">
-            <span>Filtro por nombre</span>
+<form class="form_style" [formGroup]="form_filter" (ngSubmit)="send()">
+    <h2>Filtrar</h2>
+    <div class="show_info">
+        <span>Filtro por fecha</span>
+        <input type="date" formControlName="date_filter">
+        <span>Filtro por nombre</span>
 
-            <select name="" formArrayName="debtors_fk">
-                <option *ngFor="let deb of debtors" value='{{deb.id_debtors}}'>{{ deb.names_ + " " + deb.lastnames}}</option>
-                
-            </select>
-
-            <button>Filtrar</button>
-        </form>
+        <select name="" id="" formControlName="debtors_fk">
+            <option value="" selected>Seleccione</option>
+            <option *ngFor="let debtor of debtors" value='{{debtor.id_debtors}}'>{{debtor.names_ + " " +debtor.lastnames}}</option>
+        </select>
         
     </div>
-    
+    <button>Filtrar</button>
     <span class="close" (click)="close_modal_filter()"><img src="../../../assets/icon/cerrar.png" alt=""></span>
-</section>
+</form>
