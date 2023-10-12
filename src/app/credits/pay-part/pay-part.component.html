@@ -6,13 +6,14 @@
         <span><strong>Valor crédito:</strong>&nbsp;{{form_pass.value.value}}</span>
         <span><strong>Saldo actual:</strong>&nbsp;{{form_pass.value.balance}}</span>
         <div class="pass_style">
-            <span><strong>Abono:</strong>&nbsp;</span>
+            <span><strong>*Abono:</strong>&nbsp;</span>
             <input type="text" id="cantidad" formControlName="pass"  required>
         </div>
     </div>
     <button type="submit" (click)="close_form()">Abonar</button>
+    <span class="required_fields">Todos los campos con (*) son obligatorios</span>
     <span class="close" (click)="close_form()"><img src="../../../assets/icon/cerrar.png" alt=""></span>
 </form> 
 <div *ngIf="!is_load" class="load">
     <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
-</div>
+</div> 
