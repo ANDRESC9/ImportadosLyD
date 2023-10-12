@@ -17,26 +17,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let credit of credit_history">
-            <td class="column justify_center">{{credit.id_credit_history}}</td>
-            <td class="column justify_center">{{ credit.debtors_names +" " +credit.debtors_lastnames}}</td>
-            <td class="column justify_center">{{credit.last_pass_date}}</td>
-            <td class="column justify_center">{{credit.last_pass}}</td>
-            <td class="column justify_center">{{credit.current_pass}}</td>
-            <td class="column justify_center">{{credit.last_balance}}</td>
-            <td class="column justify_center">{{credit.current_balance}}</td>
-            <td class="column justify_center">{{credit.user_names + " "+ credit.user_lastnames}}</td>
+        <tr *ngFor="let history of credit_history">
+            <td class="column justify_center">{{history.id_credit_history}}</td>
+            <td class="column justify_center">{{history.debtors_names +" " +history.debtors_lastnames}}</td>
+            <td class="column justify_center">{{history.last_pass_date}}</td>
+            <td class="column justify_center">{{history.last_pass}}</td>
+            <td class="column justify_center">{{history.current_pass}}</td>
+            <td class="column justify_center">{{history.last_balance}}</td>
+            <td class="column justify_center">{{history.current_balance}}</td>
+            <td class="column justify_center">{{history.user_names + " "+ history.user_lastnames}}</td>
 
         </tr>
     </tbody>
 </table>
-<!-- id_credit_history : number,
-debtors_names : string,
-debtors_lastnames : string,
-last_pass_date : Date,
-last_pass : number,
-current_pass : number,
-last_balance : number,
-current_balance : number,
-user_names : string,
-user_lastnames : string -->
