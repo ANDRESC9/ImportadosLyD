@@ -1,13 +1,12 @@
 <section class="main_menu">
-    <h1>Créditos</h1>
     <ul>
-        <li><a routerLink='tabla'>Créditos</a></li>
-        <li routerLink='creditos_pagados'>Créditos pagados</li>
-        <li (click)="open_table()">Nuevo crédito</li>
+        <li (click)="open_filter()">Filtro</li>
+        <li (click)="open_table()">Nuevo</li>
+        <li routerLink='tabla'>Lista</li>
+        <li routerLink='creditos_pagados'>Pagados</li>
         <li (click)="open_table()">Nuevo deudor</li>
+        <li routerLink='informacion_creditos'>Información</li>
     </ul> 
-    <a class="filter"><img src="../../../assets/icon/expediente.png" alt=""></a>
-    <a (click)="open_filter()" class="filter"><img src="../../../assets/icon/controles-deslizantes.png" alt=""></a>
 </section>
 <section class="table_container">
     <router-outlet></router-outlet>
