@@ -15,6 +15,7 @@ import { CreditsFilterComponent } from './credits/credits-filter/credits-filter.
 import { CreditsPaidComponent } from './credits/credits-paid/credits-paid.component';
 import { CreditsHistoryComponent } from './credits/credits-history/credits-history.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { CreditsHistoryComponent } from './credits/credits-history/credits-histo
     PayPartComponent,
     CreditsFilterComponent,
     CreditsPaidComponent,
-    CreditsHistoryComponent
+    CreditsHistoryComponent,
+
   ],
   imports: [
     BrowserModule,

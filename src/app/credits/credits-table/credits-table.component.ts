@@ -19,7 +19,7 @@ export class CreditsTableComponent {
   }
 
   ngOnInit(){
-
+    
     this.api.getAllPost("debtorscredits/")
     this.api.get_all()
       .subscribe((data: Response) =>{
