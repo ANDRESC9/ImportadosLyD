@@ -10,11 +10,18 @@
 
 span {
     position: absolute;
-    font-size: 2rem;
-    top: 50%; 
+    top: 80%; 
     left: 10%;
     transform: translate(-50%, -50%);
+    cursor: pointer;
 }
+
+span img {
+    height: auto;
+    width: 180px;
+}
+
+
 
 nav {
     width: 100%;
@@ -31,9 +38,14 @@ nav ul {
 
 nav ul li {
     font-size: 1.5rem;
+    background-image: linear-gradient(to right, var(--thead_color) 0%, var(--hover_color) 100%);
+    background-position: bottom left;
+    background-size: 0% 5%; 
+    background-repeat: no-repeat;
+    transition: background-size 1s ease;
 }
-
 
 nav ul li:hover {
-    color: var(--main_color);
+    background-size: 100% 5%;
 }
+

@@ -1,13 +1,15 @@
 <section class="main_menu">
+    <h2>Créditos</h2>
     <ul>
-        <li (click)="open_filter()">Filtro</li>
-        <li (click)="open_table()">Nuevo</li>
-        <li routerLink='tabla'>Lista</li>
-        <li routerLink='creditos_pagados'>Pagados</li>
-        <li (click)="open_table()">Nuevo deudor</li>
-        <li routerLink='informacion_creditos'>Información</li>
+        <li class="filter" (click)="open_filter()"><img src="../../../assets/icon/icon_filter.png" alt="Filtro"><span>Filtrar</span></li>
+        <li (click)="open_table()"><img src="../../../assets/icon/icon_add.png" alt="Agregar"><span>Nuevo</span></li>
+        <li routerLink='tabla'><img src="../../../assets/icon/icon_list.png" alt="Lista"><span>Lista</span></li>
+        <li routerLink='creditos_pagados'><img src="../../../assets/icon/icon_cheque.png" alt="Pago"><span>Pagados</span></li>
+        <li routerLink='informacion_creditos'><img src="../../../assets/icon/icon_history.png" alt="Historial"><span>Historial</span></li>
+        <li><img src="../../../assets/icon/icon_new_person.png" alt="Nueva persona"><span>Nuevo deudor</span></li>
+        <li><img src="../../../assets/icon/icon_list_people.png" alt="Lista personas"><span>Lista deudores</span></li>
     </ul> 
-</section>
+</section> 
 <section class="table_container">
     <router-outlet></router-outlet>
 </section>
