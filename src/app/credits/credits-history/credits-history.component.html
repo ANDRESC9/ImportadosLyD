@@ -1,0 +1,42 @@
+
+<!-- <div *ngIf="!is_load" class="load">
+    <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
+</div> -->
+<table  class="table_style">
+    <thead>
+        <tr>
+            <th class="column justify_center">Id credito</th> 
+            <th class="column justify_center">Nombres deudor</th>  
+            <th class="column justify_center">Fecha ultimo abono</th> 
+            <th class="column justify_center">Valor ultimo abono</th>
+            <th class="column_icons justify_center">Abono actual</th> 
+            <th class="column_icons justify_center">Ultimo saldo</th>
+            <th class="column_icons justify_center">Saldo actual</th>
+            <th class="column justify_center">Usuario</th> 
+  
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let credit of credit_history">
+            <td class="column justify_center">{{credit.id_credit_history}}</td>
+            <td class="column justify_center">{{ credit.debtors_names +" " +credit.debtors_lastnames}}</td>
+            <td class="column justify_center">{{credit.last_pass_date}}</td>
+            <td class="column justify_center">{{credit.last_pass}}</td>
+            <td class="column justify_center">{{credit.current_pass}}</td>
+            <td class="column justify_center">{{credit.last_balance}}</td>
+            <td class="column justify_center">{{credit.current_balance}}</td>
+            <td class="column justify_center">{{credit.user_names + " "+ credit.user_lastnames}}</td>
+
+        </tr>
+    </tbody>
+</table>
+<!-- id_credit_history : number,
+debtors_names : string,
+debtors_lastnames : string,
+last_pass_date : Date,
+last_pass : number,
+current_pass : number,
+last_balance : number,
+current_balance : number,
+user_names : string,
+user_lastnames : string -->

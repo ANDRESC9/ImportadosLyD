@@ -13,6 +13,7 @@ import { NewDebtorComponent } from './credits/new-debtor/new-debtor.component';
 import { PayPartComponent } from './credits/pay-part/pay-part.component';
 import { CreditsFilterComponent } from './credits/credits-filter/credits-filter.component';
 import { CreditsPaidComponent } from './credits/credits-paid/credits-paid.component';
+import { CreditsHistoryComponent } from './credits/credits-history/credits-history.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CreditsPaidComponent } from './credits/credits-paid/credits-paid.compon
     NewDebtorComponent,
     PayPartComponent,
     CreditsFilterComponent,
-    CreditsPaidComponent
+    CreditsPaidComponent,
+    CreditsHistoryComponent
   ],
   imports: [
     BrowserModule,
