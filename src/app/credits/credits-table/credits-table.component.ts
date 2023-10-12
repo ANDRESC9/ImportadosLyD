@@ -42,5 +42,7 @@ export class CreditsTableComponent {
 
     this.add_class = event;
   }
+
+
 }
 
