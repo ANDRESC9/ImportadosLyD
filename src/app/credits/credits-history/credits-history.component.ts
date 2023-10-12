@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Credit_history } from 'src/app/credits/interfaces/Credit_history';
 import { Response } from 'src/app/interfaces/response';
+import { DebtorsService } from '../Services/debtors.service';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -11,22 +12,19 @@ import { ApiService } from 'src/app/services/api.service';
 export class CreditsHistoryComponent {
 
   credit_history! : Credit_history[]
-  constructor(private api : ApiService<Credit_history>){
+  constructor(protected deb : DebtorsService, private  api: ApiService<Credit_history>){
 
   }
 
   ngOnInit(){
 
-    this.api.getAllPost("debtorscredits_credit_history/")
+    this.deb.load_history()
 
-    this.api.get_all()
-      .subscribe((response : Response)=>{
-        this.credit_history = response.Data
+    this.deb.get_credits_history()
+      .subscribe((res : Response)=>{
+
+        this.credit_history = res.Data
       })
-  }
-
-  ngOnDestroy(){
-
-    this.credit_history = []
+    
   }
 }

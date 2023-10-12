@@ -68,7 +68,7 @@ export class PayPartComponent {
         console.log(response.Messague)
         
         if(response.Status){
-          this.api.getAllPost("https://fruverapp.onrender.com/api/debtorscredits/")
+          this.api.getAllPost("debtorscredits/")
             
         }else{
           this.is_load = true
