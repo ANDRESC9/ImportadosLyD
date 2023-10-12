@@ -24,4 +24,9 @@ export class CreditsHistoryComponent {
         this.credit_history = response.Data
       })
   }
+
+  ngOnDestroy(){
+
+    this.credit_history = []
+  }
 }
