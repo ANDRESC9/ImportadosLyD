@@ -1,0 +1,40 @@
+<!-- <div *ngIf="!is_load" class="load">
+    <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
+</div> -->
+<table  class="table_style">
+    <thead>
+        <tr>
+            <th class="column justify_center">Id credito</th>
+            <th class="column justify_center">Fecha credito</th>
+            <th class="column justify_center">Valor credito</th>
+            <th class="column justify_center">Nombre</th>  
+            <th class="column justify_center">Fecha de pago completado</th> 
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let credit of credits_paid">
+           
+            <td>{{credit.id_debtors_credit}}</td>
+            <td>{{credit.date_debts}}</td>
+            <td>{{credit.value_}}</td>
+            <td>{{credit.names_ + " " + credit.lastnames}}</td>
+            <td>{{credit.date_paid_off}}</td>
+
+        </tr>
+    </tbody>
+</table>
+<!-- 
+<section class="hidden" [ngClass]="{'show_table': add_class}">
+    <app-pay-part  [info_credit] = "credit_" (close)="close_children($event)"></app-pay-part>
+</section> -->
+<!-- id_debtors_credit : number
+debtors_fk : number
+value_ : number
+date_debts : Date
+date_last_pass : Date
+names_ : string
+lastnames : string
+pass : number
+balance : number
+date_paid_off : Date -->

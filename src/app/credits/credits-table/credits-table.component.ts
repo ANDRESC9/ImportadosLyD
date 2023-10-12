@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Credit } from '../interfaces/credit';
 import { ApiService } from 'src/app/services/api.service';
 import { Response } from 'src/app/interfaces/response';
-import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-credits-table',
@@ -21,7 +20,7 @@ export class CreditsTableComponent {
 
   ngOnInit(){
 
-    this.api.getAllPost("https://fruverapp.onrender.com/api/debtorscredits/")
+    this.api.getAllPost("debtorscredits/")
     this.api.get_all()
       .subscribe((data: Response) =>{
         

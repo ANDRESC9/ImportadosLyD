@@ -48,7 +48,7 @@ export class ApiService<T> {
 
   getAllPost(url : string) {
 
-    this.http.get<Response>(url)
+    this.http.get<Response>(this.conf.base_url+url)
     .subscribe((response : Response)=>{
 
       this.records = response
