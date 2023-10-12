@@ -16,10 +16,10 @@
     <tbody>
         <tr *ngFor="let credit of credits">
             <td class="column justify_center">{{credit.date_debts}}</td>
-            <td class="column justify_left">{{ credit.names_ +" " +credit.lastnames}}</td>
-            <td class="column justify_right">{{credit.value_}}</td>
-            <td class="column justify_right">{{credit.pass}}</td>
-            <td class="column justify_right">{{credit.balance}}</td>
+            <td class="column justify_center">{{ credit.names_ +" " +credit.lastnames}}</td>
+            <td class="column justify_center">{{credit.value_}}</td>
+            <td class="column justify_center">{{credit.pass}}</td>
+            <td class="column justify_center">{{credit.balance}}</td>
             <td class="column_icons justify_center" (click)="pass(credit)"><img src="../../../assets/icon/necesitar.png" alt=""></td>
             <td class="column_icons justify_center"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
         </tr>

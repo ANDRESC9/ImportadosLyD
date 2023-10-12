@@ -87,9 +87,15 @@ input {
     /* Variables de fuentes */
     --main_font: 'Poppins', sans-serif;
     --fuente-secundaria: "Times New Roman, serif";
-  }
+}
 
-  button {
+body {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+button {
     background-color: var(--main_color);
     color: #fff;
     width: 180px;
@@ -105,6 +111,10 @@ input {
 
 button:hover {
     background-color: var(--hover_color);
+}
+
+select {
+    -webkit-appearance: auto;
 }
 
 /* Estilo del menu principal */
@@ -205,7 +215,7 @@ button:hover {
 
 /* Estilo del load */
 .load {
-    height: 200vh;
+    height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.37);
     display: grid;
@@ -221,11 +231,6 @@ button:hover {
 }
 
 /* Estilo de formularios */
-
-form{
-    position: relative;
-
-}
 
 .close {
     position: absolute;
@@ -250,6 +255,7 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .form_style input[type="text"] {
@@ -318,6 +324,13 @@ form{
     line-height: 2.5rem;
 }
 
+.form_style .required_fields {
+    font-size: .9rem;
+    margin-top: 3%;
+    width: 100%;
+    text-align: left;
+}
+
 /* Estilo Modal */
 
 .hidden {
@@ -332,7 +345,7 @@ form{
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.37);
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
 

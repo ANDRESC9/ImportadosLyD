@@ -1,10 +1,10 @@
 <form class="form_style" [formGroup]="form_pass" (ngSubmit)="send()">
     <h2>Información crédito</h2>
     <div class="show_info">
-        <span><strong>Fecha:</strong> {{form_pass.value.date_debts}}</span>
-        <span><strong>Nombre:</strong> {{form_pass.value.names_}} {{form_pass.value.lastnames}}</span>
-        <span><strong>Valor crédito:</strong>{{form_pass.value.value}}</span>
-        <span><strong>Saldo actual:</strong>{{form_pass.value.balance}}</span>
+        <span><strong>Fecha:</strong>&nbsp;{{form_pass.value.date_debts}}</span>
+        <span><strong>Nombre:</strong>&nbsp;{{form_pass.value.names_}} {{form_pass.value.lastnames}}</span>
+        <span><strong>Valor crédito:</strong>&nbsp;{{form_pass.value.value}}</span>
+        <span><strong>Saldo actual:</strong>&nbsp;{{form_pass.value.balance}}</span>
         <div class="pass_style">
             <span><strong>Abono:</strong>&nbsp;</span>
             <input type="text" id="cantidad" formControlName="pass"  required>
