@@ -16,6 +16,8 @@ import { CreditsPaidComponent } from './credits/credits-paid/credits-paid.compon
 import { CreditsHistoryComponent } from './credits/credits-history/credits-history.component';
 import { ListDebtorsComponent } from './credits/list-debtors/list-debtors.component';
 import { EditDebtorComponent } from './credits/edit-debtor/edit-debtor.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 @NgModule({
@@ -33,13 +35,15 @@ import { EditDebtorComponent } from './credits/edit-debtor/edit-debtor.component
     CreditsHistoryComponent,
     ListDebtorsComponent,
     EditDebtorComponent,
-
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
