@@ -18,7 +18,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let history of credit_history">
-            <td class="column justify_center">{{history.id_credit_history}}</td>
+            <td class="column justify_center">{{history.debtors_credit_fk}}</td>
             <td class="column justify_center">{{history.debtors_names +" " +history.debtors_lastnames}}</td>
             <td class="column justify_center">{{history.last_pass_date}}</td>
             <td class="column justify_center">{{history.last_pass}}</td>

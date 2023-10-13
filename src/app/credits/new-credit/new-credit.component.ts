@@ -5,6 +5,7 @@ import { Debtor } from '../interfaces/debtor';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Credit } from '../interfaces/credit';
+import { DateServicesService } from 'src/app/services/date-services.service';
 
 @Component({
   selector: 'app-new-credit',
@@ -17,14 +18,16 @@ export class NewCreditComponent {
   debtors! : Array<Debtor>
   @Output() close_modal = new EventEmitter<boolean>();
 
-  constructor(private api : ApiService<Debtor>, private builder :  FormBuilder,
-     private router : Router  ){
+  constructor(private api : ApiService<Debtor>, 
+    private builder :  FormBuilder,
+    private date : DateServicesService  ){
     
  
     this.form_credit = this.builder.group(
       {
-        id_debtor : [""],
-        value : [""]
+        id_debtor : ["", [Validators.required]],
+        value : ["" ,[Validators.required]],
+        date : ["" ]
       }
     )
   }
@@ -43,16 +46,17 @@ export class NewCreditComponent {
   send(){
 
     if(this.form_credit.valid){
-
+      this.form_credit.value.date  = this.date.now()
       this.api.create("https://fruverapp.onrender.com/api/debtorscredits_create/", this.form_credit.value)
         .subscribe((response : Response)=>{
 
           console.log(response.Messague)
-          this.api.getAllPost("https://fruverapp.onrender.com/api/debtorscredits/")
+          this.api.getAllPost("debtorscredits/")
         })
+    }else{
+
+      console.log("error en formulario")
     }
-
-
     
   }
 
