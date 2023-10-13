@@ -1,22 +1,26 @@
 <!-- <div *ngIf="!is_load" class="load">
     <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
 </div> -->
+<div class="filter">
+    <img src="../../../assets/icon/icon_filter.png" alt="Filtro">
+    <span>Filtrar</span>
+</div>
 <table  class="table_style">
     <thead>
         <tr>
-            <th class="column justify_center">Id crédito</th>
-            <th class="column justify_center">Fecha crédito</th>
-            <th class="column justify_center">Valor crédito</th>
+            <th class="column_icons justify_center">Id</th>
+            <th class="column justify_center">Fecha de crédito</th>
+            <th class="column justify_center">Valor</th>
             <th class="column justify_center">Nombre</th>  
             <th class="column justify_center">Fecha de pago completado</th> 
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let credit of credits_paid">
-            <td class="column justify_center">{{credit.id_debtors_credit}}</td>
+            <td class="column_icons justify_center">{{credit.id_debtors_credit}}</td>
             <td class="column justify_center">{{credit.date_debts}}</td>
-            <td class="column justify_center">{{credit.value_}}</td>
-            <td class="column justify_center">{{credit.names_ + " " + credit.lastnames}}</td>
+            <td class="column justify_left">{{credit.value_}}</td>
+            <td class="column justify_left">{{credit.names_}}&nbsp;{{credit.lastnames}}</td>
             <td class="column justify_center">{{credit.date_paid_off}}</td>
         </tr>
     </tbody>

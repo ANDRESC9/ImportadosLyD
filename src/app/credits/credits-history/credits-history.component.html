@@ -2,11 +2,15 @@
 <!-- <div *ngIf="!is_load" class="load">
     <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
 </div> -->
+<div class="filter">
+    <img src="../../../assets/icon/icon_filter.png" alt="Filtro">
+    <span>Filtrar</span>
+</div>
 <table  class="table_style">
     <thead>
         <tr>
-            <th class="column justify_center">Id credito</th> 
-            <th class="column justify_center">Nombres deudor</th>  
+            <th class="column_icons justify_center">Id</th> 
+            <th class="column justify_center">Nombre deudor</th>  
             <th class="column justify_center">Fecha ultimo abono</th> 
             <th class="column justify_center">Valor ultimo abono</th>
             <th class="column_icons justify_center">Abono actual</th> 
@@ -14,17 +18,17 @@
             <th class="column_icons justify_center">Saldo actual</th>
             <th class="column justify_center">Usuario</th> 
   
-        </tr>
+        </tr> 
     </thead>
     <tbody>
         <tr *ngFor="let history of credit_history">
-            <td class="column justify_center">{{history.id_credit_history}}</td>
-            <td class="column justify_center">{{history.debtors_names +" " +history.debtors_lastnames}}</td>
+            <td class="column_icons justify_center">{{history.id_credit_history}}</td>
+            <td class="column justify_left">{{history.debtors_names +" " +history.debtors_lastnames}}</td>
             <td class="column justify_center">{{history.last_pass_date}}</td>
-            <td class="column justify_center">{{history.last_pass}}</td>
-            <td class="column justify_center">{{history.current_pass}}</td>
-            <td class="column justify_center">{{history.last_balance}}</td>
-            <td class="column justify_center">{{history.current_balance}}</td>
+            <td class="column justify_left">{{history.last_pass}}</td>
+            <td class="column justify_left">{{history.current_pass}}</td>
+            <td class="column justify_left">{{history.last_balance}}</td>
+            <td class="column justify_left">{{history.current_balance}}</td>
             <td class="column justify_center">{{history.user_names + " "+ history.user_lastnames}}</td>
 
         </tr>
