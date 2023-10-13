@@ -11,6 +11,9 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CreditsHistoryComponent {
 
+  pageSize = 7; // Número de elementos por página
+  currentPage = 1; // Página actual
+
   credit_history! : Credit_history[]
   constructor(protected deb : DebtorsService, private  api: ApiService<Credit_history>){
 
@@ -26,5 +29,9 @@ export class CreditsHistoryComponent {
         this.credit_history = res.Data
       })
     
+  }
+
+  pageChanged(event : any) {
+    this.currentPage = event;
   }
 }

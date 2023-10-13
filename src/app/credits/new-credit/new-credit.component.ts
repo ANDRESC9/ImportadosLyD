@@ -3,8 +3,6 @@ import { Response } from 'src/app/interfaces/response';
 import { ApiService } from 'src/app/services/api.service';
 import { Debtor } from '../interfaces/debtor';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Credit } from '../interfaces/credit';
 import { DateServicesService } from 'src/app/services/date-services.service';
 
 @Component({
@@ -42,7 +40,6 @@ export class NewCreditComponent {
       })
   }
 
-
   send(){
 
     if(this.form_credit.valid){
@@ -59,7 +56,6 @@ export class NewCreditComponent {
     }
     
   }
-
 
   close_window(){
 

@@ -31,6 +31,8 @@
             <td class="column justify_left">{{history.current_balance}}</td>
             <td class="column justify_center">{{history.user_names + " "+ history.user_lastnames}}</td>
         </tr>
+
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
     </tbody>
 </table>
 
