@@ -14,6 +14,8 @@ export class CreditsMenuComponent {
   add_class : boolean = false;
   open_filter_modal : boolean = false;
   loader_status! : boolean;
+  open_new_debtor : boolean = false; 
+
   constructor(private api : ApiService<Credit>, private modals : LoadModalsService){}
   ngOnInit(){
    
@@ -69,6 +71,17 @@ export class CreditsMenuComponent {
       .subscribe(state =>{
         this.open_filter_modal = state
       })
+  }
+
+  open_form_debtor(){
+
+    this.modals.set_form_debtors_status(true)
+    this.modals.get_status_form_debtor()
+      .subscribe((status : boolean)=>{
+
+        this.open_new_debtor = status
+      })
+    
   }
 }
 

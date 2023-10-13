@@ -14,11 +14,15 @@ export class LoadModalsService {
 
   private form_debtors : boolean = false
   private form_debtors_status$! : BehaviorSubject<boolean>
+
+  private open_form_edit : boolean = false;
+  private open_form_edit$! : BehaviorSubject<boolean>
   constructor() {
 
     this.open_filter$ = new BehaviorSubject<boolean>(false)
     this.loader_status$ = new BehaviorSubject<boolean>(false)
     this.form_debtors_status$ = new BehaviorSubject<boolean>(false)
+    this.open_form_edit$ = new BehaviorSubject<boolean>(false)
    }
 
    open_modal(state : boolean){
@@ -45,8 +49,29 @@ export class LoadModalsService {
 
    }
 
-   set_form_debtors_status(){
+   set_form_debtors_status(status : boolean){
 
-    
+    this.form_debtors = status
+    this.form_debtors_status$.next(this.form_debtors)
    }
+
+   get_status_form_debtor(): Observable<boolean>{
+
+    return this.form_debtors_status$.asObservable()
+
+   }
+
+   set_form_edit_debtors_status(status : boolean){
+
+    this.open_form_edit = status
+    this.open_form_edit$.next(this.open_form_edit)
+   }
+
+   get_status_form_edit_debtors(): Observable<boolean>{
+
+    return this.open_form_edit$.asObservable()
+
+   }
+
+
 }

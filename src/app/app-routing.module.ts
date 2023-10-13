@@ -6,6 +6,7 @@ import { NewCreditComponent } from './credits/new-credit/new-credit.component';
 import { NewDebtorComponent } from './credits/new-debtor/new-debtor.component';
 import { CreditsPaidComponent } from './credits/credits-paid/credits-paid.component';
 import { CreditsHistoryComponent } from './credits/credits-history/credits-history.component';
+import { ListDebtorsComponent } from './credits/list-debtors/list-debtors.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: 'tabla', component: CreditsTableComponent },
       { path: 'nuevo_credito', component: NewCreditComponent },
       { path: 'nuevo_deudor', component: NewDebtorComponent },
+      { path: 'lista_deudores', component: ListDebtorsComponent },
       { path: 'creditos_pagados', component: CreditsPaidComponent},
       { path: 'informacion_creditos', component: CreditsHistoryComponent}
     ]

@@ -23,7 +23,7 @@ export class CreditsTableComponent {
     this.api.getAllPost("debtorscredits/")
     this.api.get_all()
       .subscribe((data: Response) =>{
-        
+        console.log(data.Messague)
         this.credits = data.Data
         this.is_load = data.Status
       })

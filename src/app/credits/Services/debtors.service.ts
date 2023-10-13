@@ -42,4 +42,6 @@ export class DebtorsService {
 
     return this.http.post<Response>(this.conf.base_url + "debtors_create", data)
   }
+
+  
 }

@@ -1,0 +1,29 @@
+<!-- <div *ngIf="!is_load" class="load">
+    <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
+</div> -->
+<table  class="table_style">
+    <thead>
+        <tr>
+            <th class="column justify_center">ID deudor</th> 
+            <th class="column justify_center">Nombre</th>  
+            <th class="column justify_center">Apellido</th> 
+            <th class="column justify_center">Editar</th> 
+            <th class="column justify_center">Eliminar</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let deb of debtors">
+            <td class="column justify_center">{{deb.id_debtors}}</td>
+            <td class="column justify_center">{{deb.names_}}</td>
+            <td class="column justify_center">{{deb.lastnames}}</td>
+            <td class="column justify_center"><span (click)="open_edit()">EDITAR</span></td>
+            <td class="column justify_center"><span (click)="delete_debtor(deb.id_debtors)">ELIMINAR</span></td>
+        </tr>
+    </tbody>
+</table>
+
+<section class="hidden" >
+    <app-edit-debtor [ngClass]="{'show_table': open_edit_form}"></app-edit-debtor>
+</section>
+ 

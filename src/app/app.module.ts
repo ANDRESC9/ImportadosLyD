@@ -14,6 +14,8 @@ import { PayPartComponent } from './credits/pay-part/pay-part.component';
 import { CreditsFilterComponent } from './credits/credits-filter/credits-filter.component';
 import { CreditsPaidComponent } from './credits/credits-paid/credits-paid.component';
 import { CreditsHistoryComponent } from './credits/credits-history/credits-history.component';
+import { ListDebtorsComponent } from './credits/list-debtors/list-debtors.component';
+import { EditDebtorComponent } from './credits/edit-debtor/edit-debtor.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { CreditsHistoryComponent } from './credits/credits-history/credits-histo
     CreditsFilterComponent,
     CreditsPaidComponent,
     CreditsHistoryComponent,
+    ListDebtorsComponent,
+    EditDebtorComponent,
 
   ],
   imports: [

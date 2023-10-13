@@ -6,8 +6,8 @@
         <li routerLink='tabla'><img src="../../../assets/icon/icon_list.png" alt="Lista"><span>Lista</span></li>
         <li routerLink='creditos_pagados'><img src="../../../assets/icon/icon_cheque.png" alt="Pago"><span>Pagados</span></li>
         <li routerLink='informacion_creditos'><img src="../../../assets/icon/icon_history.png" alt="Historial"><span>Historial</span></li>
-        <li><img src="../../../assets/icon/icon_new_person.png" alt="Nueva persona"><span>Nuevo deudor</span></li>
-        <li><img src="../../../assets/icon/icon_list_people.png" alt="Lista personas"><span>Lista deudores</span></li>
+        <li (click)="open_form_debtor()"><img src="../../../assets/icon/icon_new_person.png" alt="Nueva persona"><span>Nuevo deudor</span></li>
+        <li routerLink="lista_deudores"><img src="../../../assets/icon/icon_list_people.png" alt="Lista personas"><span>Lista deudores</span></li>
     </ul> 
 </section> 
 <section class="table_container">
@@ -17,7 +17,7 @@
     <app-new-credit (close_modal)="close($event)"></app-new-credit>
 </section>
 <!-- <section class="hidden" [ngClass]="{'show_table': add_class}"> -->
-<section class="hidden" [ngClass]="{'show_table': add_class}">
+<section class="hidden" [ngClass]="{'show_table': open_new_debtor}">
     <app-new-debtor></app-new-debtor>
 </section>
 <section class="hidden" [ngClass]="{'show_table': open_filter_modal}">

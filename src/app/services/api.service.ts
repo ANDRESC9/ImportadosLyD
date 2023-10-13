@@ -93,4 +93,9 @@ export class ApiService<T> {
     
   }
 
+  delete(params : any) : Observable<Response>{
+
+    return this.http.post<Response>(this.conf.base_url + "records/delete_soft", params);
+  }
+
 }
