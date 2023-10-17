@@ -11,7 +11,7 @@ import { ApiConfigService } from './api-config.service';
   providedIn: 'root'
 })
 
-export class ApiService<T> {
+export class ApiService <Model> {
 
   private records!: Response;
   private suject$!: BehaviorSubject<Response>
@@ -22,8 +22,16 @@ export class ApiService<T> {
   private info_credit! : Credit;
   private info_Credit$!: BehaviorSubject<Credit>
 
+  private model_filter! : Response
+  private model_filter$!: BehaviorSubject<Response>
+
   constructor(protected http : HttpClient, private conf : ApiConfigService) {
 
+    this.model_filter$ = new BehaviorSubject<Response>({
+      Status : false,
+      Messague : "",
+      Data : []
+    })
 
     this.suject$ = new BehaviorSubject<Response>({
       Status : false,
@@ -96,6 +104,23 @@ export class ApiService<T> {
   delete(params : any) : Observable<Response>{
 
     return this.http.post<Response>(this.conf.base_url + "records/delete_soft", params);
+  }
+
+
+  //observable para filtrar modelos
+
+  load_filter_model(url : string){
+
+    this.http.get<Response>(this.conf.base_url + url)
+      .subscribe((res : Response)=>{
+        this.model_filter = res
+        this.model_filter$.next(this.model_filter)
+      })
+  }
+
+  get_model_filter$() : Observable<Response>{
+
+    return this.model_filter$.asObservable()
   }
 
 }
