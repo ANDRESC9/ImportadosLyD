@@ -13,8 +13,9 @@ export class CreditsHistoryComponent {
 
   pageSize = 7; // Número de elementos por página
   currentPage = 1; // Página actual
-
+  open_filter : boolean = true
   credit_history! : Credit_history[]
+
   constructor(protected deb : DebtorsService, private  api: ApiService<Credit_history>){
 
   }
