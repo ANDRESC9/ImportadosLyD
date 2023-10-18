@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'; 
 import { Response } from 'src/app/interfaces/response';
 import { Debtor } from '../interfaces/debtor';
 import { ApiService } from 'src/app/services/api.service';
