@@ -21,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { SuppliersTableComponent } from './suppliers/suppliers-table/suppliers-table.component';
 import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.component';
+import { LoginComponent } from './login/login.component';
 =======
 import { HistoryFilterComponent } from './credits/history-filter/history-filter.component';
 >>>>>>> camilo
@@ -46,10 +47,6 @@ import { HistoryFilterComponent } from './credits/history-filter/history-filter.
     SuppliersComponent,
     SuppliersTableComponent,
     WelcomeScreenComponent,
-=======
-    HistoryFilterComponent,
-    
->>>>>>> camilo
   ],
   imports: [
     BrowserModule,

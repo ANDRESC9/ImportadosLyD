@@ -330,6 +330,7 @@ app-credits-menu {
     top: 10rem;
 }
 
+.form_style input[type="password"],
 .form_style input[type="text"] {
     width: 90%;
     padding: 3%;
