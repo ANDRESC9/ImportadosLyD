@@ -1,5 +1,5 @@
 <section class="header">
-    <span class="logo"><img src="../../../assets/logo.png" alt=""></span>
+    <span class="logo"><img src="../../../assets/logo.png" routerLink="/"></span>
     <input type="checkbox" id="check">
     <label class="menu_toggle" for="check" [class.active]="claseActiva" (click)="toggleClase()">
         <span class="line"></span>
@@ -8,9 +8,9 @@
     </label>
     <nav>
         <ul>
-            <li><a routerLink="/inventario/cajas">Inventario</a></li>
-            <li><a routerLink="/creditos/tabla">Créditos</a></li>
-            <li><a routerLink="/proveedores/tabla">Proveedores</a></li>
+            <li routerLink="/inventario" routerLinkActive="route_active">Inventario</li>
+            <li routerLink="/creditos" routerLinkActive="route_active">Créditos</li>
+            <li routerLink="/proveedores" routerLinkActive="route_active">Proveedores</li>
         </ul>
     </nav>
 </section>

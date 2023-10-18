@@ -1,7 +1,28 @@
-.form_style input[type="text"] {
-    width: 50%;
+
+.show_info span {
+    font-size: .7rem;
+    line-height: 2rem;
 }
 
 .pass_style {
     display: flex;
+    align-items: center;
 }
+
+.pass_style input {
+    width: 65%;
+}
+
+@media screen and (max-width: 576px) {
+    .show_info span {
+        font-size: 1rem;
+        line-height: 2.5rem;
+    }
+
+    .pass_style input {
+        width: 60%;
+    }
+    
+}
+
+

@@ -173,13 +173,19 @@ app-credits-menu {
     cursor: pointer;
     background-image: linear-gradient(to right, var(--thead_color) 0%, var(--hover_color) 100%);
     background-position: bottom left;
-    background-size: 0% 5%; 
+    background-size: 0% .2rem; 
     background-repeat: no-repeat;
     transition: all 1s ease;
+    padding: 0.4rem 0;
 }
 
+
 .main_menu  ul li:hover {
-    background-size: 100% 5%;
+    background-size: 100% .2rem;
+}
+
+.route_active {
+    background-size: 100% .2rem !important;
 }
 
 .main_menu ul li img {
@@ -318,7 +324,10 @@ app-credits-menu {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10rem;
 }
 
 .form_style input[type="text"] {
@@ -379,6 +388,7 @@ app-credits-menu {
     padding: 5% 0;
     font-size: 1rem;
     font-weight: 400;
+    margin: 0;
 }
 
 
@@ -488,17 +498,20 @@ app-credits-menu {
     }
 }
 
-
 @media screen and (max-width: 576px) {
     :root {
         font-size: 20px;
     }
 
+    button {
+        width: 6rem;
+        font-size: 1rem;
+    }
+
     .form_style {
-        position: fixed;
         left: 50%;
         transform: translateX(-50%);
-        top: 5%;
+        top: 10rem;
     }
     
     .main_menu ul {
@@ -549,6 +562,26 @@ app-credits-menu {
         content: attr(data-label);
         font-weight: bold;
         float: left;
+    }
+
+    .form_style h2 { 
+        font-size: 1.3rem;
+    }
+
+    .form_style input[type="text"] {
+        font-size: 1rem;
+    }
+
+    .form_style input::placeholder {
+        font-size: 1rem;
+    }
+
+    .form_style .required_fields {
+        font-size: .7rem;
+    }
+
+    .form_style select {
+        font-size: 1rem;
     }
 }
 

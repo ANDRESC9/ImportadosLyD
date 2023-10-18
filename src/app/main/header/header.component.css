@@ -38,13 +38,14 @@ nav ul li {
     font-size: 1rem;
     background-image: linear-gradient(to right, var(--thead_color) 0%, var(--hover_color) 100%);
     background-position: bottom left;
-    background-size: 0% 5%; 
+    background-size: 0% .2rem; 
     background-repeat: no-repeat;
-    transition: background-size 1s ease;
+    transition: all 1s ease;
+    padding: 0.4rem 0;
 }
 
 nav ul li:hover {
-    background-size: 100% 5%;
+    background-size: 100% .2rem;
 }
 
 .menu_toggle {
@@ -129,14 +130,14 @@ nav ul li:hover {
         gap: unset !important;
         transition: all .5s ease;
     }
-    
+
     #check:checked ~ nav ul {
         left: 0;
     }
 
     nav ul li {
         font-size: 1.5rem;
-        margin: 2% 0 0 2%;
+        margin: 5% 0 0 3%;
         color: #fff;
     }
 
@@ -146,10 +147,15 @@ nav ul li:hover {
 }
 
 @media screen and (max-width: 576px) {
+    .menu_toggle {
+        left: 5%;
+    }
+
     nav ul li {
-        margin: 5% 0 0 3%;
+        margin: 7% 0 0 5%;
     }
 }
+
 
 
  

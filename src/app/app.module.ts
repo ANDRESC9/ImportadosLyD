@@ -16,12 +16,10 @@ import { CreditsPaidComponent } from './credits/credits-paid/credits-paid.compon
 import { CreditsHistoryComponent } from './credits/credits-history/credits-history.component';
 import { ListDebtorsComponent } from './credits/list-debtors/list-debtors.component';
 import { EditDebtorComponent } from './credits/edit-debtor/edit-debtor.component';
-<<<<<<< HEAD
 import { NgxPaginationModule } from 'ngx-pagination';
-=======
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { SuppliersTableComponent } from './suppliers/suppliers-table/suppliers-table.component';
->>>>>>> andres
+import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.component';
 
 
 
@@ -40,12 +38,9 @@ import { SuppliersTableComponent } from './suppliers/suppliers-table/suppliers-t
     CreditsHistoryComponent,
     ListDebtorsComponent,
     EditDebtorComponent,
-<<<<<<< HEAD
-    
-=======
     SuppliersComponent,
     SuppliersTableComponent,
->>>>>>> andres
+    WelcomeScreenComponent,
   ],
   imports: [
     BrowserModule,

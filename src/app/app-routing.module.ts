@@ -9,8 +9,10 @@ import { CreditsHistoryComponent } from './credits/credits-history/credits-histo
 import { ListDebtorsComponent } from './credits/list-debtors/list-debtors.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { SuppliersTableComponent } from './suppliers/suppliers-table/suppliers-table.component';
+import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.component';
 
 const routes: Routes = [
+  { path: '', component: WelcomeScreenComponent },
   {
     path: 'creditos',
     component: CreditsMenuComponent,
