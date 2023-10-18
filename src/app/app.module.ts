@@ -20,6 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { SuppliersTableComponent } from './suppliers/suppliers-table/suppliers-table.component';
 import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -41,6 +42,7 @@ import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.com
     SuppliersComponent,
     SuppliersTableComponent,
     WelcomeScreenComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
