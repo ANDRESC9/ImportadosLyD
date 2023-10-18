@@ -5,3 +5,13 @@
 .column {
     width: 16%;
 }
+
+@media screen and (max-width: 990px) {
+    .column_icons {
+        width: 7%;
+    }
+
+    .column {
+        width: calc(86%/5)
+    }
+}

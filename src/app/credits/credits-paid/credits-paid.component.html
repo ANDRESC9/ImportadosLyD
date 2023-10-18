@@ -17,11 +17,11 @@
     </thead>
     <tbody>
         <tr *ngFor="let credit of credits_paid">
-            <td class="column_icons justify_center">{{credit.id_debtors_credit}}</td>
-            <td class="column justify_center">{{credit.date_debts}}</td>
-            <td class="column justify_left">{{credit.value_}}</td>
-            <td class="column justify_left">{{credit.names_}}&nbsp;{{credit.lastnames}}</td>
-            <td class="column justify_center">{{credit.date_paid_off}}</td>
+            <td data-label="Id" class="column_icons justify_center">{{credit.id_debtors_credit}}</td>
+            <td data-label="Fecha de crédito" class="column justify_center">{{credit.date_debts}}</td>
+            <td data-label="Valor" class="column justify_left">{{credit.value_}}</td>
+            <td data-label="Nombre" class="column justify_left">{{credit.names_}}&nbsp;{{credit.lastnames}}</td>
+            <td data-label="Fecha de pago completado" class="column justify_center">{{credit.date_paid_off}}</td>
         </tr>
     </tbody>
 </table>

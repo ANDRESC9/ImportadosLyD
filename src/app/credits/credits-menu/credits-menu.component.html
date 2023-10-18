@@ -9,9 +9,7 @@
         <li routerLink="lista_deudores"><img src="../../../assets/icon/icon_list_people.png" alt="Lista personas"><span>Lista deudores</span></li>
     </ul> 
 </section> 
-<section class="table_container">
-    <router-outlet></router-outlet>
-</section>
+<router-outlet></router-outlet>
 <section class="hidden" [ngClass]="{'show_table': add_class}">
     <app-new-credit (close_modal)="close($event)"></app-new-credit>
 </section>

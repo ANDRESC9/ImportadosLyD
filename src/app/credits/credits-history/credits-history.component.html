@@ -21,15 +21,15 @@
         </tr> 
     </thead>
     <tbody>
-        <tr *ngFor="let history of credit_history | paginate: { itemsPerPage: pageSize, currentPage: currentPage }" >
-            <td class="column_icons justify_center">{{history.debtors_credit_fk}}</td>
-            <td class="column justify_center">{{history.debtors_names +" " +history.debtors_lastnames}}</td>
-            <td class="column justify_center">{{history.last_pass_date}}</td>
-            <td class="column justify_left">{{history.last_pass}}</td>
-            <td class="column justify_left">{{history.current_pass}}</td>
-            <td class="column justify_left">{{history.last_balance}}</td>
-            <td class="column justify_left">{{history.current_balance}}</td>
-            <td class="column justify_center">{{history.user_names + " "+ history.user_lastnames}}</td>
+        <tr *ngFor="let history of credit_history">
+            <td data-label="Id" class="column_icons justify_center">{{history.debtors_credit_fk}}</td>
+            <td data-label="Nombre deudor" class="column justify_center">{{history.debtors_names +" " +history.debtors_lastnames}}</td>
+            <td data-label="Fecha ultimo abono" class="column justify_center">{{history.last_pass_date}}</td>
+            <td data-label="Valor ultimo abono" class="column justify_left">{{history.last_pass}}</td>
+            <td data-label="Abono actual" class="column justify_left">{{history.current_pass}}</td>
+            <td data-label="Ultimo saldo" class="column justify_left">{{history.last_balance}}</td>
+            <td data-label="Saldo actual" class="column justify_left">{{history.current_balance}}</td>
+            <td data-label="Usuario" class="column justify_center">{{history.user_names + " "+ history.user_lastnames}}</td>
         </tr>
 
         <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
