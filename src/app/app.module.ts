@@ -17,9 +17,13 @@ import { CreditsHistoryComponent } from './credits/credits-history/credits-histo
 import { ListDebtorsComponent } from './credits/list-debtors/list-debtors.component';
 import { EditDebtorComponent } from './credits/edit-debtor/edit-debtor.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+<<<<<<< HEAD
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { SuppliersTableComponent } from './suppliers/suppliers-table/suppliers-table.component';
 import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.component';
+=======
+import { HistoryFilterComponent } from './credits/history-filter/history-filter.component';
+>>>>>>> camilo
 
 
 
@@ -38,9 +42,14 @@ import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.com
     CreditsHistoryComponent,
     ListDebtorsComponent,
     EditDebtorComponent,
+<<<<<<< HEAD
     SuppliersComponent,
     SuppliersTableComponent,
     WelcomeScreenComponent,
+=======
+    HistoryFilterComponent,
+    
+>>>>>>> camilo
   ],
   imports: [
     BrowserModule,

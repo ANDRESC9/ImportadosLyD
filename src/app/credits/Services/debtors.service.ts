@@ -13,8 +13,8 @@ export class DebtorsService {
 
   private credit_history! : Response;
   private credit_history$! : BehaviorSubject<Response>
-  private debtor! : Response
-  private debtor$! : BehaviorSubject<Response>
+  private debtor! : Debtor
+  private debtor$! : BehaviorSubject<Debtor>
 
   constructor(protected http : HttpClient, private conf : ApiConfigService) { 
 
@@ -24,10 +24,10 @@ export class DebtorsService {
       Data : []
     })
 
-    this.debtor$ =  new BehaviorSubject<Response>({
-      Status : false,
-      Messague : "",
-      Data : []
+    this.debtor$ =  new BehaviorSubject<Debtor>({
+      id_debtors: 0,
+      names_: "",
+      lastnames: ""
     })
 
   }
@@ -53,17 +53,20 @@ export class DebtorsService {
     return this.http.post<Response>(this.conf.base_url + "debtors_create", data)
   }
 
-  set_debtor(id : number){
+  update_debtor(data : any) : Observable<Response>
+  {
 
-    this.http.post<Response>(this.conf.base_url + "debtors_edit/", id)
-      .subscribe((res : Response)=>{
-
-        this.debtor = res
-        this.debtor$.next(this.debtor)
-      })
+    return this.http.post<Response>(this.conf.base_url + "debtors_update/", data)
   }
 
-  get_debtor() : Observable<Response>{
+  set_debtor(debtor : Debtor){
+
+    this.debtor = debtor
+    this.debtor$.next(this.debtor)
+
+  }
+
+  get_debtor() : Observable<Debtor>{
 
     return this.debtor$.asObservable()
   }

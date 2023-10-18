@@ -1,8 +1,8 @@
 <form class="form_style" [formGroup]="form_debtor_edit" (ngSubmit)="send()">
-    <h2>Nuevo deudor</h2>
+    <h2>Editar deudor</h2>
     <input type="text"  formControlName="names" placeholder="*Nombre" required>
     <input type="text"  formControlName="lastnames" placeholder="Apellido" required>
-    <button type="submit">Enviar</button>
+    <button type="submit">Guardar</button>
     <span class="required_fields">Todos los campos con (*) son obligatorios</span>
     <span (click)="close_form()" class="close"><img src="../../../assets/icon/cerrar.png" alt=""></span>
 </form>  
