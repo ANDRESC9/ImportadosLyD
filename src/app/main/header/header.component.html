@@ -1,5 +1,11 @@
 <section class="header">
-    <span><img src="../../../assets/logo.png" alt=""></span>
+    <span class="logo"><img src="../../../assets/logo.png" alt=""></span>
+    <input type="checkbox" id="check">
+    <label class="menu_toggle" for="check" [class.active]="claseActiva" (click)="toggleClase()">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+    </label>
     <nav>
         <ul>
             <li><a routerLink="/inventario/cajas">Inventario</a></li>

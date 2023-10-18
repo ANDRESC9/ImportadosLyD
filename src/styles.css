@@ -82,6 +82,8 @@ input {
 
 /* ========== Variables ========== */
 :root {
+    /* Tamaño objetos */
+    font-size: 30px;
     /* ===== Variables de color ===== */
     --main_color: #bc0909;
     --hover_color: #910e0e;
@@ -95,20 +97,21 @@ body {
     width: 100%;
     height: auto;
     position: relative;
+    background-color: #bfbfbf;
 }
 
 button {
     background-color: var(--main_color);
     color: #fff;
-    width: 180px;
-    padding: 3% 0;
+    width: 5rem;
+    padding: 2% 0;
     border-radius: 40px;
     display: grid;
     place-items: center;
     text-transform: uppercase;
     cursor: pointer;
-    margin-top: 3%;
-    font-size: 1rem;
+    margin: 3%;
+    font-size: .7rem;
 }
 
 button:hover {
@@ -119,13 +122,20 @@ select {
     -webkit-appearance: auto;
 }
 
+/* ============================================================ */
+/* ==================== Estilo de módulos   =================== */
+/* ============================================================ */
+app-credits-menu {
+    width: 100%;
+    padding: 0 2.5%;
+}
 
 /* ============================================================ */
 /* ================= Estilo del menu principal ================ */
 /* ============================================================ */
 .main_menu {
     padding: 2% 3%;
-    width: 1800px;
+    width: 100%;
     background-color: white;
     margin: 2% 0 0 0;
     border-top-left-radius: 40px;
@@ -137,11 +147,11 @@ select {
 }
 
 .main_menu h2 {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     transition: color 1s;
     font-weight: 400;
     position: relative;
-    right: 28%;
+    right: 18%;
     cursor: pointer;
 }
 
@@ -153,8 +163,7 @@ select {
     display: flex;
     align-items: center;
     position: relative;
-    left: 25%;
-    gap: 2%;
+    left: 20%;
 }
 
 .main_menu ul li {
@@ -162,12 +171,11 @@ select {
     align-items: center;
     flex-direction: column;
     cursor: pointer;
-    /* transition: color 1s, transform 0.5s; */
     background-image: linear-gradient(to right, var(--thead_color) 0%, var(--hover_color) 100%);
     background-position: bottom left;
     background-size: 0% 5%; 
     background-repeat: no-repeat;
-    transition: background-size 1s ease;
+    transition: all 1s ease;
 }
 
 .main_menu  ul li:hover {
@@ -176,20 +184,38 @@ select {
 
 .main_menu ul li img {
     height: auto;
-    width: 35px;
+    width: 1.2rem;
 }
 
 .main_menu ul li span {
     margin-top: 2%;
     text-transform: capitalize;
-    font-size: .8rem;
+    font-size: .6rem;
     text-align: center;
-    width: 95px;
+    width: 5rem;
 }
 
 /* ============================================================ */
 /* ======================= Estilo tablas ====================== */
 /* ============================================================ */
+.filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2%;
+    padding: 1% 3%;
+    background-color: #fff;
+}
+
+.filter img {
+    height: auto;
+    width: 1.2rem;
+    cursor: pointer;
+}
+
+.filter span {
+    font-size: 1rem;
+}
 .table_container {
     display: flex;
     justify-content: center;
@@ -197,7 +223,7 @@ select {
 
 .table_style {
     background-color: #fff;
-    width: 1800px;
+    width: 100%;
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     padding: 0 0 1%;
@@ -209,8 +235,10 @@ select {
     background-color: var(--thead_color);
 }
 
+.table_style th,
 .table_style tr {
-    height: 50px;
+    height: 2rem;
+    font-size: .7rem;
 }
 
 .table_style td {
@@ -218,9 +246,17 @@ select {
 }
 
 .table_style img {
-    width: 30px;
-    height: 30px;
+    width: 1rem;
+    height: 1rem;
     cursor: pointer;
+}
+
+.table_style tbody tr:hover {
+    background-color: #c9c9c9;
+}
+
+.table_style tbody td:hover {
+    background-color: #8e8e8e;
 }
   
 .justify_center {
@@ -239,25 +275,6 @@ select {
     padding: 0 1%;
 }
 
-.filter {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2%;
-    padding: 1% 3%;
-    background-color: #fff;
-}
-
-.filter img {
-    height: auto;
-    width: 35px;
-    cursor: pointer;
-}
-
-.filter span {
-    font-size: 1.2rem;
-}
-
 /* ============================================================ */
 /* ====================== Estilo del load ===================== */
 /* ============================================================ */
@@ -273,8 +290,8 @@ select {
 }
 
 .load img {
-    width: 80px;
-    height: 80px;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 /* ============================================================ */
@@ -282,21 +299,19 @@ select {
 /* ============================================================ */
 .close {
     position: absolute;
-    top: 5%;
-    right: 3%;
+    top: 4%;
+    right: 5%;
     background-color: transparent;
     color: black;
 }
 
 .close img {
-    height: 20px;
-    width: 20px;
+    height: .7rem;
+    width: .7rem;
 }
 
 .form_style {
-    width: 500px;
-    margin: 20px auto;
-    padding: 30px 20px 20px 20px;
+    width: 20rem;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
@@ -307,12 +322,12 @@ select {
 }
 
 .form_style input[type="text"] {
-    width: 100%;
+    width: 90%;
     padding: 3%;
-    margin-bottom: 4%;
+    margin: 3%;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: .7rem;
 }
 
 .form_style input[type="text"]:hover {
@@ -321,22 +336,18 @@ select {
 }
 
 .form_style input::placeholder {
-    font-size: 1rem;
+    font-size: .7rem;
 }
 
 .form_style select {
-    width: 100%;
+    width: 90%;
     padding: 3%;
-    margin-bottom: 4%;
+    margin: 3%;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #fff;
     cursor: pointer;
-    font-size: 1rem;
-}
-
-.form_style select option {
-    padding: 5px;
+    font-size: .7rem;
 }
 
 .form_style select:focus {
@@ -348,8 +359,8 @@ select {
     padding: 2%;
     border: 1px solid #ccc;
     border-radius: 3%;
-    font-size: 16px;
-    width: 180px;
+    font-size: .6rem;
+    width: 6rem;
 }
 
 .form_style input[type="date"]:focus,
@@ -365,19 +376,16 @@ select {
 }
 
 .form_style h2 { 
-    padding-bottom: 4%;
+    padding: 5% 0;
+    font-size: 1rem;
     font-weight: 400;
 }
 
-.form_style span {
-    font-size: 1.2rem;
-    line-height: 2.5rem;
-} 
 
 .form_style .required_fields {
-    font-size: .9rem;
-    margin-top: 3%;
-    width: 100%;
+    font-size: .6rem;
+    margin: 3%;
+    width: 90%;
     text-align: left;
 }
 
@@ -400,56 +408,164 @@ select {
     width: 100%;
 }
 
-/* ============================================================ */
-/* ===================== Estilo de filtros ==================== */
-/* ============================================================ */
-.filter_style {
-    width: 400px;
-    margin: 20px auto;
-    padding: 50px 20px 20px 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+@media screen and (max-width: 1800px) {
+    :root {
+        font-size: 25px;
+    }
 }
 
-.filter_style div {
-    display: flex;
-    flex-direction: column;
-
+@media screen and (max-width: 1550px) {
+    :root {
+        font-size: 21px;
+    }
 }
 
-.filter_style span {
-    font-size: 1rem;
-    margin: 3%;
-    font-weight: 600;
+@media screen and (max-width: 1290px) {
+    :root {
+        font-size: 18px;
+    }
 }
 
-.filter_style input[type="date"] {
-    padding: 2%;
-    border: 1px solid #ccc;
-    border-radius: 3%;
-    font-size: 16px;
-    width: 180px;
+@media screen and (max-width: 1170px) {
+    :root {
+        font-size: 17px;
+    }
 }
 
-.filter_style input[type="date"]:focus,
-.filter_style select:focus {
-    border: 2px solid var(--main_color);
+@media screen and (max-width: 1024px) {
+    :root {
+        font-size: 14px;
+    }
 }
 
-.filter_style select {
-    border: 1px solid #ccc; 
-    border-radius: 3%;
-    padding: 4%;
-    width: 250px;
-    font-size: 1rem;
+@media screen and (max-width: 990px) {
+    :root {
+        font-size: 20px;
+    }
+
+    .main_menu {
+        flex-direction: column;
+        padding: 0;
+    }
+    
+    .main_menu  h2 {
+        position: static;
+        width: 100%;
+        text-align: center;
+        padding: 1% 0;
+    }
+
+    .main_menu ul {
+        position: static;
+        padding: 1% 0;
+    }
+
+    .main_menu ul li img {
+        width: 1.7rem;
+    }
+
+    .main_menu ul li span {
+        font-size: .7rem;
+        width: 6rem;
+    }
 }
 
-.filter_style button {
-    margin-top: 7%;
-    width: 130px;
+@media screen and (max-width: 899px) {
+    :root {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    :root {
+        font-size: 13px;
+    }
+}
+
+
+@media screen and (max-width: 576px) {
+    :root {
+        font-size: 20px;
+    }
+
+    .form_style {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 5%;
+    }
+    
+    .main_menu ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .main_menu ul li {
+        padding: 9% 0;
+    }
+
+    .main_menu ul li span {
+        font-size: .8rem;
+        width: 7rem;
+    }
+
+    .table_style thead {
+        display: none;
+    }
+
+    .table_style tr {
+        margin-bottom: .3rem;
+        border-bottom: .2rem solid #ccc;
+        display: block;
+        height: auto;
+    }
+
+    .table_style td {
+        display: block;
+        text-align: right;
+        height: 1rem;
+        height: auto;
+        width: 100% !important; 
+        padding: 2% 4%;
+        font-size: .9rem;
+    }
+
+    .table_style tr:first-child {
+        border-top: .2rem solid #ccc;
+    }
+
+    .table_style tr:last-child {
+        border: none;
+    }
+
+    .table_style td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        float: left;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    :root {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    :root {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    :root {
+        font-size: 14px;
+    }
 }

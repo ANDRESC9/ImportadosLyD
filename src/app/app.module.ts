@@ -16,6 +16,9 @@ import { CreditsPaidComponent } from './credits/credits-paid/credits-paid.compon
 import { CreditsHistoryComponent } from './credits/credits-history/credits-history.component';
 import { ListDebtorsComponent } from './credits/list-debtors/list-debtors.component';
 import { EditDebtorComponent } from './credits/edit-debtor/edit-debtor.component';
+import { SuppliersComponent } from './suppliers/suppliers.component';
+import { SuppliersTableComponent } from './suppliers/suppliers-table/suppliers-table.component';
+
 
 
 @NgModule({
@@ -33,7 +36,8 @@ import { EditDebtorComponent } from './credits/edit-debtor/edit-debtor.component
     CreditsHistoryComponent,
     ListDebtorsComponent,
     EditDebtorComponent,
-
+    SuppliersComponent,
+    SuppliersTableComponent,
   ],
   imports: [
     BrowserModule,
