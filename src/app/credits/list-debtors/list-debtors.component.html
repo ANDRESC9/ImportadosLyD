@@ -20,13 +20,12 @@
         <tr *ngFor="let deb of debtors">
             <td class="column_icons justify_center">{{deb.id_debtors}}</td> 
             <td class="column justify_center">{{deb.names_}}&nbsp;{{deb.lastnames}}</td>
-            <td class="column_icons justify_center"><span ><img src="../../../assets/icon/icon_edit.png" alt=""></span></td>
+            <td class="column_icons justify_center"><span (click)="open_modal_edit_debtor(deb.id_debtors)"><img src="../../../assets/icon/icon_edit.png" alt=""></span></td>
             <td class="column_icons justify_center"><span (click)="delete_debtor(deb.id_debtors)"><img src="../../../assets/icon/icon_delete.png" alt=""></span></td>
         </tr>
     </tbody>
 </table>
-
-<section class="hidden" >
-    <app-edit-debtor [ngClass]="{'show_table': open_edit_form}"></app-edit-debtor>
+<section class="hidden" [ngClass]="{'show_table': open}">
+    <app-edit-debtor ></app-edit-debtor>
 </section>
- 
+

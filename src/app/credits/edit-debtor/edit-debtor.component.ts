@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from 'src/app/services/api.service';
-import { Debtor } from '../interfaces/debtor';
+import { LoadModalsService } from '../Services/load-modals.service';
+import { DebtorsService } from '../Services/debtors.service';
+import { Response } from 'src/app/interfaces/response';
 
 @Component({
   selector: 'app-edit-debtor',
@@ -11,13 +12,16 @@ import { Debtor } from '../interfaces/debtor';
 export class EditDebtorComponent {
 
   form_debtor_edit! : FormGroup;
-  constructor(private builder : FormBuilder, private api : ApiService<Debtor>){
+  constructor(private builder : FormBuilder, 
+    private modal : LoadModalsService,
+    private debtor_service : DebtorsService
+    ){
 
     this.form_debtor_edit = this.builder.group(
       {
         id_debtor : ["", [Validators.required]],
-        value : ["" ,[Validators.required]],
-        date : ["" ]
+        names : ["" ,[Validators.required]],
+        lastnames : ["" ]
       }
     )
 
@@ -25,9 +29,22 @@ export class EditDebtorComponent {
 
   ngOnInit(){
 
-    
+    this.debtor_service.get_debtor()
+      .subscribe((res : Response)=>{
+
+        console.log(res)
+      })
+    this.form_debtor_edit.patchValue({
+      id_debtor : [],
+      names : [ ],
+      lastnames : []
+    })
   }
 
   send(){}
-  close_form(){}
+
+  close_form(){
+
+    this.modal.set_form_edit_debtors_status(false)
+  }
 }

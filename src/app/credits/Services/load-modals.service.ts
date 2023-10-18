@@ -17,6 +17,7 @@ export class LoadModalsService {
 
   private open_form_edit : boolean = false;
   private open_form_edit$! : BehaviorSubject<boolean>
+  
   constructor() {
 
     this.open_filter$ = new BehaviorSubject<boolean>(false)
