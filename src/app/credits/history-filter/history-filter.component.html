@@ -3,14 +3,20 @@
     <div class="show_info">
         <span>Seleccione una opcion para filtrar</span>
         <select name="" id="" formControlName="option">
+            <option value="date_credit">Fecha credito</option>
             <option value="last_pass_date">Fecha ultimo abono</option>
             <option value="id_debtors">Deudor</option>
             <option value="debtors_credit_fk">Numero de credito</option>
         </select>
     </div>
+
+    <div *ngIf="form_filter_history.value.option == 'date_credit'">
+        <span>Fecha credito</span>
+        <input type="date" formControlName="value">
+    </div>
     <div *ngIf="form_filter_history.value.option == 'last_pass_date'">
         <span>Fecha</span>
-        <input type="date" formArrayName="value">
+        <input type="date" formControlName="value">
     </div>
 
     <div *ngIf="form_filter_history.value.option == 'id_debtors'">
@@ -23,7 +29,7 @@
 
     <div *ngIf="form_filter_history.value.option == 'debtors_credit_fk'">
         <span>Numero de credito</span>
-        <input type="number" formArrayName="value">
+        <input type="number" formControlName="value">
     </div>
     <button>Filtrar</button>
     <span class="close" (click)="close_modal_filter()"><img src="../../../assets/icon/cerrar.png" alt=""></span>

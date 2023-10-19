@@ -25,7 +25,7 @@ export class NewCreditComponent {
       {
         id_debtor : ["", [Validators.required]],
         value : ["" ,[Validators.required]],
-        date : ["" ]
+        date : [""]
       }
     )
   }

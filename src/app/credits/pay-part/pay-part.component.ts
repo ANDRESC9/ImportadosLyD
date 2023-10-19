@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Debtor } from '../interfaces/debtor'; 
 import { Credit } from '../interfaces/credit';
 import { Response } from 'src/app/interfaces/response';
+import { DateServicesService } from 'src/app/services/date-services.service';
 
 
 
@@ -20,7 +21,7 @@ export class PayPartComponent {
   is_load : boolean = true;
   @Output() close = new EventEmitter<Boolean>
 
-  constructor(private api : ApiService<Debtor>, private builder :  FormBuilder
+  constructor(private api : ApiService<Debtor>, private builder :  FormBuilder, private date_service : DateServicesService
      ){
  
     this.form_pass = this.builder.group(
@@ -31,8 +32,10 @@ export class PayPartComponent {
         date_debts : ["",[Validators.required]],
         names_ : ["",[Validators.required]],
         lastnames : ["",[Validators.required]],
+        date_last_pass : [this.date_service.now()],
         pass : ["",[Validators.required, Validators.minLength(3)]],
-        balance : ["",[Validators.required]]
+        balance : ["",[Validators.required]],
+        
       }
     )
   }
@@ -65,7 +68,7 @@ export class PayPartComponent {
     this.api.create("https://fruverapp.onrender.com/api/debtorscredits_edit/", values)
       .subscribe((response : Response) =>{
         this.is_load = response.Status
-        console.log(response.Messague)
+        console.log(response)
         
         if(response.Status){
           this.api.getAllPost("debtorscredits/")
