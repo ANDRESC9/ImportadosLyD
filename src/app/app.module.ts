@@ -45,6 +45,8 @@ import { HistoryFilterComponent } from './credits/history-filter/history-filter.
     WelcomeScreenComponent,
     LoginComponent,
     HistoryFilterComponent
+    
+    
   ],
   imports: [
     BrowserModule,

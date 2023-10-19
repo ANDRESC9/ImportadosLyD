@@ -22,6 +22,7 @@ export class CreditsPaidComponent {
     this.api.getAllPost("debtorscredits_pays/")
     this.api.get_all()
       .subscribe((response : Response) =>{
+        console.log(response)
         this.credits_paid = response.Data
       })
   }

@@ -2,7 +2,7 @@
 <!-- <div *ngIf="!is_load" class="load">
     <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
 </div> -->
-<div class="filter">
+<div class="filter" (click)="open_filter_history()">
     <img src="../../../assets/icon/icon_filter.png" alt="Filtro">
     <span>Filtrar</span>
 </div>
@@ -11,6 +11,7 @@
         <tr>
             <th class="column_icons justify_center">Id</th> 
             <th class="column justify_center">Nombre deudor</th>  
+            <th class="column justify_center">Fecha credito</th>
             <th class="column justify_center">Fecha ultimo abono</th> 
             <th class="column justify_center">Valor ultimo abono</th>
             <th class="column justify_center">Abono actual</th> 
@@ -24,6 +25,7 @@
         <tr *ngFor="let history of credit_history">
             <td data-label="Id" class="column_icons justify_center">{{history.debtors_credit_fk}}</td>
             <td data-label="Nombre deudor" class="column justify_center">{{history.debtors_names +" " +history.debtors_lastnames}}</td>
+            <td data-label="Fecha ultimo abono" class="column justify_center">{{history.date_credit}}</td>
             <td data-label="Fecha ultimo abono" class="column justify_center">{{history.last_pass_date}}</td>
             <td data-label="Valor ultimo abono" class="column justify_left">{{history.last_pass}}</td>
             <td data-label="Abono actual" class="column justify_left">{{history.current_pass}}</td>
