@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Credit } from '../interfaces/credit';
 import { ApiService } from 'src/app/services/api.service';
 import { Response } from 'src/app/interfaces/response';
+import { LoadModalsService } from '../Services/load-modals.service';
 
 @Component({
   selector: 'app-credits-table',
@@ -10,11 +11,13 @@ import { Response } from 'src/app/interfaces/response';
 })
 
 export class CreditsTableComponent {
-  is_load : boolean = false
+  is_load : boolean = true
   credits! : Array<Credit>
   credit_! :Credit
   add_class : boolean = false
-  constructor(private api : ApiService<Credit>){
+  open_filter_modal : boolean = false
+
+  constructor(private api : ApiService<Credit>, private modals : LoadModalsService){
   
   }
 
@@ -23,7 +26,7 @@ export class CreditsTableComponent {
     this.api.getAllPost("debtorscredits/")
     this.api.get_all()
       .subscribe((data: Response) =>{
-        console.log(data.Messague)
+        
         this.credits = data.Data
         this.is_load = data.Status
       })
@@ -41,6 +44,16 @@ export class CreditsTableComponent {
   close_children(event : any){
 
     this.add_class = event;
+  }
+
+  open_filter(){
+    
+    this.modals.open_modal(true)
+
+    this.modals.get_status()
+      .subscribe(state =>{
+        this.open_filter_modal = state
+      })
   }
 
   ngOnDestroy(){

@@ -63,15 +63,7 @@ export class CreditsMenuComponent {
 
   }
 
-  open_filter(){
-    
-    this.modals.open_modal(true)
 
-    this.modals.get_status()
-      .subscribe(state =>{
-        this.open_filter_modal = state
-      })
-  }
 
   open_form_debtor(){
 

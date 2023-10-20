@@ -123,4 +123,23 @@ export class ApiService <Model> {
     return this.model_filter$.asObservable()
   }
 
+  //filtro tabla creditos
+
+  set_filter_credits_table(data: any, filter_url : string ): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.http.post<Response>(this.conf.base_url + filter_url, data)
+        .subscribe((res: Response) => {
+          console.log(res)
+          if (res.Status) {
+            this.records = res;
+            this.suject$.next(this.records);
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        }, error => {
+          reject(error);
+        });
+    });
+  }
 }

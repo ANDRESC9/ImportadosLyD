@@ -1,4 +1,4 @@
-<form class="form_style" [formGroup]="form_filter" (ngSubmit)="send()">
+<form class="form_style" [formGroup]="form_filter_paid" (ngSubmit)="send()">
     <h2>Filtrar</h2>
     <div class="show_info">
         <span>Seleccione una opcion para filtrar</span>
@@ -9,12 +9,12 @@
         </select>
     </div>
 
-    <div *ngIf="form_filter.value.option == 'date_debts'">
+    <div *ngIf="form_filter_paid.value.option == 'date_debts'">
         <span>Fecha credito</span>
         <input type="date" formControlName="value">
     </div> 
 
-    <div *ngIf="form_filter.value.option == 'debtors_fk'">
+    <div *ngIf="form_filter_paid.value.option == 'debtors_fk'">
         <span>Nombre deudor</span>
         <select name="" id="" formControlName="value">
             <option value="" selected>Seleccione</option>
@@ -22,7 +22,7 @@
         </select>
     </div>
 
-    <div *ngIf="form_filter.value.option == 'id_debtors_credit'">
+    <div *ngIf="form_filter_paid.value.option == 'id_debtors_credit'">
         <span>Numero de credito</span>
         <input type="number" formControlName="value">
     </div>

@@ -1,13 +1,14 @@
 <div *ngIf="!is_load" class="load">
     <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
 </div>
-<div class="filter">
+<div class="filter" (click)="open_filter()">
     <img src="../../../assets/icon/icon_filter.png" alt="Filtro">
     <span>Filtrar</span>
 </div>
 <table  class="table_style">
     <thead>
         <tr>
+            <th class="column_icons justify_center">Id credito</th>
             <th class="column justify_center">Fecha</th> 
             <th class="column justify_center">Nombre</th>  
             <th class="column justify_center">Valor</th> 
@@ -19,6 +20,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let credit of credits">
+            <td data-label="id" class="column_icons justify_center">{{credit.id_debtors_credit}}</td>
             <td data-label="Fecha" class="column justify_center">{{credit.date_debts}}</td>
             <td data-label="Nombre" class="column justify_left">{{credit.names_ +" " +credit.lastnames}}</td>
             <td data-label="Valor" class="column justify_left">{{credit.value_}}</td>
@@ -34,3 +36,6 @@
     <app-pay-part  [info_credit] = "credit_" (close)="close_children($event)"></app-pay-part>
 </section>
  
+<section class="hidden" [ngClass]="{'show_table': open_filter_modal}">
+    <app-credits-filter></app-credits-filter>
+</section>

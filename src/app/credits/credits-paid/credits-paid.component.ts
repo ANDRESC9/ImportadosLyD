@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Credit } from '../interfaces/credit';
 import { Response } from 'src/app/interfaces/response';
+import { LoadModalsService } from '../Services/load-modals.service';
 
 @Component({
   selector: 'app-credits-paid',
@@ -11,11 +12,10 @@ import { Response } from 'src/app/interfaces/response';
 export class CreditsPaidComponent {
 
   credits_paid! : Credit[]
-  constructor(private api : ApiService<Credit>){
-
+  open_filter_paid : boolean = false
+  constructor(private api : ApiService<Credit>, private modals : LoadModalsService){
 
   }
-
 
   ngOnInit(){
 
@@ -24,6 +24,16 @@ export class CreditsPaidComponent {
       .subscribe((response : Response) =>{
         console.log(response)
         this.credits_paid = response.Data
+      })
+  }
+
+
+  open_modal_filter(){
+
+    this.modals.set_modal_filter_Status_paid(true)
+    this.modals.get_modal_filter_Status_paid()
+      .subscribe((status : boolean)=>{
+        this.open_filter_paid = status
       })
   }
 }

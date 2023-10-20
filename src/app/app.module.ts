@@ -22,6 +22,7 @@ import { SuppliersTableComponent } from './suppliers/suppliers-table/suppliers-t
 import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.component';
 import { LoginComponent } from './login/login.component';
 import { HistoryFilterComponent } from './credits/history-filter/history-filter.component';
+import { CreditsPaidFilterComponent } from './credits/credits-paid-filter/credits-paid-filter.component';
 
 
 
@@ -44,7 +45,8 @@ import { HistoryFilterComponent } from './credits/history-filter/history-filter.
     SuppliersTableComponent,
     WelcomeScreenComponent,
     LoginComponent,
-    HistoryFilterComponent
+    HistoryFilterComponent,
+    CreditsPaidFilterComponent
     
     
   ],

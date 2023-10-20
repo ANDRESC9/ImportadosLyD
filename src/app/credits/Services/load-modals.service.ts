@@ -21,6 +21,9 @@ export class LoadModalsService {
   private open_filter_history : boolean = false;
   private open_filter_history$! : BehaviorSubject<boolean>
 
+  private open_filter_paid : boolean = false;
+  private open_filter_paid$! : BehaviorSubject<boolean>
+
   constructor() {
 
     this.open_filter$ = new BehaviorSubject<boolean>(false)
@@ -28,6 +31,8 @@ export class LoadModalsService {
     this.form_debtors_status$ = new BehaviorSubject<boolean>(false)
     this.open_form_edit$ = new BehaviorSubject<boolean>(false)
     this.open_filter_history$ = new BehaviorSubject<boolean>(false)
+    this.open_filter_paid$ = new BehaviorSubject<boolean>(false)
+
    }
 
    open_modal(state : boolean){
@@ -87,6 +92,18 @@ export class LoadModalsService {
    get_modal_filter_Status(): Observable<boolean>{
 
     return this.open_filter_history$.asObservable()
+
+   }
+
+   set_modal_filter_Status_paid(status : boolean){
+
+    this.open_filter_paid = status
+    this.open_filter_paid$.next(this.open_filter_paid)
+   }
+
+   get_modal_filter_Status_paid(): Observable<boolean>{
+
+    return this.open_filter_paid$.asObservable()
 
    }
 

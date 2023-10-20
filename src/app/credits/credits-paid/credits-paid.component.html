@@ -1,7 +1,7 @@
 <!-- <div *ngIf="!is_load" class="load">
     <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
 </div> -->
-<div class="filter">
+<div class="filter" (click)="open_modal_filter()">
     <img src="../../../assets/icon/icon_filter.png" alt="Filtro">
     <span>Filtrar</span>
 </div>
@@ -25,3 +25,7 @@
         </tr>
     </tbody>
 </table>
+
+<section class="hidden" [ngClass]="{'show_table': open_filter_paid}">
+    <app-credits-paid-filter></app-credits-paid-filter>
+</section>

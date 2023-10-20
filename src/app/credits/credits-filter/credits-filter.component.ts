@@ -16,8 +16,8 @@ export class CreditsFilterComponent {
   constructor(private modal : LoadModalsService, private api : ApiService<Debtor>, private form_build : FormBuilder){
 
     this.form_filter = this.form_build.group({
-      date_filter : ["", Validators.required],
-      debtors_fk : ["", Validators.required]
+      option : ["", Validators.required],
+      value : ["", Validators.required]
     })
   }
 
@@ -39,6 +39,20 @@ export class CreditsFilterComponent {
 
   send(){
 
-    console.log(this.form_filter.value)
+    this.form_filter.value.option = "'" + this.form_filter.value.option + "'"
+    this.form_filter.value.value = "'" + this.form_filter.value.value + "'"
+
+    this.api.set_filter_credits_table(this.form_filter.value, "debtorscredits_filter/")
+      .then((status : boolean)=>{
+        if(status){
+          this.close_modal_filter()
+        }else{
+          console.log("mostrar notificacion de error ")
+        }
+      }).catch((error)=>{
+
+        console.log("error al filtrar tabla" + error)
+      })
   }
 }
+
