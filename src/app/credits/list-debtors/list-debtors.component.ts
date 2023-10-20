@@ -16,6 +16,8 @@ export class ListDebtorsComponent {
   open : boolean = false;
   debtors! : Debtor[]
   delete_params! : Delete_response
+  open_filter : boolean = false;
+
   constructor(private api : ApiService<Debtor>, 
     private modal : LoadModalsService,
     private debtors_service : DebtorsService
@@ -25,7 +27,7 @@ export class ListDebtorsComponent {
 
   ngOnInit(){
 
-    this.api.load_debtors()
+    this.api.load_debtors("debtors/")
     this.api.get_debtors()
       .subscribe((debtors : Debtor[])=>{
 
@@ -43,7 +45,7 @@ export class ListDebtorsComponent {
         console.log(response.Messague)
         if(response.Status){
 
-          this.api.load_debtors()
+          this.api.load_debtors("debtors/")
         }
       })
   }
@@ -59,5 +61,16 @@ export class ListDebtorsComponent {
         this.open = status
       })
   
+  }
+
+  open_filter_debtor(){
+
+    this.modal.set_modal_filter_Status_debtor(true)
+
+    this.modal.get_modal_filter_Status_debtor()
+      .subscribe((status : boolean)=>{
+
+        this.open_filter = status
+      })
   }
 }

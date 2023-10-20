@@ -1,0 +1,6 @@
+<form class="form_style" [formGroup]="form_filter_debtors" (ngSubmit)="send()">
+    <h2>Buscar deudor por nombre</h2>
+    <input type="text" formControlName="name">
+    <button>Filtrar</button>
+    <span class="close" (click)="close_modal_filter()"><img src="../../../assets/icon/cerrar.png" alt=""></span>
+</form>

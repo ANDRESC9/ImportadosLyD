@@ -27,7 +27,7 @@
             <td data-label="Abono" class="column justify_left">{{credit.pass}}</td>
             <td data-label="Saldo" class="column justify_left">{{credit.balance}}</td>
             <td data-label="Abonar" class="column_icons justify_center" (click)="pass(credit)"><img src="../../../assets/icon/necesitar.png" alt=""></td>
-            <td data-label="Saldar" class="column_icons justify_center"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
+            <td data-label="Saldar" class="column_icons justify_center" (click)="pay_off(credit)"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
         </tr>
     </tbody>
 </table>

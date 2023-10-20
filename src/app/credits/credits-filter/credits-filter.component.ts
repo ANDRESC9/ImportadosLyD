@@ -23,7 +23,7 @@ export class CreditsFilterComponent {
 
   ngOnInit(){
 
-    this.api.load_debtors()
+    this.api.load_debtors("debtors/")
     this.api.get_debtors()
       .subscribe((debs : Debtor[]) =>{
 

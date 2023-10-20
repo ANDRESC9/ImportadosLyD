@@ -1,7 +1,7 @@
 <!-- <div *ngIf="!is_load" class="load">
     <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
 </div> -->
-<div class="filter">
+<div class="filter" (click)="open_filter_debtor()">
     <img src="../../../assets/icon/icon_filter.png" alt="Filtro">
     <span>Filtrar</span>
 </div>
@@ -26,5 +26,9 @@
 </table>
 <section class="hidden" [ngClass]="{'show_table': open}">
     <app-edit-debtor ></app-edit-debtor>
+</section>
+
+<section class="hidden" [ngClass]="{'show_table': open_filter}">
+    <app-debtors-filter></app-debtors-filter>
 </section>
 
