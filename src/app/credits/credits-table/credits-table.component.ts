@@ -3,6 +3,8 @@ import { Credit } from '../interfaces/credit';
 import { ApiService } from 'src/app/services/api.service';
 import { Response } from 'src/app/interfaces/response';
 import { LoadModalsService } from '../Services/load-modals.service';
+import { DebtorsService } from '../Services/debtors.service';
+import { TransformDataService } from 'src/app/services/transform-data.service';
 
 @Component({
   selector: 'app-credits-table',
@@ -17,7 +19,11 @@ export class CreditsTableComponent {
   add_class : boolean = false
   open_filter_modal : boolean = false
 
-  constructor(private api : ApiService<Credit>, private modals : LoadModalsService){
+  constructor(private api : ApiService<Credit>, 
+    private modals : LoadModalsService, 
+    private debtors_service : DebtorsService,
+    private transform_data : TransformDataService
+    ){
   
   }
 
@@ -56,6 +62,27 @@ export class CreditsTableComponent {
       })
   }
 
+  pay_off(credit : Credit){
+
+
+    const balance = this.transform_data.money_to_number(credit.balance)
+    
+    if(balance > 0 ){
+
+      if(window.confirm("El credito tiene un saldo actual de "+ credit.balance+". ¿Esta seguro de saldar esta deuda?")){
+
+        this.debtors_service.pay_off_credit(credit)
+          .subscribe((res : Response)=>{
+            if(res.Status){
+
+              this.api.getAllPost("debtorscredits/")
+            }
+          })
+      }
+      
+    }
+  }
+  
   ngOnDestroy(){
 
     this.credits = []

@@ -1,8 +1,9 @@
 <div *ngIf="!is_load" class="load">
     <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
 </div>
-<div class="filter" (click)="open_filter()">
-    <img src="../../../assets/icon/icon_filter.png" alt="Filtro">
+<div class="filter" >
+    <h4 (click)="ngOnInit()">ATRAS</h4>
+    <img src="../../../assets/icon/icon_filter.png" alt="Filtro" (click)="open_filter()">
     <span>Filtrar</span>
 </div>
 <table  class="table_style">
@@ -27,7 +28,7 @@
             <td data-label="Abono" class="justify_left">{{credit.pass}}</td>
             <td data-label="Saldo" class="justify_left">{{credit.balance}}</td>
             <td data-label="Abonar" class="column_icon justify_center" (click)="pass(credit)"><img src="../../../assets/icon/necesitar.png" alt=""></td>
-            <td data-label="Saldar" class="column_icon justify_center"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
+            <td data-label="Saldar" class="column_icon justify_center" (click)="pay_off(credit)"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
         </tr>
     </tbody>
 </table>

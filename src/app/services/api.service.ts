@@ -76,9 +76,9 @@ export class ApiService <Model> {
     return this.info_Credit$.asObservable()
   }
 
-  load_debtors(){
+  load_debtors(action : string){
 
-    this.http.get<Response>(this.conf.base_url + "debtors/")
+    this.http.get<Response>(this.conf.base_url + action)
     .subscribe((response : Response)=>{
 
       this.debtors = response.Data
@@ -141,5 +141,22 @@ export class ApiService <Model> {
           reject(error);
         });
     });
+  }
+
+  set_filter_debtors(data: string) :Promise<boolean>{
+
+    return new Promise<boolean>((resolve, reject) =>{
+      this.http.post<Response>(this.conf.base_url + "debtors_filter/", data)
+        .subscribe((response : Response)=>{
+          if(response.Status){
+            this.debtors = response.Data
+            this.debtors_suject$.next(this.debtors)
+            resolve(true)
+          }else{
+
+            resolve(false)
+          }
+        })
+    })
   }
 }

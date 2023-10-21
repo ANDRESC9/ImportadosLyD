@@ -53,7 +53,7 @@ export class EditDebtorComponent {
         .subscribe((res : Response)=>{
           console.log(res.Messague)
           if(res.Status){
-            this.api.load_debtors()
+            this.api.load_debtors("debtors/")
             this.close_form()
           }
         })

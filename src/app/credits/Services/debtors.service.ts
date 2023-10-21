@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, tap, BehaviorSubject } from 'rxjs';
 import { Credit_history } from '../interfaces/Credit_history';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { ApiConfigService } from 'src/app/services/api-config.service';
 import { Response } from 'src/app/interfaces/response';
 import { Debtor } from '../interfaces/debtor';
+import { Credit } from '../interfaces/credit';
+import { DateServicesService } from 'src/app/services/date-services.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ export class DebtorsService {
   private debtor! : Debtor
   private debtor$! : BehaviorSubject<Debtor>
 
-  constructor(protected http : HttpClient, private conf : ApiConfigService) { 
+  constructor(protected http : HttpClient, private conf : ApiConfigService, private date : DateServicesService) { 
 
     this.credit_history$ = new BehaviorSubject<Response>({
       Status : false,
@@ -83,6 +85,22 @@ export class DebtorsService {
   get_debtor() : Observable<Debtor>{
 
     return this.debtor$.asObservable()
+  }
+
+  pay_off_credit(credit : Credit) : Observable<Response>{
+
+    const data = {
+      id: credit.id_debtors_credit,
+      date: this.date.now()
+    };
+    
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<Response>(this.conf.base_url + "debtorscredits_payoff_credit/", data, options)
+      
   }
 
   

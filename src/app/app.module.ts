@@ -23,6 +23,7 @@ import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.com
 import { LoginComponent } from './login/login.component';
 import { HistoryFilterComponent } from './credits/history-filter/history-filter.component';
 import { CreditsPaidFilterComponent } from './credits/credits-paid-filter/credits-paid-filter.component';
+import { DebtorsFilterComponent } from './credits/debtors-filter/debtors-filter.component';
 
 
 
@@ -46,7 +47,8 @@ import { CreditsPaidFilterComponent } from './credits/credits-paid-filter/credit
     WelcomeScreenComponent,
     LoginComponent,
     HistoryFilterComponent,
-    CreditsPaidFilterComponent
+    CreditsPaidFilterComponent,
+    DebtorsFilterComponent
     
     
   ],

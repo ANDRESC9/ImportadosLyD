@@ -35,7 +35,7 @@ export class NewDebtorComponent {
         
         if(response.Status){
           
-          this.api.load_debtors()
+          this.api.load_debtors("debtors/")
           this.close_form()
           this.form_debtor.reset()
         }
