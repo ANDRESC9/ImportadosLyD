@@ -1,8 +1,9 @@
 <div *ngIf="!is_load" class="load">
     <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
 </div>
-<div class="filter" (click)="open_filter()">
-    <img src="../../../assets/icon/icon_filter.png" alt="Filtro">
+<div class="filter" >
+    <h4 (click)="ngOnInit()">ATRAS</h4>
+    <img src="../../../assets/icon/icon_filter.png" alt="Filtro" (click)="open_filter()">
     <span>Filtrar</span>
 </div>
 <table  class="table_style">

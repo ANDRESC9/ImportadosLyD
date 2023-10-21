@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Response } from 'src/app/interfaces/response';
 import { LoadModalsService } from '../Services/load-modals.service';
 import { DebtorsService } from '../Services/debtors.service';
+import { TransformDataService } from 'src/app/services/transform-data.service';
 
 @Component({
   selector: 'app-credits-table',
@@ -18,7 +19,11 @@ export class CreditsTableComponent {
   add_class : boolean = false
   open_filter_modal : boolean = false
 
-  constructor(private api : ApiService<Credit>, private modals : LoadModalsService, private debtors_service : DebtorsService){
+  constructor(private api : ApiService<Credit>, 
+    private modals : LoadModalsService, 
+    private debtors_service : DebtorsService,
+    private transform_data : TransformDataService
+    ){
   
   }
 
@@ -59,8 +64,8 @@ export class CreditsTableComponent {
 
   pay_off(credit : Credit){
 
-    const balanceAsString = credit.balance.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    const balance = parseFloat(balanceAsString.replace(/[^0-9.-]+/g, ''));
+
+    const balance = this.transform_data.money_to_number(credit.balance)
     
     if(balance > 0 ){
 
