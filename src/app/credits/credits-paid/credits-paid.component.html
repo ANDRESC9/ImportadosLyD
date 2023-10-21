@@ -8,20 +8,20 @@
 <table  class="table_style">
     <thead>
         <tr>
-            <th class="column_icons justify_center">Id</th>
-            <th class="column justify_center">Fecha de crédito</th>
-            <th class="column justify_center">Valor</th>
-            <th class="column justify_center">Nombre</th>  
-            <th class="column justify_center">Fecha de pago completado</th> 
+            <th class="column_id justify_center">Nº Crédito</th>
+            <th class="justify_center">Fecha crédito</th>
+            <th class="justify_center">Valor</th>
+            <th class="justify_center">Nombre</th>  
+            <th class="justify_center">Fecha de pago completado</th> 
         </tr>
-    </thead>
+    </thead> 
     <tbody>
         <tr *ngFor="let credit of credits_paid">
-            <td data-label="Id" class="column_icons justify_center">{{credit.id_debtors_credit}}</td>
-            <td data-label="Fecha de crédito" class="column justify_center">{{credit.date_debts}}</td>
-            <td data-label="Valor" class="column justify_left">{{credit.value_}}</td>
-            <td data-label="Nombre" class="column justify_left">{{credit.names_}}&nbsp;{{credit.lastnames}}</td>
-            <td data-label="Fecha de pago completado" class="column justify_center">{{credit.date_paid_off}}</td>
+            <td data-label="Id" class="column_id justify_center">{{credit.id_debtors_credit}}</td>
+            <td data-label="Fecha de crédito" class="justify_center">{{credit.date_debts}}</td>
+            <td data-label="Valor" class="justify_left">{{credit.value_}}</td>
+            <td data-label="Nombre" class="justify_left">{{credit.names_}}&nbsp;{{credit.lastnames}}</td>
+            <td data-label="Fecha de pago completado" class="justify_center">{{credit.date_paid_off}}</td>
         </tr>
     </tbody>
 </table>

@@ -8,26 +8,26 @@
 <table  class="table_style">
     <thead>
         <tr>
-            <th class="column_icons justify_center">Id credito</th>
-            <th class="column justify_center">Fecha</th> 
-            <th class="column justify_center">Nombre</th>  
-            <th class="column justify_center">Valor</th> 
-            <th class="column justify_center">Abono</th> 
-            <th class="column justify_center">Saldo</th>
-            <th class="column_icons justify_center">Abonar</th> 
-            <th class="column_icons justify_center">Saldar</th> 
+            <th class="column_id justify_center">Nº Crédito</th>
+            <th class="justify_center">Fecha</th> 
+            <th class="justify_center">Nombre</th>  
+            <th class="justify_center">Valor</th> 
+            <th class="justify_center">Abono</th> 
+            <th class="justify_center">Saldo</th>
+            <th class="column_icon justify_center">Abonar</th> 
+            <th class="column_icon justify_center">Saldar</th> 
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let credit of credits">
-            <td data-label="id" class="column_icons justify_center">{{credit.id_debtors_credit}}</td>
-            <td data-label="Fecha" class="column justify_center">{{credit.date_debts}}</td>
-            <td data-label="Nombre" class="column justify_left">{{credit.names_ +" " +credit.lastnames}}</td>
-            <td data-label="Valor" class="column justify_left">{{credit.value_}}</td>
-            <td data-label="Abono" class="column justify_left">{{credit.pass}}</td>
-            <td data-label="Saldo" class="column justify_left">{{credit.balance}}</td>
-            <td data-label="Abonar" class="column_icons justify_center" (click)="pass(credit)"><img src="../../../assets/icon/necesitar.png" alt=""></td>
-            <td data-label="Saldar" class="column_icons justify_center"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
+            <td data-label="id" class="column_id justify_center">{{credit.id_debtors_credit}}</td>
+            <td data-label="Fecha" class="justify_center">{{credit.date_debts}}</td>
+            <td data-label="Nombre" class="justify_left">{{credit.names_ +" " +credit.lastnames}}</td>
+            <td data-label="Valor" class="justify_left">{{credit.value_}}</td>
+            <td data-label="Abono" class="justify_left">{{credit.pass}}</td>
+            <td data-label="Saldo" class="justify_left">{{credit.balance}}</td>
+            <td data-label="Abonar" class="column_icon justify_center" (click)="pass(credit)"><img src="../../../assets/icon/necesitar.png" alt=""></td>
+            <td data-label="Saldar" class="column_icon justify_center"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
         </tr>
     </tbody>
 </table>

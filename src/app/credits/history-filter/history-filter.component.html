@@ -1,34 +1,34 @@
 <form class="form_style" [formGroup]="form_filter_history" (ngSubmit)="send()">
     <h2>Filtrar</h2>
     <div class="show_info">
-        <span>Seleccione una opcion para filtrar</span>
+        <span>Seleccione una opción para filtrar</span>
         <select name="" id="" formControlName="option">
-            <option value="date_credit">Fecha credito</option>
+            <option value="date_credit">Fecha crédito</option>
             <option value="last_pass_date">Fecha ultimo abono</option>
             <option value="id_debtors">Deudor</option>
-            <option value="debtors_credit_fk">Numero de credito</option>
+            <option value="debtors_credit_fk">Número de crédito</option>
         </select>
     </div>
 
-    <div *ngIf="form_filter_history.value.option == 'date_credit'">
-        <span>Fecha credito</span>
+    <div class="filter_info" *ngIf="form_filter_history.value.option == 'date_credit'">
+        <span class="filter_name">Seleccione una fecha</span>
         <input type="date" formControlName="value">
     </div>
-    <div *ngIf="form_filter_history.value.option == 'last_pass_date'">
-        <span>Fecha</span>
+    <div class="filter_info" *ngIf="form_filter_history.value.option == 'last_pass_date'">
+        <span class="filter_name">Seleccione una fecha</span>
         <input type="date" formControlName="value">
     </div>
 
-    <div *ngIf="form_filter_history.value.option == 'id_debtors'">
-        <span>Nombre deudor</span>
+    <div class="filter_info" *ngIf="form_filter_history.value.option == 'id_debtors'">
+        <span class="filter_name">Seleccione un nombre</span>
         <select name="" id="" formControlName="value">
             <option value="" selected>Seleccione</option>
             <option *ngFor="let debtor of debtors" value='{{debtor.id_debtors}}'>{{debtor.names_ + " " +debtor.lastnames}}</option>
         </select>
     </div>
 
-    <div *ngIf="form_filter_history.value.option == 'debtors_credit_fk'">
-        <span>Numero de credito</span>
+    <div class="filter_info" *ngIf="form_filter_history.value.option == 'debtors_credit_fk'">
+        <span class="filter_name">Ingrese el número del crédito</span>
         <input type="number" formControlName="value">
     </div>
     <button>Filtrar</button>
