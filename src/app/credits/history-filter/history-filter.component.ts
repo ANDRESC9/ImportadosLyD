@@ -6,6 +6,7 @@ import { LoadModalsService } from '../Services/load-modals.service';
 import { DebtorsService } from '../Services/debtors.service';
 import { Response } from 'src/app/interfaces/response';
 import { SingleQuotesService } from '../Services/single-quotes.service';
+import { DateServicesService } from 'src/app/services/date-services.service';
 @Component({
   selector: 'app-history-filter',
   templateUrl: './history-filter.component.html',
@@ -19,13 +20,14 @@ export class HistoryFilterComponent {
     private api : ApiService<Debtor>,
     private modal_services : LoadModalsService,
     private debtor_service : DebtorsService,
-    private quotes : SingleQuotesService  
+    private quotes : SingleQuotesService,
+    private date : DateServicesService 
       ){
 
     this.form_filter_history = this.form_builder.group({
 
       option : [""],
-      value : [""],
+      value : [this.date.Date()],
     })
   }
 

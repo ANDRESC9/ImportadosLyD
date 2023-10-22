@@ -48,9 +48,7 @@ import { DebtorsFilterComponent } from './credits/debtors-filter/debtors-filter.
     LoginComponent,
     HistoryFilterComponent,
     CreditsPaidFilterComponent,
-    DebtorsFilterComponent
-    
-    
+    DebtorsFilterComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,43 +2,44 @@
 <!-- <div *ngIf="!is_load" class="load">
     <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
 </div> -->
-<div class="filter" (click)="open_filter_history()">
-    <img src="../../../assets/icon/icon_filter.png" alt="Filtro">
-    <span>Filtrar</span>
-</div>
-<table  class="table_style">
-    <thead>
-        <tr>
-            <th class="column_id justify_center">Nº Crédito</th> 
-            <th class="justify_center">Nombre deudor</th>  
-            <th class="justify_center">Fecha crédito</th>
-            <th class="justify_center">Fecha ultimo abono</th> 
-            <th class="justify_center">Valor ultimo abono</th>
-            <th class="justify_center">Abono actual</th> 
-            <th class="justify_center">Ultimo saldo</th>
-            <th class="justify_center">Saldo actual</th>
-            <th class="justify_center">Usuario</th> 
-  
-        </tr> 
-    </thead>
-    <tbody>
-        <tr *ngFor="let history of credit_history">
-            <td data-label="Id" class="column_id justify_center">{{history.debtors_credit_fk}}</td>
-            <td data-label="Nombre deudor" class="justify_left">{{history.debtors_names +" " +history.debtors_lastnames}}</td>
-            <td data-label="Fecha ultimo abono" class="justify_center">{{history.date_credit}}</td>
-            <td data-label="Fecha ultimo abono" class="justify_center">{{history.last_pass_date}}</td>
-            <td data-label="Valor ultimo abono" class="justify_left">{{history.last_pass}}</td>
-            <td data-label="Abono actual" class="justify_left">{{history.current_pass}}</td>
-            <td data-label="Ultimo saldo" class="justify_left">{{history.last_balance}}</td>
-            <td data-label="Saldo actual" class="justify_left">{{history.current_balance}}</td>
-            <td data-label="Usuario" class="justify_left">{{history.user_names + " "+ history.user_lastnames}}</td>
-        </tr>
-
-        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-    </tbody>
-</table>
-
-
+<section class="table_container">
+    <div class="filter" >
+        <img src="../../../assets/icon/icon_go_back.png" alt="Atrás" (click)="ngOnInit()">
+        <span>Historial de Créditos</span>
+        <img src="../../../assets/icon/icon_filter.png" alt="Filtro" (click)="open_filter_history()">
+    </div>
+    <table  class="table_style">
+        <thead>
+            <tr>
+                <th class="column_id justify_center">Nº Crédito</th> 
+                <th class="justify_center">Nombre deudor</th>  
+                <th class="justify_center">Fecha crédito</th>
+                <th class="justify_center">Fecha ultimo abono</th> 
+                <th class="justify_center">Valor ultimo abono</th>
+                <th class="justify_center">Abono actual</th> 
+                <th class="justify_center">Ultimo saldo</th>
+                <th class="justify_center">Saldo actual</th>
+                <th class="justify_center">Usuario</th> 
+      
+            </tr> 
+        </thead>
+        <tbody>
+            <tr *ngFor="let history of credit_history">
+                <td data-label="Id" class="column_id justify_center">{{history.debtors_credit_fk}}</td>
+                <td data-label="Nombre deudor" class="justify_left">{{history.debtors_names +" " +history.debtors_lastnames}}</td>
+                <td data-label="Fecha ultimo abono" class="justify_center">{{history.date_credit}}</td>
+                <td data-label="Fecha ultimo abono" class="justify_center">{{history.last_pass_date}}</td>
+                <td data-label="Valor ultimo abono" class="justify_left">{{history.last_pass}}</td>
+                <td data-label="Abono actual" class="justify_left">{{history.current_pass}}</td>
+                <td data-label="Ultimo saldo" class="justify_left">{{history.last_balance}}</td>
+                <td data-label="Saldo actual" class="justify_left">{{history.current_balance}}</td>
+                <td data-label="Usuario" class="justify_left">{{history.user_names + " "+ history.user_lastnames}}</td>
+            </tr>
+    
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </tbody>
+    </table>
+</section>
 <section class="hidden" [ngClass]="{'show_table': open_filter}">
     <app-history-filter></app-history-filter>
 </section>

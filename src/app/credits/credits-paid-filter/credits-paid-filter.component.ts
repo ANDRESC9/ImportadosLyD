@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Credit } from '../interfaces/credit';
 import { Debtor } from '../interfaces/debtor';
 import { LoadModalsService } from '../Services/load-modals.service';
+import { DateServicesService } from 'src/app/services/date-services.service';
 
 @Component({
   selector: 'app-credits-paid-filter',
@@ -13,12 +14,12 @@ import { LoadModalsService } from '../Services/load-modals.service';
 export class CreditsPaidFilterComponent {
   form_filter_paid! : FormGroup
   debtors! : Debtor[]
-  constructor(private form_build : FormBuilder, private api : ApiService<Credit>, private modals : LoadModalsService){
+  constructor(private form_build : FormBuilder, private api : ApiService<Credit>, private modals : LoadModalsService, private date : DateServicesService){
 
     this.form_filter_paid = this.form_build.group({
 
       option : ["", Validators.required],
-      value : ["", Validators.required]
+      value : [this.date.Date(), Validators.required]
 
     })
   }

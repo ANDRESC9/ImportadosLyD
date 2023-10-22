@@ -1,7 +1,29 @@
-<section class="header">
-    <app-header></app-header>
-</section>
-<section class="main_content">
-    <router-outlet></router-outlet>
-</section>
+<header>
+    <div class="toggle">
+        <label class="menu_toggle" [class.active]="claseActiva" (click)="toggleClase()">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </label> 
+    </div>
+    <div class="logo">
+        <img src="../assets/logo.png" alt="Logo" routerLink="/">
+    </div>
+    <div class="user">
+        <span>Usuario</span>
+        <img src="../assets/icon/icon_user.png" alt="">
+    </div>
+</header>
+<div class="main_content">
+    <section class="navigation_menu" [class.hidden_menu]="hiddenMenu">
+        <ul>
+            <li routerLink="/inventario" routerLinkActive="route_active_menu"><img src="../assets/icon/icon_inventory.png" alt="">&nbsp;&nbsp;Inventario</li>
+            <li routerLink="/creditos" routerLinkActive="route_active_menu"><img src="../assets/icon/icon_credit.png" alt="">&nbsp;&nbsp;Créditos</li>
+            <li routerLink="/proveedores" routerLinkActive="route_active_menu"><img src="../assets/icon/icon_supplier.png" alt="">&nbsp;&nbsp;Proveedores</li>
+        </ul>
+    </section>
+    <section class="main_section"  [class.width_content]="widthContent">
+        <router-outlet></router-outlet>
+    </section>
+</div>
  

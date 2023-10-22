@@ -3,7 +3,8 @@ import { LoadModalsService } from '../Services/load-modals.service';
 import { Debtor } from '../interfaces/debtor';
 import { ApiService } from 'src/app/services/api.service';
 import { Response } from 'src/app/interfaces/response';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl  } from '@angular/forms';
+import { DateServicesService } from 'src/app/services/date-services.service';
 @Component({
   selector: 'app-credits-filter',
   templateUrl: './credits-filter.component.html',
@@ -13,16 +14,17 @@ export class CreditsFilterComponent {
 
   form_filter! : FormGroup
   debtors! : Debtor[]
-  constructor(private modal : LoadModalsService, private api : ApiService<Debtor>, private form_build : FormBuilder){
+  constructor(private modal : LoadModalsService, private api : ApiService<Debtor>,
+     private form_build : FormBuilder, private date : DateServicesService){
 
+    
     this.form_filter = this.form_build.group({
       option : ["", Validators.required],
-      value : ["", Validators.required]
+      value : [this.date.Date(), Validators.required]
     })
   }
 
   ngOnInit(){
-
     this.api.load_debtors("debtors/")
     this.api.get_debtors()
       .subscribe((debs : Debtor[]) =>{

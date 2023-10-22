@@ -12,7 +12,7 @@
 
     <div class="filter_info" *ngIf="form_filter.value.option == 'date_debts'">
         <span class="filter_name">Seleccione una fecha</span>
-        <input type="date" formControlName="value">
+        <input type="date" formControlName="value" >
     </div> 
 
     <div class="filter_info" *ngIf="form_filter.value.option == 'debtors_fk'">
@@ -25,7 +25,7 @@
 
     <div class="filter_info" *ngIf="form_filter.value.option == 'id_debtors_credit'">
         <span class="filter_name">Ingrese el número del crédito</span>
-        <input type="number" formControlName="value">
+        <input type="number" formControlName="value" >
     </div>
     <button>Filtrar</button>
     <span class="close" (click)="close_modal_filter()"><img src="../../../assets/icon/cerrar.png" alt=""></span>

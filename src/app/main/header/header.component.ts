@@ -6,9 +6,5 @@ import { Component, ElementRef } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  claseActiva: boolean  = false; 
 
-  toggleClase() {
-    this.claseActiva = !this.claseActiva; 
-  }
 }

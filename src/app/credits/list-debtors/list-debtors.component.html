@@ -1,29 +1,32 @@
 <!-- <div *ngIf="!is_load" class="load">
     <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
 </div> -->
-<div class="filter" (click)="open_filter_debtor()">
-    <img src="../../../assets/icon/icon_filter.png" alt="Filtro">
-    <span>Filtrar</span>
-</div>
-<table  class="table_style">
-    <thead>
-        <tr>
-            <th class="column_id justify_center">Id</th> 
-            <th class="justify_center">Nombre</th>  
-            <th class="column_icon justify_center">Editar</th> 
-            <th class="column_icon justify_center">Eliminar</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let deb of debtors">
-            <td data-label="Id" class="column_id justify_center">{{deb.id_debtors}}</td> 
-            <td data-label="Nombre" class="justify_center">{{deb.names_}}&nbsp;{{deb.lastnames}}</td>
-            <td data-label="Editar" class="column_icon justify_center"><span (click)="open_modal_edit_debtor(deb)"><img src="../../../assets/icon/icon_edit.png" alt=""></span></td>
-            <td data-label="Eliminar" class="column_icon justify_center"><span (click)="delete_debtor(deb.id_debtors)"><img src="../../../assets/icon/icon_delete.png" alt=""></span></td>
-        </tr>
-    </tbody>
-</table>
+<section class="table_container">
+    <div class="filter" >
+        <img src="../../../assets/icon/icon_go_back.png" alt="Atrás" (click)="ngOnInit()">
+        <span>Lista de Deudores</span>
+        <img src="../../../assets/icon/icon_filter.png" alt="Filtro" (click)="open_filter_debtor()">
+    </div>
+    <table  class="table_style">
+        <thead>
+            <tr>
+                <th class="column_id justify_center">Id</th> 
+                <th class="justify_center">Nombre</th>  
+                <th class="column_icon justify_center">Editar</th> 
+                <th class="column_icon justify_center">Eliminar</th>
+    
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let deb of debtors">
+                <td data-label="Id" class="column_id justify_center">{{deb.id_debtors}}</td> 
+                <td data-label="Nombre" class="justify_center">{{deb.names_}}&nbsp;{{deb.lastnames}}</td>
+                <td data-label="Editar" class="column_icon justify_center"><span (click)="open_modal_edit_debtor(deb)"><img src="../../../assets/icon/icon_edit.png" alt=""></span></td>
+                <td data-label="Eliminar" class="column_icon justify_center"><span (click)="delete_debtor(deb.id_debtors)"><img src="../../../assets/icon/icon_delete.png" alt=""></span></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 <section class="hidden" [ngClass]="{'show_table': open}">
     <app-edit-debtor ></app-edit-debtor>
 </section>
