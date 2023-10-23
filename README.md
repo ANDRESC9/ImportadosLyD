@@ -1,4 +1,4 @@
-# ImportadosLyD
+# Importados LyD
 
 Aplicación web de inventario.
 
