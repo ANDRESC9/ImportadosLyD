@@ -5,6 +5,7 @@ import { Debtor } from '../interfaces/debtor';
 import { Credit } from '../interfaces/credit';
 import { Response } from 'src/app/interfaces/response';
 import { DateServicesService } from 'src/app/services/date-services.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 
 
@@ -21,7 +22,10 @@ export class PayPartComponent {
   is_load : boolean = true;
   @Output() close = new EventEmitter<Boolean>
 
-  constructor(private api : ApiService<Debtor>, private builder :  FormBuilder, private date_service : DateServicesService
+  constructor(private api : ApiService<Debtor>, 
+    private builder :  FormBuilder, 
+    private date_service : DateServicesService,
+    private loader : LoaderService
      ){
  
     this.form_pass = this.builder.group(
@@ -42,6 +46,7 @@ export class PayPartComponent {
 
   ngOnInit(){
 
+    this.loader.set_loader_status(true)
         this.api.get_info_credit()
           .subscribe((credit : Credit)=>{
 
@@ -55,6 +60,8 @@ export class PayPartComponent {
               balance : credit.balance
             })
           })
+
+          this.loader.set_loader_status(true)
         }
   send(){
 

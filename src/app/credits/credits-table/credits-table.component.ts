@@ -5,6 +5,7 @@ import { Response } from 'src/app/interfaces/response';
 import { LoadModalsService } from '../Services/load-modals.service';
 import { DebtorsService } from '../Services/debtors.service';
 import { TransformDataService } from 'src/app/services/transform-data.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-credits-table',
@@ -20,22 +21,29 @@ export class CreditsTableComponent {
   open_filter_modal : boolean = false
   currentPage : number = 1 
   itemsPerPage : number = 7
+  
   constructor(private api : ApiService<Credit>, 
     private modals : LoadModalsService, 
     private debtors_service : DebtorsService,
-    private transform_data : TransformDataService
+    private transform_data : TransformDataService,
+    private loader : LoaderService
     ){
   
   }
 
   ngOnInit(){
-    
+    this.loader.set_loader_status(true)
+
     this.api.getAllPost("debtorscredits/")
     this.api.get_all()
       .subscribe((data: Response) =>{
         
         this.credits = data.Data
-        this.is_load = data.Status
+
+        if(data.Status){
+          this.loader.set_loader_status(false)
+        }
+        
       })
 
 

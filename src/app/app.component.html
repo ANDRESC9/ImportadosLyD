@@ -23,6 +23,9 @@
         </ul>
     </section>
     <section class="main_section"  [class.width_content]="widthContent">
+        <div class="load" *ngIf="loader_status">
+            <img src="../../../assets/gift/loader.svg" alt="">
+        </div>
         <router-outlet></router-outlet>
     </section>
 </div>
