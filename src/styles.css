@@ -126,6 +126,11 @@ select {
     -webkit-appearance: auto;
 }
 
+.validation_message {
+    font-size: .6rem;
+    color: red;
+}
+
 /* ============================================================ */
 /* ============= Estilos del Componente Principal ============= */
 /* ============================================================ */

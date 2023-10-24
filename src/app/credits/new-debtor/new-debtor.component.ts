@@ -24,7 +24,7 @@ export class NewDebtorComponent {
     this.form_debtor = this.form_builder.group({
 
       names : ["",[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      lastnames : [""]
+      lastnames : ["",[Validators.minLength(3), Validators.maxLength(50)]]
     })
   }
 
@@ -43,17 +43,11 @@ export class NewDebtorComponent {
         }
       })
     }else{
-
         this.form_debtor.markAllAsTouched();
-    }
-    
+    } 
   }
-
   close_form(){
 
     this.modal.set_form_debtors_status(false)
   }
-  
-
-
 }

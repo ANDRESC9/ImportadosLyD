@@ -1,11 +1,31 @@
 <form class="form_style" [formGroup]="form_credit" (ngSubmit)="send()">
     <h2>Nuevo crédito</h2>
     <select name="" id="" formControlName="id_debtor">
-        <option value="" selected>Seleccione</option>
+        <option value="-1" selected>Seleccione</option>
         <option *ngFor="let debtor of debtors" value='{{debtor.id_debtors}}'>{{debtor.names_ + " " +debtor.lastnames}}</option>
     </select>
+    <div *ngIf="form_credit.get('id_debtor')?.invalid && form_credit.get('id_debtor')?.touched">
+        <div class="validation_message" *ngIf="form_credit.get('id_debtor')?.hasError('isNotMinusOne')">
+            Por favor, seleccione un nombre.
+        </div>        
+    </div>
+
     <input type="text" id="cantidad" formControlName="value" placeholder="*Cantidad" required>
-    <button type="submit" (click)="close_window()">Enviar</button>
+    <div *ngIf="form_credit.get('value')?.invalid && form_credit.get('value')?.touched">
+        <div class="validation_message" *ngIf="form_credit.get('value')?.hasError('required')">
+            Por favor, ingrese una cantidad
+        </div>
+        <div class="validation_message" *ngIf="form_credit.get('value')?.errors?.['min']">
+            El número debe ser mayor o igual a ${{ form_credit.get('value')?.errors?.['min'].min }}.
+        </div>
+        <div class="validation_message" *ngIf="form_credit.get('value')?.errors?.['max']">
+            El número debe ser menor o igual a $100'000.000.
+        </div>
+        <div class="validation_message" *ngIf="form_credit.get('value')?.errors?.['pattern']">
+            Solo se permiten números.
+        </div>
+    </div>
+    <button type="submit" >Enviar</button>
     <span class="required_fields">Todos los campos con (*) son obligatorios</span>
     <span class="close" (click)="close_window()"><img src="../../../assets/icon/cerrar.png" alt=""></span>
 </form>  
