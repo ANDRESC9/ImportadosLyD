@@ -4,7 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Debtor } from '../interfaces/debtor';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { DateServicesService } from 'src/app/services/date-services.service';
-
+import { ValidatorsCA } from 'src/app/utils/ValidatorsCA';
 @Component({
   selector: 'app-new-credit',
   templateUrl: './new-credit.component.html',
@@ -23,7 +23,7 @@ export class NewCreditComponent {
  
     this.form_credit = this.builder.group(
       {
-        id_debtor : ["", [Validators.required]],
+        id_debtor : ["", [Validators.required, ValidatorsCA.requiredSelected]],
         value : ["",[Validators.required, Validators.min(1000), Validators.max(100000000), Validators.pattern('^[0-9]*$')]],
         date : [""]
       }
