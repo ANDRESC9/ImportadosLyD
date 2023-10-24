@@ -22,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let credit of credits">
+            <tr *ngFor="let credit of credits | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage}">
                 <td data-label="Nº Crédito" class="column_id justify_center">{{credit.id_debtors_credit}}</td>
                 <td data-label="Fecha" class="justify_center">{{credit.date_debts}}</td>
                 <td data-label="Nombre" class="justify_left">{{credit.names_ +" " +credit.lastnames}}</td>
@@ -32,6 +32,8 @@
                 <td data-label="Abonar" class="column_icon justify_center" (click)="pass(credit)"><img src="../../../assets/icon/necesitar.png" alt=""></td>
                 <td data-label="Saldar" class="column_icon justify_center" (click)="pay_off(credit)"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
             </tr>
+
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
         </tbody>
     </table>
 </section>

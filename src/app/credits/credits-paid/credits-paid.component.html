@@ -18,13 +18,15 @@
             </tr>
         </thead> 
         <tbody>
-            <tr *ngFor="let credit of credits_paid">
+            <tr *ngFor="let credit of credits_paid | paginate: { itemsPerPage: total_size, currentPage: current_page } ">
                 <td data-label="Nº Crédito" class="column_id justify_center">{{credit.id_debtors_credit}}</td>
                 <td data-label="Fecha de crédito" class="justify_center">{{credit.date_debts}}</td>
                 <td data-label="Valor" class="justify_left">{{credit.value_}}</td>
                 <td data-label="Nombre" class="justify_left">{{credit.names_}}&nbsp;{{credit.lastnames}}</td>
                 <td data-label="Pago completado" class="justify_center">{{credit.date_paid_off}}</td>
             </tr>
+
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
         </tbody>
     </table>
 </section>

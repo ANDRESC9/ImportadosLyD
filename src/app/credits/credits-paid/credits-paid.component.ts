@@ -13,6 +13,9 @@ export class CreditsPaidComponent {
 
   credits_paid! : Credit[]
   open_filter_paid : boolean = false
+  current_page : number =  1;
+  total_size : number = 7
+
   constructor(private api : ApiService<Credit>, private modals : LoadModalsService){
 
   }
@@ -35,5 +38,9 @@ export class CreditsPaidComponent {
       .subscribe((status : boolean)=>{
         this.open_filter_paid = status
       })
+  }
+
+  pageChanged(event : any) {
+    this.current_page = event;
   }
 }

@@ -17,6 +17,8 @@ export class ListDebtorsComponent {
   debtors! : Debtor[]
   delete_params! : Delete_response
   open_filter : boolean = false;
+  currentPage : number = 1 
+  total_size : number = 7
 
   constructor(private api : ApiService<Debtor>, 
     private modal : LoadModalsService,
@@ -37,17 +39,23 @@ export class ListDebtorsComponent {
  
   delete_debtor(id : any){
 
-    this.delete_params = {id : id, table : "debtors", column : "id_debtors"}
-
-    this.api.delete(this.delete_params)
-      .subscribe((response : Response) =>{
-
-        console.log(response.Messague)
-        if(response.Status){
-
-          this.api.load_debtors("debtors/")
-        }
-      })
+    if(window.confirm("¿Estás seguro de que deseas eliminar a este deudor?")){
+      
+      this.delete_params = {id : id, table : "debtors", column : "id_debtors"}
+      this.api.delete(this.delete_params)
+        .subscribe((response : Response) =>{
+  
+          console.log(response.Messague)
+          if(response.Status){
+  
+            this.api.load_debtors("debtors/")
+          }
+        })
+    }
+   
+  }
+  pageChanged(event : any) {
+    this.currentPage = event;
   }
 
   open_modal_edit_debtor(id : any){
