@@ -8,6 +8,11 @@
             <option value="debtors_fk">Deudor</option>
             <option value="id_debtors_credit">Número de crédito</option>
         </select>
+        <div *ngIf="form_filter.get('option')?.invalid && form_filter.get('option')?.touched">
+            <div class="validation_message" *ngIf="form_filter.get('option')?.hasError('requiredSelected')">
+                Por favor, seleccione una opción.
+            </div>        
+        </div>
     </div>
 
     <div class="filter_info" *ngIf="form_filter.value.option == 'date_debts'">

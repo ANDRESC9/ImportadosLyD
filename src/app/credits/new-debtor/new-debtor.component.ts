@@ -24,7 +24,7 @@ export class NewDebtorComponent {
     this.form_debtor = this.form_builder.group({
 
       names : ["",[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      lastnames : [""]
+      lastnames : ["",[Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
     })
   }
 

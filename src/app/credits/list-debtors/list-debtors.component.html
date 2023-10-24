@@ -14,8 +14,7 @@
                 <th class="justify_center">Nombre</th>  
                 <th class="column_icon justify_center">Editar</th> 
                 <th class="column_icon justify_center">Eliminar</th>
-    
-            </tr>
+            </tr> 
         </thead>
         <tbody>
             <tr *ngFor="let deb of debtors | paginate: { itemsPerPage: total_size, currentPage: currentPage }">
@@ -24,16 +23,15 @@
                 <td data-label="Editar" class="column_icon justify_center"><span (click)="open_modal_edit_debtor(deb)"><img src="../../../assets/icon/icon_edit.png" alt=""></span></td>
                 <td data-label="Eliminar" class="column_icon justify_center"><span (click)="delete_debtor(deb.id_debtors)"><img src="../../../assets/icon/icon_delete.png" alt=""></span></td>
             </tr>
-
-            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-            
         </tbody>
     </table>
+    <div class="pagination_style">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
 </section>
 <section class="hidden" [ngClass]="{'show_table': open}">
     <app-edit-debtor ></app-edit-debtor>
 </section>
-
 <section class="hidden" [ngClass]="{'show_table': open_filter}">
     <app-debtors-filter></app-debtors-filter>
 </section>

@@ -35,10 +35,11 @@
                 <td data-label="Saldo actual" class="justify_left">{{history.current_balance}}</td>
                 <td data-label="Usuario" class="justify_left">{{history.user_names + " "+ history.user_lastnames}}</td>
             </tr>
-    
-            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
         </tbody>
     </table>
+    <div class="pagination_style">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
 </section>
 <section class="hidden" [ngClass]="{'show_table': open_filter}">
     <app-history-filter></app-history-filter>

@@ -1,7 +1,7 @@
 <form class="form_style" [formGroup]="form_credit" (ngSubmit)="send()">
     <h2>Nuevo crédito</h2>
     <select name="" id="" formControlName="id_debtor">
-        <option value="0" selected>Seleccione</option>
+        <option value="" selected>Seleccione</option>
         <option *ngFor="let debtor of debtors" value='{{debtor.id_debtors}}'>{{debtor.names_ + " " +debtor.lastnames}}</option>
     </select>
     <div *ngIf="form_credit.get('id_debtor')?.invalid && form_credit.get('id_debtor')?.touched">
@@ -10,7 +10,7 @@
         </div>        
     </div>
 
-    <input type="text" id="cantidad" formControlName="value" placeholder="*Cantidad" required>
+    <input type="number" id="cantidad" formControlName="value" placeholder="*Cantidad" required>
     <div *ngIf="form_credit.get('value')?.invalid && form_credit.get('value')?.touched">
         <div class="validation_message" *ngIf="form_credit.get('value')?.hasError('required')">
             Por favor, ingrese una cantidad

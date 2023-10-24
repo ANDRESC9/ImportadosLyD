@@ -4,9 +4,10 @@ import { Debtor } from '../interfaces/debtor';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadModalsService } from '../Services/load-modals.service';
 import { DebtorsService } from '../Services/debtors.service';
-import { Response } from 'src/app/interfaces/response';
 import { SingleQuotesService } from '../Services/single-quotes.service';
 import { DateServicesService } from 'src/app/services/date-services.service';
+import { ValidatorsCA } from 'src/app/utils/ValidatorsCA';
+
 @Component({
   selector: 'app-history-filter',
   templateUrl: './history-filter.component.html',
@@ -25,8 +26,7 @@ export class HistoryFilterComponent {
       ){
 
     this.form_filter_history = this.form_builder.group({
-
-      option : [""],
+      option : ["", [Validators.required, ValidatorsCA.requiredSelected]],
       value : [this.date.Date()],
     })
   }
@@ -40,26 +40,23 @@ export class HistoryFilterComponent {
       })
   }
   close_modal_filter(){
-
     this.modal_services.set_modal_filter_Status(false)
-
+    this.form_filter_history.reset()
   }
   send(){
-
-    this.form_filter_history.value.option = "'"+ this.form_filter_history.value.option + "'"
-    this.form_filter_history.value.value = "'"+ this.form_filter_history.value.value + "'"
-
     if(this.form_filter_history.valid){
+      this.form_filter_history.value.option = "'"+ this.form_filter_history.value.option + "'"
+      this.form_filter_history.value.value = "'"+ this.form_filter_history.value.value + "'"
 
-      this.debtor_service.filter_history( this.form_filter_history.value) 
-      this.modal_services.set_modal_filter_Status(false)
+      if(this.form_filter_history.valid){
+        this.debtor_service.filter_history( this.form_filter_history.value) 
+        this.modal_services.set_modal_filter_Status(false)
+      }else{
+        alert("Verifique los filtros")
+      } 
+      this.form_filter_history.reset()
     }else{
-
-      alert("Verifique los filtros")
-    } 
-    
-    
-    this.form_filter_history.reset()
-
+      this.form_filter_history.markAllAsTouched();
+    }
   }
 }

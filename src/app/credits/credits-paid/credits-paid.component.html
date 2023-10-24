@@ -25,11 +25,13 @@
                 <td data-label="Nombre" class="justify_left">{{credit.names_}}&nbsp;{{credit.lastnames}}</td>
                 <td data-label="Pago completado" class="justify_center">{{credit.date_paid_off}}</td>
             </tr>
-
-            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
         </tbody>
     </table>
+    <div class="pagination_style">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
 </section>
 <section class="hidden" [ngClass]="{'show_table': open_filter_paid}">
     <app-credits-paid-filter></app-credits-paid-filter>
 </section>
+  

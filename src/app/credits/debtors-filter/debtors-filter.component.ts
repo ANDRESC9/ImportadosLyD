@@ -35,13 +35,12 @@ export class DebtorsFilterComponent {
             this.modals.set_modal_filter_Status_debtor(false)
           }
         })
-    }
+    }else{
+        this.form_filter_debtors.markAllAsTouched();
+    } 
   }
   close_modal_filter(){
-
     this.modals.set_modal_filter_Status_debtor(false)
-
+    this.form_filter_debtors.reset()
   }
-
-
 }

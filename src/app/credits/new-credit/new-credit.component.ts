@@ -53,18 +53,10 @@ export class NewCreditComponent {
         })
     }else{
       this.form_credit.markAllAsTouched();
-      console.log("asdasd")
     }
   }
   close_window(){
     this.close_modal.emit(false)
     this.form_credit.reset()
   }
-
 }
-
-function isNotMinusOne(form : AbstractControl) {
-  let valor = form.get("id_debtor")?.value
-  return form.value && form.value.id_debtor > 0 ? null : { isMinusOne: true };
-}
-
