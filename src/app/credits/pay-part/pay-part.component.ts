@@ -5,7 +5,7 @@ import { Debtor } from '../interfaces/debtor';
 import { Credit } from '../interfaces/credit';
 import { Response } from 'src/app/interfaces/response';
 import { DateServicesService } from 'src/app/services/date-services.service';
-
+import { TransformDataService } from 'src/app/services/transform-data.service';
 
 
 @Component({
@@ -19,9 +19,11 @@ export class PayPartComponent {
   @Input() info_credit! : Credit;
   off : boolean = true;
   is_load : boolean = true;
+  pass_error! : boolean;
   @Output() close = new EventEmitter<Boolean>
 
-  constructor(private api : ApiService<Debtor>, private builder :  FormBuilder, private date_service : DateServicesService
+  constructor(private api : ApiService<Debtor>, private builder :  FormBuilder, 
+    private date_service : DateServicesService, private transform : TransformDataService
      ){
  
     this.form_pass = this.builder.group(
@@ -58,28 +60,49 @@ export class PayPartComponent {
         }
   send(){
 
-    this.is_load = false
-    let values = this.form_pass.value
-    delete values.names_
-    delete values.lastnames
-    delete values.balance
-    delete values.date_debts
+    if(this.form_pass.valid && !this.pass_error){
 
-    this.api.create("https://fruverapp.onrender.com/api/debtorscredits_edit/", values)
+      let values = this.form_pass.value
+      delete values.names_
+      delete values.lastnames
+      delete values.balance
+      delete values.date_debts
+      
+      this.api.create("https://fruverapp.onrender.com/api/debtorscredits_edit/", values)
       .subscribe((response : Response) =>{
         this.is_load = response.Status
-        console.log(response)
         
         if(response.Status){
+          this.close_form()
           this.api.getAllPost("debtorscredits/")
             
-        }else{
-          this.is_load = true
         }
       })
+    }else{
+
+      this.form_pass.markAllAsTouched()
+    }
+    
+ }
+ validate_pass(balance : number){
+  
+  let balance_ = this.transform.money_to_number(balance)
+  let current_pass = this.form_pass.value.pass
+
+  if(current_pass > balance_){
+
+    this.pass_error = true
+
+  }else {
+
+    this.pass_error = false
+  }
+
  }
 
  close_form(){
   this.close.emit(false);
+
+  this.form_pass.reset()
  }
 }

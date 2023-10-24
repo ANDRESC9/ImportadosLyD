@@ -10,7 +10,7 @@
         </div>        
     </div>
 
-    <input type="text" id="cantidad" formControlName="value" placeholder="*Cantidad" required>
+    <input type="number" id="cantidad" formControlName="value" placeholder="*Cantidad" required>
     <div *ngIf="form_credit.get('value')?.invalid && form_credit.get('value')?.touched">
         <div class="validation_message" *ngIf="form_credit.get('value')?.hasError('required')">
             Por favor, ingrese una cantidad

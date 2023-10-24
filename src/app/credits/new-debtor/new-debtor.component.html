@@ -12,7 +12,18 @@
             El nombre no debe superar los 50 caracteres.
         </div>         
     </div>
-    <input type="text"  formControlName="lastnames" placeholder="Apellido" required>
+    <input type="text"  formControlName="lastnames" placeholder="*Apellido" required>
+    <div *ngIf="form_debtor.get('lastnames')?.invalid && form_debtor.get('lastnames')?.touched">
+        <div class="validation_message" *ngIf="form_debtor.get('names')?.hasError('required')">
+            Por favor, ingrese un apellido
+        </div>
+        <div class="validation_message" *ngIf="form_debtor.get('lastnames')?.errors?.['minlength']">
+            El apellido debe tener al menos 3 caracteres.
+        </div>
+        <div class="validation_message" *ngIf="form_debtor.get('lastnames')?.errors?.['maxlength']">
+            El apellido no debe superar los 50 caracteres.
+        </div>         
+    </div>
     <button type="submit">Enviar</button>
     <span class="required_fields">Todos los campos con (*) son obligatorios</span>
     <span (click)="close_form()" class="close"><img src="../../../assets/icon/cerrar.png" alt=""></span>
