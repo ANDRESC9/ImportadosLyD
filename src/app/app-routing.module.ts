@@ -7,9 +7,9 @@ import { NewDebtorComponent } from './credits/new-debtor/new-debtor.component';
 import { CreditsPaidComponent } from './credits/credits-paid/credits-paid.component';
 import { CreditsHistoryComponent } from './credits/credits-history/credits-history.component';
 import { ListDebtorsComponent } from './credits/list-debtors/list-debtors.component';
-import { SuppliersComponent } from './suppliers/suppliers.component';
-import { SuppliersTableComponent } from './suppliers/suppliers-table/suppliers-table.component';
 import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.component';
+import { CreditorsComponent } from './creditors/creditors.component';
+import { CreditorsListComponent } from './creditors/creditors-list/creditors-list.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeScreenComponent },
@@ -26,10 +26,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'proveedores',
-    component: SuppliersComponent,
+    path: 'acreedores',
+    component: CreditorsComponent,
     children: [
-      { path: 'tabla', component: SuppliersTableComponent }
+      { path: 'lista_adeudos', component: CreditorsListComponent }
     ]
   },
 ];

@@ -1,5 +1,5 @@
 <div *ngIf="!is_load" class="load">
-    <img src="../../../assets/gift/Rolling-1s-200px.svg" alt="">
+    <img src="../../../assets/gift/loader.svg" alt="">
 </div>
 
 <section class="table_container">
@@ -23,7 +23,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let credit of credits">
-                <td data-label="id" class="column_id justify_center">{{credit.id_debtors_credit}}</td>
+                <td data-label="Nº Crédito" class="column_id justify_center">{{credit.id_debtors_credit}}</td>
                 <td data-label="Fecha" class="justify_center">{{credit.date_debts}}</td>
                 <td data-label="Nombre" class="justify_left">{{credit.names_ +" " +credit.lastnames}}</td>
                 <td data-label="Valor" class="justify_left">{{credit.value_}}</td>

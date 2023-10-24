@@ -11,6 +11,11 @@ export class AppComponent {
   claseActiva: boolean  = true; 
   hiddenMenu : boolean = true;
   widthContent : boolean = true;
+  anchoPantalla: number;
+
+  constructor() {
+    this.anchoPantalla = window.innerWidth;
+  }
 
   toggleClase() {
     this.claseActiva = !this.claseActiva; 

@@ -17,13 +17,13 @@ import { CreditsHistoryComponent } from './credits/credits-history/credits-histo
 import { ListDebtorsComponent } from './credits/list-debtors/list-debtors.component';
 import { EditDebtorComponent } from './credits/edit-debtor/edit-debtor.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { SuppliersComponent } from './suppliers/suppliers.component';
-import { SuppliersTableComponent } from './suppliers/suppliers-table/suppliers-table.component';
 import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.component';
 import { LoginComponent } from './login/login.component';
 import { HistoryFilterComponent } from './credits/history-filter/history-filter.component';
 import { CreditsPaidFilterComponent } from './credits/credits-paid-filter/credits-paid-filter.component';
 import { DebtorsFilterComponent } from './credits/debtors-filter/debtors-filter.component';
+import { CreditorsComponent } from './creditors/creditors.component';
+import { CreditorsListComponent } from './creditors/creditors-list/creditors-list.component';
 
 
 
@@ -42,13 +42,13 @@ import { DebtorsFilterComponent } from './credits/debtors-filter/debtors-filter.
     CreditsHistoryComponent,
     ListDebtorsComponent,
     EditDebtorComponent,
-    SuppliersComponent,
-    SuppliersTableComponent,
     WelcomeScreenComponent,
     LoginComponent,
     HistoryFilterComponent,
     CreditsPaidFilterComponent,
     DebtorsFilterComponent,
+    CreditorsComponent,
+    CreditorsListComponent,
   ],
   imports: [
     BrowserModule,
