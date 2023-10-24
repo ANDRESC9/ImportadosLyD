@@ -23,14 +23,16 @@ export class NewDebtorComponent {
 
     this.form_debtor = this.form_builder.group({
 
-      names : ["",Validators.required],
-      lastnames : ["",Validators.required]
+      names : ["",[Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      lastnames : [""]
     })
   }
 
   send(){
 
-    this.deb_Service.create_debtor(this.form_debtor.value)
+    if(this.form_debtor.valid){
+
+      this.deb_Service.create_debtor(this.form_debtor.value)
       .subscribe((response : Response)=>{
         
         if(response.Status){
@@ -40,6 +42,11 @@ export class NewDebtorComponent {
           this.form_debtor.reset()
         }
       })
+    }else{
+
+        this.form_debtor.markAllAsTouched();
+    }
+    
   }
 
   close_form(){

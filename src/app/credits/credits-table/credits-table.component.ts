@@ -75,6 +75,7 @@ export class CreditsTableComponent {
           .subscribe((res : Response)=>{
             if(res.Status){
 
+              console.log(res)
               this.api.getAllPost("debtorscredits/")
             }
           })

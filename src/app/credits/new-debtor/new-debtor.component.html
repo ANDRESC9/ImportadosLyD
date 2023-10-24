@@ -1,6 +1,11 @@
 <form class="form_style" [formGroup]="form_debtor" (ngSubmit)="send()">
     <h2>Nuevo deudor</h2>
     <input type="text"  formControlName="names" placeholder="*Nombre" required>
+    <div *ngIf="form_debtor.get('names')?.invalid && form_debtor.get('names')?.touched">
+        <div  *ngIf="form_debtor.get('names')?.hasError('required')">Por favor digite el nombre.</div>
+        <div *ngIf="form_debtor.get('names')?.errors?.['minlength']">El nombre debe contener mas de (3) caracteres.</div>
+        <div *ngIf="form_debtor.get('names')?.errors?.['maxlength']">El nombre no debe contener mas de (50) caracteres.</div>         
+    </div>
     <input type="text"  formControlName="lastnames" placeholder="Apellido" required>
     <button type="submit">Enviar</button>
     <span class="required_fields">Todos los campos con (*) son obligatorios</span>
