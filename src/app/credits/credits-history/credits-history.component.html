@@ -24,7 +24,7 @@
             </tr> 
         </thead>
         <tbody>
-            <tr *ngFor="let history of credit_history">
+            <tr *ngFor="let history of credit_history | paginate : {itemsPerPage: pageSize, currentPage : currentPage }">
                 <td data-label="Nº Crédito" class="column_id justify_center">{{history.debtors_credit_fk}}</td>
                 <td data-label="Nombre deudor" class="justify_left">{{history.debtors_names +" " +history.debtors_lastnames}}</td>
                 <td data-label="Fecha ultimo abono" class="justify_center">{{history.date_credit}}</td>

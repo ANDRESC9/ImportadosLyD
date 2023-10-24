@@ -18,12 +18,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let deb of debtors">
+            <tr *ngFor="let deb of debtors | paginate: { itemsPerPage: total_size, currentPage: currentPage }">
                 <td data-label="Nº Deudor" class="column_id justify_center">{{deb.id_debtors}}</td> 
                 <td data-label="Nombre" class="justify_center">{{deb.names_}}&nbsp;{{deb.lastnames}}</td>
                 <td data-label="Editar" class="column_icon justify_center"><span (click)="open_modal_edit_debtor(deb)"><img src="../../../assets/icon/icon_edit.png" alt=""></span></td>
                 <td data-label="Eliminar" class="column_icon justify_center"><span (click)="delete_debtor(deb.id_debtors)"><img src="../../../assets/icon/icon_delete.png" alt=""></span></td>
             </tr>
+
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+            
         </tbody>
     </table>
 </section>

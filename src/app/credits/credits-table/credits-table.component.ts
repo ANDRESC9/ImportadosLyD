@@ -18,7 +18,8 @@ export class CreditsTableComponent {
   credit_! :Credit
   add_class : boolean = false
   open_filter_modal : boolean = false
-
+  currentPage : number = 1 
+  itemsPerPage : number = 7
   constructor(private api : ApiService<Credit>, 
     private modals : LoadModalsService, 
     private debtors_service : DebtorsService,
@@ -83,7 +84,10 @@ export class CreditsTableComponent {
       
     }
   }
-  
+  pageChanged(event : any) {
+    this.currentPage = event;
+  }
+
   ngOnDestroy(){
 
     this.credits = []
