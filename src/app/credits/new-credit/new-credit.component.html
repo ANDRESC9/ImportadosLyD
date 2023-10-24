@@ -1,7 +1,7 @@
 <form class="form_style" [formGroup]="form_credit" (ngSubmit)="send()">
     <h2>Nuevo crédito</h2>
     <select name="" id="" formControlName="id_debtor">
-        <option value="0" selected>Seleccione</option>
+        <option value="" selected>Seleccione</option>
         <option *ngFor="let debtor of debtors" value='{{debtor.id_debtors}}'>{{debtor.names_ + " " +debtor.lastnames}}</option>
     </select>
     <div *ngIf="form_credit.get('id_debtor')?.invalid && form_credit.get('id_debtor')?.touched">

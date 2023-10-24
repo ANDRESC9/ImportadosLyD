@@ -5,6 +5,7 @@ import { Credit } from '../interfaces/credit';
 import { Debtor } from '../interfaces/debtor';
 import { LoadModalsService } from '../Services/load-modals.service';
 import { DateServicesService } from 'src/app/services/date-services.service';
+import { ValidatorsCA } from 'src/app/utils/ValidatorsCA';
 
 @Component({
   selector: 'app-credits-paid-filter',
@@ -17,10 +18,8 @@ export class CreditsPaidFilterComponent {
   constructor(private form_build : FormBuilder, private api : ApiService<Credit>, private modals : LoadModalsService, private date : DateServicesService){
 
     this.form_filter_paid = this.form_build.group({
-
-      option : ["", Validators.required],
+      option : ["", [Validators.required, ValidatorsCA.requiredSelected]],
       value : [this.date.Date(), Validators.required]
-
     })
   }
 
@@ -35,27 +34,30 @@ export class CreditsPaidFilterComponent {
   }
 
   close_modal_filter(){
-
     this.modals.set_modal_filter_Status_paid(false)
+    this.form_filter_paid.reset()
   }
 
   send(){
+    if(this.form_filter_paid.valid){
+      let values = this.form_filter_paid.value
+      values.option = "'" + values.option + "'"
+      values.value = "'" + values.value + "'"
 
-    let values = this.form_filter_paid.value
-    values.option = "'" + values.option + "'"
-    values.value = "'" + values.value + "'"
+      this.api.set_filter_credits_table(values, "debtorscredits_paids_filter/")
+        .then((status : boolean)=>{
+          if(status){
+            this.close_modal_filter()
+          }else{
+            console.log("mostrar notificacion de error ")
+          }
+        }).catch((error)=>{
 
-    this.api.set_filter_credits_table(values, "debtorscredits_paids_filter/")
-      .then((status : boolean)=>{
-        if(status){
-          this.close_modal_filter()
-        }else{
-          console.log("mostrar notificacion de error ")
-        }
-      }).catch((error)=>{
-
-        console.log("error al filtrar tabla" + error)
-      })
+          console.log("error al filtrar tabla" + error)
+        })
+    }else{
+      this.form_filter_paid.markAllAsTouched();
+    }
   }
 
 }

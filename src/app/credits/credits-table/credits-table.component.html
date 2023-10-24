@@ -19,7 +19,7 @@
                 <th class="justify_center">Saldo</th>
                 <th class="column_icon justify_center">Abonar</th> 
                 <th class="column_icon justify_center">Saldar</th> 
-            </tr>
+            </tr> 
         </thead>
         <tbody>
             <tr *ngFor="let credit of credits | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage}">
@@ -32,10 +32,11 @@
                 <td data-label="Abonar" class="column_icon justify_center" (click)="pass(credit)"><img src="../../../assets/icon/necesitar.png" alt=""></td>
                 <td data-label="Saldar" class="column_icon justify_center" (click)="pay_off(credit)"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
             </tr>
-
-            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
         </tbody>
     </table>
+    <div class="pagination_style">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
 </section>
 
 <section class="hidden" [ngClass]="{'show_table': add_class}">

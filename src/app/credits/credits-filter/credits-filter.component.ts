@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { LoadModalsService } from '../Services/load-modals.service';
 import { Debtor } from '../interfaces/debtor';
 import { ApiService } from 'src/app/services/api.service';
-import { Response } from 'src/app/interfaces/response';
 import { FormBuilder, FormGroup, Validators, FormControl  } from '@angular/forms';
 import { DateServicesService } from 'src/app/services/date-services.service';
+import { ValidatorsCA } from 'src/app/utils/ValidatorsCA';
+
 @Component({
   selector: 'app-credits-filter',
   templateUrl: './credits-filter.component.html',
@@ -19,7 +20,7 @@ export class CreditsFilterComponent {
 
     
     this.form_filter = this.form_build.group({
-      option : ["", Validators.required],
+      option : ["", [Validators.required, ValidatorsCA.requiredSelected]],
       value : [this.date.Date(), Validators.required]
     })
   }
@@ -35,26 +36,30 @@ export class CreditsFilterComponent {
       
   }
   close_modal_filter(){
-
     this.modal.open_modal(false);
+    this.form_filter.reset()
   }
 
   send(){
+    if(this.form_filter.valid){
+      this.form_filter.value.option = "'" + this.form_filter.value.option + "'"
+      this.form_filter.value.value = "'" + this.form_filter.value.value + "'"
 
-    this.form_filter.value.option = "'" + this.form_filter.value.option + "'"
-    this.form_filter.value.value = "'" + this.form_filter.value.value + "'"
+      this.api.set_filter_credits_table(this.form_filter.value, "debtorscredits_filter/")
+        .then((status : boolean)=>{
+          if(status){
+            this.close_modal_filter()
+          }else{
+            console.log("mostrar notificación de error ")
+            
+          }
+        }).catch((error)=>{
 
-    this.api.set_filter_credits_table(this.form_filter.value, "debtorscredits_filter/")
-      .then((status : boolean)=>{
-        if(status){
-          this.close_modal_filter()
-        }else{
-          console.log("mostrar notificacion de error ")
-        }
-      }).catch((error)=>{
-
-        console.log("error al filtrar tabla" + error)
-      })
+          console.log("error al filtrar tabla" + error)
+        })
+    }else{
+      this.form_filter.markAllAsTouched();
+    }
   }
 }
 
