@@ -28,4 +28,8 @@
     <button type="submit" >Enviar</button>
     <span class="required_fields">Todos los campos con (*) son obligatorios</span>
     <span class="close" (click)="close_window()"><img src="../../../assets/icon/cerrar.png" alt=""></span>
-</form>  
+</form>
+
+<div class="load" *ngIf="loader_status">
+    <img src="../../../assets/gift/loader.svg" alt="">
+</div>

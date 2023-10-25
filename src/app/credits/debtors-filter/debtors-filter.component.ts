@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { Credit } from '../interfaces/credit';
 import { LoadModalsService } from '../Services/load-modals.service'; 
+import { LoaderService } from 'src/app/services/loader.service';
 @Component({
   selector: 'app-debtors-filter',
   templateUrl: './debtors-filter.component.html',
@@ -12,8 +13,13 @@ import { LoadModalsService } from '../Services/load-modals.service';
 export class DebtorsFilterComponent {
 
   form_filter_debtors! : FormGroup
+  loader_status! : boolean
 
-  constructor(private form_build : FormBuilder, private api : ApiService<Credit>, private modals : LoadModalsService){
+  constructor(private form_build : FormBuilder, 
+    private api : ApiService<Credit>, 
+    private modals : LoadModalsService,
+    private loader : LoaderService
+    ){
 
     this.form_filter_debtors = this.form_build.group({
 
@@ -23,8 +29,9 @@ export class DebtorsFilterComponent {
   }
 
   send(){
-
-    if(this.form_filter_debtors.valid){
+    
+    this.loader_status = true
+      if(this.form_filter_debtors.valid){
 
       let value = this.form_filter_debtors.value
       value.name = "'" + value.name + "'"
@@ -33,6 +40,7 @@ export class DebtorsFilterComponent {
           if(status){
 
             this.modals.set_modal_filter_Status_debtor(false)
+            this.loader_status = false
           }
         })
     }else{

@@ -13,6 +13,7 @@ import { ValidatorsCA } from 'src/app/utils/ValidatorsCA';
 })
 export class CreditsFilterComponent {
 
+  loader_status! : boolean
   form_filter! : FormGroup
   debtors! : Debtor[]
   constructor(private modal : LoadModalsService, private api : ApiService<Debtor>,
@@ -41,6 +42,9 @@ export class CreditsFilterComponent {
   }
 
   send(){
+
+    this.loader_status = true
+
     if(this.form_filter.valid){
       this.form_filter.value.option = "'" + this.form_filter.value.option + "'"
       this.form_filter.value.value = "'" + this.form_filter.value.value + "'"
@@ -48,7 +52,10 @@ export class CreditsFilterComponent {
       this.api.set_filter_credits_table(this.form_filter.value, "debtorscredits_filter/")
         .then((status : boolean)=>{
           if(status){
+            
             this.close_modal_filter()
+            this.loader_status = false
+            
           }else{
             console.log("mostrar notificación de error ")
             

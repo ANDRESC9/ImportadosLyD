@@ -24,6 +24,7 @@ import { CreditsPaidFilterComponent } from './credits/credits-paid-filter/credit
 import { DebtorsFilterComponent } from './credits/debtors-filter/debtors-filter.component';
 import { CreditorsComponent } from './creditors/creditors.component';
 import { CreditorsListComponent } from './creditors/creditors-list/creditors-list.component';
+import { NotificationsComponent } from './main/notifications/notifications.component';
 
 
 
@@ -49,6 +50,7 @@ import { CreditorsListComponent } from './creditors/creditors-list/creditors-lis
     DebtorsFilterComponent,
     CreditorsComponent,
     CreditorsListComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,

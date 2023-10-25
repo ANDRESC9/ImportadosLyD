@@ -14,7 +14,7 @@ import { ApiConfigService } from './api-config.service';
 export class ApiService <Model> {
 
   private records!: Response;
-  private suject$!: BehaviorSubject<Response>
+  public suject$!: BehaviorSubject<Response>
 
   private debtors!: Debtor[];
   private debtors_suject$!: BehaviorSubject<Debtor[]>

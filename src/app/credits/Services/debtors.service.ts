@@ -49,7 +49,7 @@ export class DebtorsService {
       return this.credit_history$.asObservable();
   }
 
-  filter_history(data : any){
+  filter_history(data : any)  {
 
       this.http.post<Response>(this.conf.base_url + "debtorscredits_filter_history/", data)
         .subscribe((res : Response)=>{

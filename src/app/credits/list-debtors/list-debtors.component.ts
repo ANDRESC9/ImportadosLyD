@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Delete_response } from 'src/app/interfaces/delete_response';
 import { LoadModalsService } from '../Services/load-modals.service';
 import { DebtorsService } from '../Services/debtors.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-list-debtors',
@@ -22,18 +23,21 @@ export class ListDebtorsComponent {
 
   constructor(private api : ApiService<Debtor>, 
     private modal : LoadModalsService,
-    private debtors_service : DebtorsService
+    private debtors_service : DebtorsService,
+    private loader : LoaderService
     ){
 
   }
 
   ngOnInit(){
 
+    this.loader.set_loader_status(true)
     this.api.load_debtors("debtors/")
     this.api.get_debtors()
       .subscribe((debtors : Debtor[])=>{
 
         this.debtors = debtors
+        this.loader.set_loader_status(false)
       })
   }
  

@@ -13,19 +13,13 @@ export class AppComponent {
   hiddenMenu : boolean = true;
   widthContent : boolean = true;
   anchoPantalla: number;
-  loader_status! : boolean;
   constructor(private loader : LoaderService) {
     this.anchoPantalla = window.innerWidth;
   }
 
   ngOnInit(){
 
-    this.loader.set_loader_status(false)
-    this.loader.get_loader_status()
-      .subscribe(status=>{
 
-        this.loader_status = status
-      })
   }
   toggleClase() {
     this.claseActiva = !this.claseActiva; 

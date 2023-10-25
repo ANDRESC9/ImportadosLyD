@@ -7,6 +7,7 @@ import { Response } from 'src/app/interfaces/response';
 import { DateServicesService } from 'src/app/services/date-services.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { TransformDataService } from 'src/app/services/transform-data.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,8 +19,8 @@ export class PayPartComponent {
 
   form_pass! : FormGroup;
   @Input() info_credit! : Credit;
+
   off : boolean = true;
-  is_load : boolean = true;
   pass_error! : boolean;
   @Output() close = new EventEmitter<Boolean>
 
@@ -27,7 +28,8 @@ export class PayPartComponent {
     private builder :  FormBuilder, 
     private date_service : DateServicesService,
     private loader : LoaderService,
-    private transform : TransformDataService
+    private transform : TransformDataService,
+    private route : Router
      ){
  
     this.form_pass = this.builder.group(
@@ -37,9 +39,9 @@ export class PayPartComponent {
         value : ["",[Validators.required]],
         date_debts : ["",[Validators.required]],
         names_ : ["",[Validators.required]],
-        lastnames : ["",[Validators.required]],
+        lastnames : ["",],
         date_last_pass : [this.date_service.now()],
-        pass : ["",[Validators.required, Validators.minLength(3)]],
+        pass : ["",[Validators.required]],
         balance : ["",[Validators.required]],
         
       }
@@ -67,22 +69,26 @@ export class PayPartComponent {
         }
   send(){
 
+
     if(this.form_pass.valid && !this.pass_error){
 
+      this.loader.set_loader_status(true)
       let values = this.form_pass.value
       delete values.names_
       delete values.lastnames
       delete values.balance
       delete values.date_debts
       
+      console.log(values)
       this.api.create("https://fruverapp.onrender.com/api/debtorscredits_edit/", values)
       .subscribe((response : Response) =>{
-        this.is_load = response.Status
-        
+        console.log(response.Messague)
         if(response.Status){
+          
+          this.loader.set_loader_status(false)
           this.close_form()
           this.api.getAllPost("debtorscredits/")
-            
+          this.route.navigate(["creditos/tabla"])  
         }
       })
     }else{

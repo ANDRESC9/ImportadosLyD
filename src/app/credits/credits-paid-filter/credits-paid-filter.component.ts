@@ -15,6 +15,8 @@ import { ValidatorsCA } from 'src/app/utils/ValidatorsCA';
 export class CreditsPaidFilterComponent {
   form_filter_paid! : FormGroup
   debtors! : Debtor[]
+  loader_status! : boolean
+
   constructor(private form_build : FormBuilder, private api : ApiService<Credit>, private modals : LoadModalsService, private date : DateServicesService){
 
     this.form_filter_paid = this.form_build.group({
@@ -39,6 +41,8 @@ export class CreditsPaidFilterComponent {
   }
 
   send(){
+
+    this.loader_status = true
     if(this.form_filter_paid.valid){
       let values = this.form_filter_paid.value
       values.option = "'" + values.option + "'"
@@ -47,7 +51,9 @@ export class CreditsPaidFilterComponent {
       this.api.set_filter_credits_table(values, "debtorscredits_paids_filter/")
         .then((status : boolean)=>{
           if(status){
+            
             this.close_modal_filter()
+            this.loader_status = false
           }else{
             console.log("mostrar notificacion de error ")
           }

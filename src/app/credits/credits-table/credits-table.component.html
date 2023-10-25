@@ -1,6 +1,6 @@
-<!-- <div *ngIf="!is_load" class="load">
+<div class="load" *ngIf="loader_status">
     <img src="../../../assets/gift/loader.svg" alt="">
-</div> -->
+</div>
 
 <section class="table_container">
     <div class="filter" >
@@ -46,3 +46,6 @@
 <section class="hidden" [ngClass]="{'show_table': open_filter_modal}">
     <app-credits-filter></app-credits-filter>
 </section>
+
+
+    <app-notifications></app-notifications>

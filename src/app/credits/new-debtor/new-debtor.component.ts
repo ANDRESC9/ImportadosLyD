@@ -5,6 +5,7 @@ import { DebtorsService } from '../Services/debtors.service';
 import { Response } from 'src/app/interfaces/response';
 import { LoadModalsService } from '../Services/load-modals.service';
 import { Debtor } from '../interfaces/debtor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-debtor',
@@ -14,11 +15,12 @@ import { Debtor } from '../interfaces/debtor';
 export class NewDebtorComponent {
 
   form_debtor! : FormGroup
-
+  loader_status! : boolean
   constructor(private form_builder : FormBuilder,
     private deb_Service : DebtorsService,
     private modal :LoadModalsService,
-    private api : ApiService<Debtor>
+    private api : ApiService<Debtor>,
+    private route : Router
       ){
 
     this.form_debtor = this.form_builder.group({
@@ -30,6 +32,7 @@ export class NewDebtorComponent {
 
   send(){
 
+    this.loader_status = true
     if(this.form_debtor.valid){
 
       this.deb_Service.create_debtor(this.form_debtor.value)
@@ -40,6 +43,8 @@ export class NewDebtorComponent {
           this.api.load_debtors("debtors/")
           this.close_form()
           this.form_debtor.reset()
+          this.route.navigate(["creditos/lista_deudores"])
+          this.loader_status = false
         }
       })
     }else{

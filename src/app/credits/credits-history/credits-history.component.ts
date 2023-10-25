@@ -4,6 +4,7 @@ import { Response } from 'src/app/interfaces/response';
 import { DebtorsService } from '../Services/debtors.service';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadModalsService } from '../Services/load-modals.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-credits-history',
@@ -17,17 +18,26 @@ export class CreditsHistoryComponent {
   open_filter : boolean = false
   credit_history! : Credit_history[]
 
-  constructor(protected deb : DebtorsService, private  api: ApiService<Credit_history>, private modal_Service : LoadModalsService){
-
+  constructor(protected deb : DebtorsService,
+    private  api: ApiService<Credit_history>,
+    private modal_Service : LoadModalsService,
+    private loader : LoaderService
+      )
+      {
+        this.loader.set_loader_status(true)
   }
 
   ngOnInit(){
 
+    
     this.deb.load_history()
 
     this.deb.get_credits_history()
       .subscribe((res : Response)=>{
         this.credit_history = res.Data
+        if(res.Status){
+          this.loader.set_loader_status(false)  
+        }
         
       })
     

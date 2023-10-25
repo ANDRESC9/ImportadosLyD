@@ -1,0 +1,25 @@
+
+@keyframes nombreDeTuAnimacion {
+    0% {
+      /* Estado inicial */
+      transform: translateX(0);
+    }
+    50% {
+      /* Estado intermedio */
+      transform: translateX(100px);
+    }
+    100% {
+      /* Estado final */
+      transform: translateX(200px);
+    }
+}
+
+.notification{
+
+    width: 200px;
+    height: 100px;
+    background-color: blue;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

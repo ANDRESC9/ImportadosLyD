@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Credit } from '../interfaces/credit';
 import { Response } from 'src/app/interfaces/response';
 import { LoadModalsService } from '../Services/load-modals.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-credits-paid',
@@ -16,17 +17,27 @@ export class CreditsPaidComponent {
   current_page : number =  1;
   total_size : number = 7
 
-  constructor(private api : ApiService<Credit>, private modals : LoadModalsService){
+  constructor(private api : ApiService<Credit>,
+     private modals : LoadModalsService,
+     private loader : LoaderService
+
+     ){ 
 
   }
 
   ngOnInit(){
 
+    this.loader.set_loader_status(true)
     this.api.getAllPost("debtorscredits_pays/")
     this.api.get_all()
       .subscribe((response : Response) =>{
-        console.log(response)
-        this.credits_paid = response.Data
+        
+        if(response.Status){
+          this.credits_paid = response.Data
+          this.loader.set_loader_status(false)
+        }
+        
+        
       })
   }
 

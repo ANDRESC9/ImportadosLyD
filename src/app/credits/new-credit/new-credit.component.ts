@@ -5,6 +5,7 @@ import { Debtor } from '../interfaces/debtor';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { DateServicesService } from 'src/app/services/date-services.service';
 import { ValidatorsCA } from 'src/app/utils/ValidatorsCA';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-new-credit',
   templateUrl: './new-credit.component.html',
@@ -15,10 +16,14 @@ export class NewCreditComponent {
   form_credit! : FormGroup;
   debtors! : Array<Debtor>
   @Output() close_modal = new EventEmitter<boolean>();
+  loader_status! : boolean
 
   constructor(private api : ApiService<Debtor>, 
     private builder :  FormBuilder,
-    private date : DateServicesService  ){
+    private date : DateServicesService,
+    private route : Router
+    
+    ){
     
  
     this.form_credit = this.builder.group(
@@ -37,9 +42,11 @@ export class NewCreditComponent {
     this.api.get_debtors()
       .subscribe(data =>{
         this.debtors = data
+        
       })
   }
   send(){
+    this.loader_status = true
 
     if(this.form_credit.valid){
       this.form_credit.value.date  = this.date.now()
@@ -48,6 +55,8 @@ export class NewCreditComponent {
           console.log(response)
           if(response.Status){
             this.close_window()
+            this.loader_status = false
+            this.route.navigate(["creditos/tabla"])
           }
           this.api.getAllPost("debtorscredits/")
         })

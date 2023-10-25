@@ -6,6 +6,7 @@ import { LoadModalsService } from '../Services/load-modals.service';
 import { DebtorsService } from '../Services/debtors.service';
 import { TransformDataService } from 'src/app/services/transform-data.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-credits-table',
@@ -14,7 +15,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 
 export class CreditsTableComponent {
-  is_load : boolean = true
+  loader_status : boolean = true
   credits! : Array<Credit>
   credit_! :Credit
   add_class : boolean = false
@@ -22,11 +23,13 @@ export class CreditsTableComponent {
   currentPage : number = 1 
   itemsPerPage : number = 7
   
+  
   constructor(private api : ApiService<Credit>, 
     private modals : LoadModalsService, 
     private debtors_service : DebtorsService,
     private transform_data : TransformDataService,
-    private loader : LoaderService
+    private loader : LoaderService,
+    private router : Router
     ){
   
   }
@@ -41,13 +44,12 @@ export class CreditsTableComponent {
         this.credits = data.Data
 
         if(data.Status){
-          this.loader.set_loader_status(false)
+          this.loader_status = false
         }
+        
         
       })
 
-
-      this.is_load = false
   }
 
   pass(credit_table : Credit){
@@ -68,6 +70,7 @@ export class CreditsTableComponent {
     this.modals.get_status()
       .subscribe(state =>{
         this.open_filter_modal = state
+        
       })
   }
 
@@ -80,12 +83,14 @@ export class CreditsTableComponent {
 
       if(window.confirm("El credito tiene un saldo actual de "+ credit.balance+". ¿Esta seguro de saldar esta deuda?")){
 
+        this.loader.set_loader_status(true)
         this.debtors_service.pay_off_credit(credit)
           .subscribe((res : Response)=>{
             if(res.Status){
 
-              console.log(res)
               this.api.getAllPost("debtorscredits/")
+              this.router.navigate(["creditos/tabla"])
+              this.loader.set_loader_status(false)
             }
           })
       }
@@ -98,7 +103,7 @@ export class CreditsTableComponent {
 
   ngOnDestroy(){
 
-    this.credits = []
+
   }
 }
 
