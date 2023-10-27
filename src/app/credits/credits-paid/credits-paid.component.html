@@ -17,8 +17,8 @@
                 <th class="justify_center">Pago completado</th> 
             </tr>
         </thead> 
-        <tbody>
-            <tr *ngFor="let credit of credits_paid | paginate: { itemsPerPage: total_size, currentPage: current_page } ">
+        <tbody *ngIf="credits_paid">
+            <tr  *ngFor="let credit of credits_paid | paginate: { itemsPerPage: total_size, currentPage: current_page }" >
                 <td data-label="Nº Crédito" class="column_id justify_center">{{credit.id_debtors_credit}}</td>
                 <td data-label="Fecha de crédito" class="justify_center">{{credit.date_debts}}</td>
                 <td data-label="Valor" class="justify_left">{{credit.value_}}</td>

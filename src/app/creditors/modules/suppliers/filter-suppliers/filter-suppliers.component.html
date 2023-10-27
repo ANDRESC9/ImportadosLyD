@@ -1,0 +1,11 @@
+<form class="form_style" [formGroup]="form_filter_supplier" (ngSubmit)="send()">
+    <h2>Buscar deudor por nombre</h2>
+    <input type="text" formControlName="name">
+    <div *ngIf="form_filter_supplier.get('name')?.invalid && form_filter_supplier.get('name')?.touched">
+        <div class="validation_message" *ngIf="form_filter_supplier.get('name')?.hasError('required')">
+            Por favor, ingrese un nombre.
+        </div>      
+    </div>
+    <button type="submit">Filtrar</button>
+    <span class="close" (click)="close_modal_filter()"><img src="../../../assets/icon/cerrar.png" alt=""></span>
+</form>

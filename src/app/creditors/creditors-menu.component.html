@@ -1,0 +1,24 @@
+<section class="main_menu">
+    <h2 routerLink="/creditos/tabla">Proveedores</h2>
+    <ul>
+        <li routerLink='lista_deudas' routerLinkActive="route_active"><img src="../../../assets/icon/icon_list.png" alt="Lista"><span>Lista</span></li>
+        <li (click)="open_table()"><img src="../../../assets/icon/icon_add.png" alt="Agregar"><span>Nuevo</span></li>
+        <li routerLink='creditos_pagados' routerLinkActive="route_active"><img src="../../../assets/icon/icon_cheque.png" alt="Pago"><span>Pagados</span></li>
+        <li routerLink='informacion_creditos' routerLinkActive="route_active"><img src="../../../assets/icon/icon_history.png" alt="Historial"><span>Historial</span></li>
+        <li (click)="open_modal_create()"><img src="../../../assets/icon/icon_new_person.png" alt="Nueva persona"><span>Nuevo proveedor</span></li>
+        <li routerLink="provedores" routerLinkActive="route_active"><img src="../../../assets/icon/icon_list_people.png" alt="Lista personas"><span>Lista provedores</span></li>
+    </ul> 
+</section> 
+<router-outlet></router-outlet>
+<section class="hidden" [ngClass]="{'show_table': add_class}">
+    <app-new-credit (close_modal)="close($event)"></app-new-credit>
+</section>
+<!-- <section class="hidden" [ngClass]="{'show_table': add_class}"> -->
+<section class="hidden" [ngClass]="{'show_table': open_filter_modal}">
+    <app-credits-filter></app-credits-filter>
+</section>
+
+<section class="hidden" [ngClass]="{'show_table': open_create_modal}">
+    <app-create-suppliers></app-create-suppliers>
+</section>
+

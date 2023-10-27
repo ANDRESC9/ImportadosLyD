@@ -1,0 +1,47 @@
+<!-- <div class="load" *ngIf="loader_status">
+    <img src="../../../assets/gift/loader.svg" alt="">
+</div> -->
+
+<section class="table_container">
+    <div class="filter" >
+        <img src="../../../assets/icon/icon_go_back.png" alt="Atrás" (click)="ngOnInit()">
+        <span>Lista de Créditos</span>
+        <img src="../../../assets/icon/icon_filter.png" alt="Filtro" (click)="open_filter()">
+    </div>
+    <table  class="table_style">
+        <thead>
+            <tr>
+                <th class="column_id justify_center">Nº Deuda</th>
+                <th class="justify_center">Fecha</th> 
+                <th class="justify_center">Nombre</th>  
+                <th class="justify_center">Valor</th> 
+                <th class="justify_center">Abono</th> 
+                <th class="justify_center">Saldo</th>
+                <th class="column_icon justify_center">Abonar</th> 
+                <th class="column_icon justify_center">Saldar</th> 
+     
+            </tr> 
+        </thead>
+        <tbody>
+            <tr *ngFor="let debts of suppliers_debts | paginate: { itemsPerPage: total_size, currentPage: currentPage}">
+                <td data-label="Nº Crédito" class="column_id justify_center">{{debts.id_suppliers_debts}}</td>
+                <td data-label="Fecha" class="justify_center">{{debts.date_debts}}</td>
+                <td data-label="Nombre" class="justify_left">{{debts.name_supplier}}</td>
+                <td data-label="Valor" class="justify_left">{{debts.value_}}</td>
+                <td data-label="Abono" class="justify_left">{{debts.pass}}</td>
+                <td data-label="Saldo" class="justify_left">{{debts.balance}}</td>
+                <td data-label="Abonar" class="column_icon justify_center" (click)="pass(debts)"><img src="../../../assets/icon/necesitar.png" alt=""></td>
+                <td data-label="Saldar" class="column_icon justify_center" (click)="pay_off(debts)"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pagination_style">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+</section>
+
+<section class="hidden show_table" [ngClass]="{'show_table': open_filter_modal}">
+    <app-filter-suppliers-debts></app-filter-suppliers-debts>
+</section>
+
+

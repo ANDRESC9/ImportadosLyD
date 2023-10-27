@@ -1,0 +1,23 @@
+<!-- <div class="load" *ngIf="loader_status">
+    <img src="../../../assets/gift/loader.svg" alt="">
+</div> -->
+
+<form class="form_style" [formGroup]="form_supplier" (ngSubmit)="send()">
+    <h2>Nuevo Acreedor</h2>
+    <input type="text"  formControlName="names" placeholder="*Nombre" required>
+    <div *ngIf="form_supplier.get('names')?.invalid && form_supplier.get('names')?.touched">
+        <div class="validation_message" *ngIf="form_supplier.get('names')?.hasError('required')">
+            Por favor, ingrese un nombre.
+        </div>
+        <div class="validation_message" *ngIf="form_supplier.get('names')?.errors?.['minlength']">
+            El nombre debe tener al menos 3 caracteres.
+        </div>
+        <div class="validation_message" *ngIf="form_supplier.get('names')?.errors?.['maxlength']">
+            El nombre no debe superar los 50 caracteres.
+        </div>         
+    </div>
+
+    <button type="submit">Enviar</button>
+    <span class="required_fields">Todos los campos con (*) son obligatorios</span>
+    <span (click)="close_form()" class="close"><img src="../../../assets/icon/cerrar.png" alt=""></span>
+</form>  

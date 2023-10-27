@@ -1,0 +1,40 @@
+
+<section class="table_container">
+    <div class="filter" >
+        <img src="../../../assets/icon/icon_go_back.png" alt="Atrás" (click)="ngOnInit()">
+        <span>Lista de Provedores</span>
+        <img src="../../../assets/icon/icon_filter.png" alt="Filtro" (click)="open_filter()">
+    </div>
+    <table  class="table_style">
+        <thead>
+            <tr>
+                <th class="column_id justify_center">Nº Provedor</th> 
+                <th class="justify_center">Nombres</th>  
+                <th class="column_icon justify_center">Editar</th> 
+                <th class="column_icon justify_center">Eliminar</th>
+            </tr> 
+        </thead>
+        <tbody>
+            <tr *ngFor="let sup of suppliers | paginate: { itemsPerPage: total_size, currentPage: currentPage }">
+                <td data-label="Nº Deudor" class="column_id justify_center">{{sup.id_suppliers}}</td> 
+                <td data-label="Nombre" class="justify_center">{{sup.name_supplier}}</td>
+                <td data-label="Editar" class="column_icon justify_center"><span (click)="open_modal_edit(sup)"><img src="../../../assets/icon/icon_edit.png" alt=""></span></td>
+                <td data-label="Eliminar" class="column_icon justify_center"><span (click)="delete_record(sup.id_suppliers)"><img src="../../../assets/icon/icon_delete.png" alt=""></span></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pagination_style">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+</section>
+
+
+<section class="hidden show_table" [ngClass]="{'show_table': open_filter_modal}">
+    <app-filter-suppliers></app-filter-suppliers>
+</section>
+
+<section class="hidden " [ngClass]="{'show_table': open_edit_modal}">
+    <app-edit-supplier></app-edit-supplier>
+</section>
+
+

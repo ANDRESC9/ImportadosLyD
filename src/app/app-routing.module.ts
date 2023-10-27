@@ -8,8 +8,10 @@ import { CreditsPaidComponent } from './credits/credits-paid/credits-paid.compon
 import { CreditsHistoryComponent } from './credits/credits-history/credits-history.component';
 import { ListDebtorsComponent } from './credits/list-debtors/list-debtors.component';
 import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.component';
-import { CreditorsComponent } from './creditors/creditors.component';
-import { CreditorsListComponent } from './creditors/creditors-list/creditors-list.component';
+import { CreditorsMenuComponent } from './creditors/creditors-menu.component';
+import { SuppliersComponent } from './creditors/modules/suppliers/suppliers.component';
+import { SuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/suppliers-debts.component';
+
 
 const routes: Routes = [
   { path: '', component: WelcomeScreenComponent },
@@ -26,12 +28,16 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'acreedores',
-    component: CreditorsComponent,
+    path: 'deudas',
+    component: CreditorsMenuComponent,
     children: [
-      { path: 'lista_adeudos', component: CreditorsListComponent }
+      {path: 'lista_deudas', component: SuppliersDebtsComponent},
+      {path: 'provedores', component: SuppliersComponent}
     ]
+    
   },
+  
+  
 ];
 
 @NgModule({

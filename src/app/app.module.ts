@@ -22,9 +22,17 @@ import { LoginComponent } from './login/login.component';
 import { HistoryFilterComponent } from './credits/history-filter/history-filter.component';
 import { CreditsPaidFilterComponent } from './credits/credits-paid-filter/credits-paid-filter.component';
 import { DebtorsFilterComponent } from './credits/debtors-filter/debtors-filter.component';
-import { CreditorsComponent } from './creditors/creditors.component';
-import { CreditorsListComponent } from './creditors/creditors-list/creditors-list.component';
 import { NotificationsComponent } from './main/notifications/notifications.component';
+import { CreditorsMenuComponent } from './creditors/creditors-menu.component';
+import { SuppliersComponent } from './creditors/modules/suppliers/suppliers.component';
+import { FilterSuppliersComponent } from './creditors/modules/suppliers/filter-suppliers/filter-suppliers.component';
+import { EditSupplierComponent } from './creditors/modules/suppliers/edit-supplier/edit-supplier.component';
+import { CreateSuppliersComponent } from './creditors/modules/suppliers/create-suppliers/create-suppliers.component';
+import { SuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/suppliers-debts.component';
+import { FilterSuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/filter-suppliers-debts/filter-suppliers-debts.component';
+import { CreateSuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/create-suppliers-debts/create-suppliers-debts.component';
+import { PaidSuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/paid-suppliers-debts/paid-suppliers-debts.component';
+
 
 
 
@@ -48,9 +56,17 @@ import { NotificationsComponent } from './main/notifications/notifications.compo
     HistoryFilterComponent,
     CreditsPaidFilterComponent,
     DebtorsFilterComponent,
-    CreditorsComponent,
-    CreditorsListComponent,
     NotificationsComponent,
+    CreditorsMenuComponent,
+    SuppliersComponent,
+    FilterSuppliersComponent,
+    EditSupplierComponent,
+    CreateSuppliersComponent,
+    SuppliersDebtsComponent,
+    FilterSuppliersDebtsComponent,
+    CreateSuppliersDebtsComponent,
+    PaidSuppliersDebtsComponent
+
   ],
   imports: [
     BrowserModule,
