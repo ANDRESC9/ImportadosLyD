@@ -119,19 +119,27 @@ export class Api_Service<model>{
     return this.http.post<Response>(this.con.base_url + "records/delete_soft", params);
   }
 
-  filter(url : string, data : any, type : string ="table"){
+  filter(url : string, data : any) : Promise<boolean>{
 
-    
-    this.http.post<Response>(this.con.base_url + url, data)
+    return new Promise<boolean>((resolve, reject)=>{
+
+      this.http.post<Response>(this.con.base_url + url, data)
       .subscribe((res : Response)=>{
-
-        if(type == "table"){
+        if(res.Status){
           this.subject = res   
           console.log(res.Messague)
-          this.subject$.next(this.subject)
+          this.subject$.next(this.subject) 
+          resolve(true)
+        }else{
+          reject(false)
         }
-        
+          
+      }, (error : any)=>{
+        console.error("Error al filtrar" + error)
       })
+    })
+    
+    
   }
 }
 

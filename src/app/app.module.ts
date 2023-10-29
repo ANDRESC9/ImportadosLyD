@@ -31,7 +31,7 @@ import { CreateSuppliersComponent } from './creditors/modules/suppliers/create-s
 import { SuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/suppliers-debts.component';
 import { FilterSuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/filter-suppliers-debts/filter-suppliers-debts.component';
 import { CreateSuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/create-suppliers-debts/create-suppliers-debts.component';
-import { PaidSuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/paid-suppliers-debts/paid-suppliers-debts.component';
+import { PaidSuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/pass-suppliers-debts/paid-suppliers-debts.component';
 
 
 

@@ -2,10 +2,10 @@
     <h2 routerLink="/creditos/tabla">Proveedores</h2>
     <ul>
         <li routerLink='lista_deudas' routerLinkActive="route_active"><img src="../../../assets/icon/icon_list.png" alt="Lista"><span>Lista</span></li>
-        <li (click)="open_table()"><img src="../../../assets/icon/icon_add.png" alt="Agregar"><span>Nuevo</span></li>
+        <li (click)="open_modal_create_supplier_debts()"><img src="../../../assets/icon/icon_add.png" alt="Agregar"><span>Nuevo</span></li>
         <li routerLink='creditos_pagados' routerLinkActive="route_active"><img src="../../../assets/icon/icon_cheque.png" alt="Pago"><span>Pagados</span></li>
         <li routerLink='informacion_creditos' routerLinkActive="route_active"><img src="../../../assets/icon/icon_history.png" alt="Historial"><span>Historial</span></li>
-        <li (click)="open_modal_create()"><img src="../../../assets/icon/icon_new_person.png" alt="Nueva persona"><span>Nuevo proveedor</span></li>
+        <li (click)="open_modal_create_supplier()"><img src="../../../assets/icon/icon_new_person.png" alt="Nueva persona"><span>Nuevo proveedor</span></li>
         <li routerLink="provedores" routerLinkActive="route_active"><img src="../../../assets/icon/icon_list_people.png" alt="Lista personas"><span>Lista provedores</span></li>
     </ul> 
 </section> 
@@ -20,5 +20,9 @@
 
 <section class="hidden" [ngClass]="{'show_table': open_create_modal}">
     <app-create-suppliers></app-create-suppliers>
+</section>
+
+<section class="hidden" [ngClass]="{'show_table': open_create_supliers_debts_modal}">
+    <app-create-suppliers-debts></app-create-suppliers-debts>
 </section>
 

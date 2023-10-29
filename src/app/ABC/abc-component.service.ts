@@ -13,18 +13,39 @@ export class AbcComponentService<model> {
   public open_filter_modal : boolean = false
   public open_edit_modal : boolean = false
   public open_create_modal : boolean = false
+  public open_create_supliers_debts_modal : boolean = false
+  public open_pass_modal : boolean = false 
   public details! : model
+  private response! : Response
   constructor(private api_ : Api_Service<model>) {
 
   }
 
-  send_data_form(form : FormGroup, url : string){
+  send_data_with_params(url : string, params : {}) : Promise<Response>{
+
+    return new Promise<Response>((resolve, reject)=>{
+
+      this.api_.update(url, params)
+        .subscribe((res : Response)=>{
+          if(res.Status){
+
+            resolve(res)
+          }else{
+            reject(res)
+          }
+        }, (error : any)=>{ console.error("Error al enviar informacion con parametros" + error)})
+    })
+
+  }
+  send_data_form(form : FormGroup, url : string) : Promise<boolean>{
 
     if(form.valid){
 
-      this.api_.filter(url, form.value)
+      return this.api_.filter(url, form.value)
       
     }
+
+    return new Promise<boolean>((reject)=>{reject(false)})
   }
 
   delete(id : any, url_reload : string, delete_params : {}){
@@ -69,6 +90,7 @@ export class AbcComponentService<model> {
   reload_list(url : string){
 
     this.api_.load_all(url)
+    this.api_.load_all(url, "selects")
   }
 
       

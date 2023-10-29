@@ -36,6 +36,12 @@
         <span class="filter_name">Ingrese el número de deuda</span>
         <input type="number" formControlName="value" >
     </div>
+
+    <div *ngIf="form_filter_suppliers_debts.get('value')?.invalid && form_filter_suppliers_debts.get('value')?.touched">
+        <div class="validation_message" *ngIf="form_filter_suppliers_debts.get('option')?.hasError('requiredSelected')">
+            Por favor, Ingrese un valor a filtrar.
+        </div>        
+    </div>
     <button>Filtrar</button>
     <span class="close" (click)="close_modal_filter()"><img src="../../../assets/icon/cerrar.png" alt=""></span>
 </form>

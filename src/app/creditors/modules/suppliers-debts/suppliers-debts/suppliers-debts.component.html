@@ -5,7 +5,7 @@
 <section class="table_container">
     <div class="filter" >
         <img src="../../../assets/icon/icon_go_back.png" alt="Atrás" (click)="ngOnInit()">
-        <span>Lista de Créditos</span>
+        <span>Lista de Deudas</span>
         <img src="../../../assets/icon/icon_filter.png" alt="Filtro" (click)="open_filter()">
     </div>
     <table  class="table_style">
@@ -31,7 +31,7 @@
                 <td data-label="Abono" class="justify_left">{{debts.pass}}</td>
                 <td data-label="Saldo" class="justify_left">{{debts.balance}}</td>
                 <td data-label="Abonar" class="column_icon justify_center" (click)="pass(debts)"><img src="../../../assets/icon/necesitar.png" alt=""></td>
-                <td data-label="Saldar" class="column_icon justify_center" (click)="pay_off(debts)"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
+                <td data-label="Saldar" class="column_icon justify_center" (click)="paid_off(debts)"><img src="../../../assets/icon/acuerdo.png" alt=""></td>
             </tr>
         </tbody>
     </table>
@@ -44,4 +44,10 @@
     <app-filter-suppliers-debts></app-filter-suppliers-debts>
 </section>
 
+<section class="hidden show_table" [ngClass]="{'show_table': open_create_modal}">
+    <app-create-suppliers-debts></app-create-suppliers-debts>
+</section>
 
+<section class="hidden show_table" [ngClass]="{'show_table': open_pass_modal}">
+    <app-paid-suppliers-debts></app-paid-suppliers-debts>
+</section>

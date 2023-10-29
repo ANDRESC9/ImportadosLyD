@@ -13,8 +13,10 @@ export class ModalService {
     "modal_filter_suppliers" : new BehaviorSubject<boolean>(false),
     "modal_edit_suppliers" : new BehaviorSubject<boolean>(false),
     "modal_create_suppliers" : new BehaviorSubject<boolean>(false),
-
     "modal_filter_suppliers_debts" : new BehaviorSubject<boolean>(false),
+    "modal_create_suppliers_debts" : new BehaviorSubject<boolean>(false),
+    "modal_paidoff_suppliers_debts" : new BehaviorSubject<boolean>(false),
+    "modal_pass_suppliers_debts" : new BehaviorSubject<boolean>(false),
   }
 
   constructor() {

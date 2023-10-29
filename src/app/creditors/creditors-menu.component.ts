@@ -29,13 +29,11 @@ export class CreditorsMenuComponent extends AbcComponentService<Supplier> {
 
   close(data : boolean){
 
-
     
   }
 
   show_pays(){
 
-    
 
 
   }
@@ -43,18 +41,25 @@ export class CreditorsMenuComponent extends AbcComponentService<Supplier> {
   show_credits(){
 
 
-
   }
-
 
 
   open_form_debtor(){
 
-   
-    
   }
 
-  open_modal_create(){
+  open_modal_create_supplier_debts(){
+
+    this.modal_service.open_modal("modal_create_suppliers_debts", true)
+
+    this.modal_service.get_modal_status$("modal_create_suppliers_debts")
+      .subscribe((sta : boolean)=>{
+        this.open_create_supliers_debts_modal = sta
+      })
+
+  }
+
+  open_modal_create_supplier(){
 
     this.modal_service.open_modal("modal_create_suppliers", true)
 

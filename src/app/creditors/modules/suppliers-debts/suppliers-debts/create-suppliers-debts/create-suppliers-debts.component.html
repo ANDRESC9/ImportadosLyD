@@ -1,1 +1,35 @@
-<p>create-suppliers-debts works!</p>
+<form class="form_style" [formGroup]="form_suppliers_debts" (ngSubmit)="send()">
+    <h2>Nueva Deuda</h2>
+    <select name="" id="" formControlName="supplier_fk">
+        <option value="0" selected>Seleccione</option>
+        <option *ngFor="let sup of suppliers" value={{sup.id_suppliers}}>{{sup.name_supplier}}</option>
+    </select>
+    <div *ngIf="form_suppliers_debts.get('supplier_fk')?.invalid && form_suppliers_debts.get('supplier_fk')?.touched">
+        <div class="validation_message" *ngIf="form_suppliers_debts.get('supplier_fk')?.hasError('requiredSelected')">
+            Por favor, seleccione un nombre.
+        </div>        
+    </div>
+
+    <input type="number" id="cantidad" formControlName="value" placeholder="*Cantidad" required>
+    <div *ngIf="form_suppliers_debts.get('value')?.invalid && form_suppliers_debts.get('value')?.touched">
+        <div class="validation_message" *ngIf="form_suppliers_debts.get('value')?.hasError('required')">
+            Por favor, ingrese una cantidad
+        </div>
+        <div class="validation_message" *ngIf="form_suppliers_debts.get('value')?.errors?.['min']">
+            El número debe ser mayor o igual a ${{ form_suppliers_debts.get('value')?.errors?.['min'].min }}.
+        </div>
+        <div class="validation_message" *ngIf="form_suppliers_debts.get('value')?.errors?.['max']">
+            El número debe ser menor o igual a $100'000.000.
+        </div>
+        <div class="validation_message" *ngIf="form_suppliers_debts.get('value')?.errors?.['pattern']">
+            Solo se permiten números.
+        </div>
+    </div>
+    <button type="submit" >Enviar</button>
+    <span class="required_fields">Todos los campos con (*) son obligatorios</span>
+    <span class="close" (click)="close_window()"><img src="../../../assets/icon/cerrar.png" alt=""></span>
+</form>
+
+<!-- <div class="load" *ngIf="loader_status">
+    <img src="../../../assets/gift/loader.svg" alt="">
+</div> -->

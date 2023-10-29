@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Supplier } from 'src/app/creditors/interfaces/supplier';
 import { Supplier_debts } from 'src/app/creditors/interfaces/suppliers_debts';
 import { Api_Service } from 'src/app/creditors/services/api.service';
@@ -15,6 +16,7 @@ import { Response } from 'src/app/interfaces/response';
 export class FilterSuppliersDebtsComponent{
 
   form_filter_suppliers_debts! : FormGroup
+  suscription! : Subscription
   suppliers! : Supplier[]
 
   constructor(private builder : FormBuilder, private api : Api_Service<Supplier_debts>, private modal_service : ModalService){
@@ -22,7 +24,7 @@ export class FilterSuppliersDebtsComponent{
     this.form_filter_suppliers_debts = this.builder.group({
 
       option : ["" ,[Validators.required]],
-      value: [""] 
+      value: ["", [Validators.required]] 
     })
   }
 
@@ -30,7 +32,7 @@ export class FilterSuppliersDebtsComponent{
 
     this.api.load_all("suppliers/", "selects")
 
-    this.api.get_all("selects")
+    this.suscription =  this.api.get_all("selects")
       .subscribe((res : Response)=>{
         console.log(res)
         this.suppliers = res.Data
@@ -39,10 +41,18 @@ export class FilterSuppliersDebtsComponent{
   send(){
 
     if(this.form_filter_suppliers_debts.valid){
+
       this.form_filter_suppliers_debts.value.option = "'" + this.form_filter_suppliers_debts.value.option + "'"
       this.form_filter_suppliers_debts.value.value = "'" + this.form_filter_suppliers_debts.value.value + "'"
-      console.log(this.form_filter_suppliers_debts.value)
+
       this.api.filter("suppliersdebts_filter", this.form_filter_suppliers_debts.value)
+        .then((status : boolean)=>{
+
+          if(status){
+
+            this.close_modal_filter()
+          }
+        })
 
     }else{  
 
@@ -58,5 +68,6 @@ export class FilterSuppliersDebtsComponent{
   ngOnDestroy(){
 
     this.api.clearData("selects")
+    this.suscription.unsubscribe()
   }
 }

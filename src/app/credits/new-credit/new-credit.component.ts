@@ -52,7 +52,7 @@ export class NewCreditComponent {
       this.form_credit.value.date  = this.date.now()
       this.api.create("https://fruverapp.onrender.com/api/debtorscredits_create/", this.form_credit.value)
         .subscribe((response : Response)=>{
-          console.log(response)
+          console.log(this.form_credit.value)
           if(response.Status){
             this.close_window()
             this.loader_status = false
