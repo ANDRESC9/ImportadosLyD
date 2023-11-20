@@ -971,6 +971,45 @@ header div {
     }
 }
 
+.alert_app{
+
+    position: fixed !important;
+    width: 10rem;
+    bottom: 0;
+    right: 0;
+    animation-duration: 1s; /* Duración de la animación */
+    animation-timing-function: ease-in-out; /* Curva de aceleración */
+    animation-fill-mode: forwards;
+
+}
+
+@keyframes show {
+    from {
+      right: -10rem; /* Comienza fuera de la pantalla a la derecha */
+    }
+    to {
+      right: 1rem  /* Termina con un pequeño espacio a la derecha */
+    }
+  }
+  
+  /* Animación de cierre (de izquierda a derecha) */
+  @keyframes hidden {
+    from {
+      right: 1rem; /* Comienza con un pequeño espacio a la derecha */
+    }
+    to {
+      right: -10rem; /* Termina fuera de la pantalla a la derecha */
+    }
+  }
+
+  .show_alert {
+    animation-name: show;
+  }
+  
+  .hidden_alert {
+    animation-name: hidden;
+  }
+
 
 
 

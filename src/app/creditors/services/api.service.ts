@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Response } from 'src/app/interfaces/response';
 import { ApiConfigService } from 'src/app/services/api-config.service';
+import { SessionService } from 'src/app/services/session.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,9 +14,17 @@ export class Api_Service<model>{
   public subject_details! : model[]
   private subject_details$! : BehaviorSubject<any[]>
   private subject_select$! : BehaviorSubject<Response>
+  private options: { headers: HttpHeaders } = {
+    headers: new HttpHeaders()
+  };
 
-  constructor(private http : HttpClient, private con : ApiConfigService) { 
+  constructor(private http : HttpClient, private con : ApiConfigService, private session : SessionService) { 
 
+    this.options = {
+      headers: new HttpHeaders({
+        'Authorization': 'token ' + this.session.get_cookie("token")
+      })
+    }
     this.subject$ = new BehaviorSubject<Response>({
       Status : false,
       Messague : "",
@@ -37,14 +46,14 @@ export class Api_Service<model>{
   load_all(url : string, type : string = "table"){
 
     if(type == "table"){
-        this.http.get<Response>(this.con.base_url +url)
+        this.http.get<Response>(this.con.base_url +url, this.options)
         .subscribe((res : Response)=>{
           this.subject = res
           this.subject$.next(this.subject)
         })
     }else if(type == "selects"){
 
-      this.http.get<Response>(this.con.base_url +url)
+      this.http.get<Response>(this.con.base_url +url , this.options)
         .subscribe((res : Response)=>{
 
           this.subject_select$.next(res)
@@ -107,27 +116,27 @@ export class Api_Service<model>{
   }
   create(url : string, data : any) : Observable<Response>{
 
-    return this.http.post<Response>(this.con.base_url + url, data)
+    return this.http.post<Response>(this.con.base_url + url, data , this.options)
   }
   update(url : string, data : any){
 
-    return this.http.post<Response>(this.con.base_url + url, data)
+    return this.http.post<Response>(this.con.base_url + url, data , this.options)
     
   }
   delete(params : any) : Observable<Response>{
 
-    return this.http.post<Response>(this.con.base_url + "records/delete_soft", params);
+    return this.http.post<Response>(this.con.base_url + "records/delete_soft", params, this.options);
   }
 
   filter(url : string, data : any) : Promise<boolean>{
 
     return new Promise<boolean>((resolve, reject)=>{
 
-      this.http.post<Response>(this.con.base_url + url, data)
+      this.http.post<Response>(this.con.base_url + url, data , this.options)
       .subscribe((res : Response)=>{
+        console.log(res)
         if(res.Status){
           this.subject = res   
-          console.log(res.Messague)
           this.subject$.next(this.subject) 
           resolve(true)
         }else{

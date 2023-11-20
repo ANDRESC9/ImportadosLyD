@@ -11,31 +11,46 @@ import { WelcomeScreenComponent } from './main/welcome-screen/welcome-screen.com
 import { CreditorsMenuComponent } from './creditors/creditors-menu.component';
 import { SuppliersComponent } from './creditors/modules/suppliers/suppliers.component';
 import { SuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/suppliers-debts.component';
-
-
+import { SuppliersDebtsPaidsComponent } from './creditors/modules/suppliers-debts-paids/suppliers-debts-paids.component';
+import { HistorySuppliersDebtsComponent } from './creditors/modules/history-suppliers-debts/history-suppliers-debts.component';
+import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main/main.component';
+import { authGuard } from './Guard/auth.guard';
+import { AccessDeniedComponent } from './main/access-denied/access-denied.component';
 const routes: Routes = [
-  { path: '', component: WelcomeScreenComponent },
-  {
-    path: 'creditos',
-    component: CreditsMenuComponent,
-    children: [
-      { path: 'tabla', component: CreditsTableComponent },
-      { path: 'nuevo_credito', component: NewCreditComponent },
-      { path: 'nuevo_deudor', component: NewDebtorComponent },
-      { path: 'lista_deudores', component: ListDebtorsComponent },
-      { path: 'creditos_pagados', component: CreditsPaidComponent},
-      { path: 'informacion_creditos', component: CreditsHistoryComponent}
-    ]
-  },
-  {
-    path: 'deudas',
-    component: CreditorsMenuComponent,
-    children: [
-      {path: 'lista_deudas', component: SuppliersDebtsComponent},
-      {path: 'provedores', component: SuppliersComponent}
-    ]
-    
-  },
+  // { path: '', component: WelcomeScreenComponent },
+  // { path: '**', component: LoginComponent},
+  {path: 'login', component: LoginComponent },
+  {path: 'access_denied', component: AccessDeniedComponent },
+  {path: 'main', component: MainComponent,
+   canActivate: [authGuard],
+  children:[
+    {
+      path: 'creditos',
+      component: CreditsMenuComponent,
+      children: [
+        { path: 'tabla', component: CreditsTableComponent },
+        { path: 'nuevo_credito', component: NewCreditComponent },
+        { path: 'nuevo_deudor', component: NewDebtorComponent },
+        { path: 'lista_deudores', component: ListDebtorsComponent },
+        { path: 'creditos_pagados', component: CreditsPaidComponent},
+        { path: 'informacion_creditos', component: CreditsHistoryComponent}
+      ]
+    },
+    {
+      path: 'deudas',
+      component: CreditorsMenuComponent,
+      children: [
+        {path: 'lista_deudas', component: SuppliersDebtsComponent},
+        {path: 'provedores', component: SuppliersComponent},
+        {path: 'deudas_pagadas', component: SuppliersDebtsPaidsComponent},
+        {path: 'historial_deudas', component: HistorySuppliersDebtsComponent}
+      ]
+      
+    },
+  ]
+},
+  
   
   
 ];

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Api_Service } from '../creditors/services/api.service';
 import { FormGroup } from '@angular/forms';
-import { Supplier } from '../creditors/interfaces/supplier';
 import { Response } from '../interfaces/response';
+import { Observable } from 'rxjs';
+import { AlertService } from '../services/alert.service';
+import { inject } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,9 +16,11 @@ export class AbcComponentService<model> {
   public open_edit_modal : boolean = false
   public open_create_modal : boolean = false
   public open_create_supliers_debts_modal : boolean = false
-  public open_pass_modal : boolean = false 
+  public open_pass_modal : boolean = false
+  public open_paid_filter_modal : boolean = false 
   public details! : model
   private response! : Response
+  public alert = inject(AlertService)
   constructor(private api_ : Api_Service<model>) {
 
   }
@@ -55,10 +59,23 @@ export class AbcComponentService<model> {
       this.api_.delete(delete_params)
         .subscribe((response : Response) =>{
   
-          console.log(response.Messague)
+          // console.log(response.Messague)
           if(response.Status){
   
             this.api_.load_all(url_reload)
+            this.alert.set_alert({
+              message : "Registro eliminado correctamente.",
+              status : true,
+              class : "alert-success"
+            })
+          }else{
+
+            this.alert.set_alert({
+              message : "Error al eliminar registro.",
+              status : true,
+              class : "alert-danger"
+            })
+
           }
         })
     }
@@ -66,25 +83,48 @@ export class AbcComponentService<model> {
   }
 
 
-  create_or_update(url: string, data: any): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
-      this.api_.update(url, data).subscribe(
-        (res: Response) => {
-          console.log(res);
-          if (res.Status) {
-            resolve(true);
-          } else {
+  create_or_update(url: string, data: any): Promise<Response> {
+    return new Promise<Response>((resolve, reject) => {
+      if(data.valid){
+
+        this.api_.update(url, data.value).subscribe(
+          (res: Response) => {
+            if (res.Status) {
+              resolve(res);
+  
+              this.alert.set_alert({
+                message : "Registro creado correctamente.",
+                status : true,
+                class: "alert-success"
+              })
+            }
+          },
+          (error: any) => {
+            console.error('Error al actualizar:', error);
             reject(false);
           }
-        },
-        (error: any) => {
-          console.error('Error al actualizar:', error);
-          reject(false);
-        }
-      );
+        );
+      }else{
+
+        this.alert.set_alert(
+          {message:"Advertencia: Campos ingresados no cumplen los requisitos, por favor valide nuevamente.",
+           status : true,
+           class:"alert-warning"
+          })
+        reject({Messague : "Error en formulario" , status: false, data : []})  
+      }
     });
   }
 
+  set_details(id : number, column_name : string ){
+
+    this.api_.get_details(id, column_name)
+  }
+
+  get_details() : Observable<model[]>{
+
+    return this.api_.get_details$()
+  }
 
 
   reload_list(url : string){

@@ -32,6 +32,12 @@ import { SuppliersDebtsComponent } from './creditors/modules/suppliers-debts/sup
 import { FilterSuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/filter-suppliers-debts/filter-suppliers-debts.component';
 import { CreateSuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/create-suppliers-debts/create-suppliers-debts.component';
 import { PaidSuppliersDebtsComponent } from './creditors/modules/suppliers-debts/suppliers-debts/pass-suppliers-debts/paid-suppliers-debts.component';
+import { SuppliersDebtsPaidsComponent } from './creditors/modules/suppliers-debts-paids/suppliers-debts-paids.component';
+import { FilterPaidsSuppliersComponent } from './creditors/modules/suppliers-debts-paids/filter-paids-suppliers/filter-paids-suppliers.component';
+import { MainComponent } from './main/main/main.component';
+import { AccessDeniedComponent } from './main/access-denied/access-denied.component';
+import { HistorySuppliersDebtsComponent } from './creditors/modules/history-suppliers-debts/history-suppliers-debts.component';
+
 
 
 
@@ -65,7 +71,13 @@ import { PaidSuppliersDebtsComponent } from './creditors/modules/suppliers-debts
     SuppliersDebtsComponent,
     FilterSuppliersDebtsComponent,
     CreateSuppliersDebtsComponent,
-    PaidSuppliersDebtsComponent
+    PaidSuppliersDebtsComponent,
+    SuppliersDebtsPaidsComponent,
+    FilterPaidsSuppliersComponent,
+    MainComponent,
+    AccessDeniedComponent,
+    HistorySuppliersDebtsComponent
+
 
   ],
   imports: [

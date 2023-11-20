@@ -1,0 +1,40 @@
+<section class="table_container">
+    <div class="filter" >
+        <img src="../../../assets/icon/icon_go_back.png" alt="Atrás" (click)="ngOnInit()">
+        <span>Historial de Deudas</span>
+        <img src="../../../assets/icon/icon_filter.png" alt="Filtro" (click)="open_filter_history()">
+    </div>
+    <table  class="table_style">
+        <thead>
+            <tr>
+                <th class="column_id justify_center">Nº Crédito</th> 
+                <th class="justify_center">Nombre deudor</th>  
+                <th class="justify_center">Fecha crédito</th>
+                <th class="justify_center">Fecha ultimo abono</th> 
+                <th class="justify_center">Valor ultimo abono</th>
+                <th class="justify_center">Abono actual</th> 
+                <th class="justify_center">Ultimo saldo</th>
+                <th class="justify_center">Saldo actual</th>
+                <th class="justify_center">Usuario</th> 
+      
+            </tr> 
+        </thead>
+        <tbody>
+            <tr *ngFor="let history of debts_history | paginate : {itemsPerPage: total_size, currentPage : currentPage }">
+                <td data-label="Nº Deuda" class="column_id justify_center">{{history.id_debts_history}}</td>
+                <td data-label="Nombre Acreedor" class="justify_left">{{history.creditor_name}}</td>
+                <td data-label="Fecha ultimo abono" class="justify_center">{{history.date_debt}}</td>
+                <td data-label="Fecha ultimo abono" class="justify_center">{{history.last_payment_date}}</td>
+                <td data-label="Valor ultimo abono" class="justify_left">{{history.last_payment}}</td>
+                <td data-label="Abono actual" class="justify_left">{{history.current_payment}}</td>
+                <td data-label="Ultimo saldo" class="justify_left">{{history.last_balance}}</td>
+                <td data-label="Saldo actual" class="justify_left">{{history.current_balance}}</td>
+                <td data-label="Usuario" class="justify_left">{{(history.user_names + " " + history.user_lastnames)}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="pagination_style">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+</section>

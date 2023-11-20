@@ -1,6 +1,10 @@
-<form class="form_style">
+<form class="form_style" [formGroup]="form_login" (ngSubmit)="login()">
+    
     <h2>Iniciar sesión en su cuenta</h2>
-    <input type="text" id="cantidad" placeholder="Nombre" required>
-    <input type="password" id="cantidad" placeholder="Contraseña" required>
+    <input type="text" formControlName="username" placeholder="Nombre" required>
+    <input type="password" formControlName="password" placeholder="Contraseña" required>
+    <div class="validation_message" *ngIf="invalid_login">
+        Usuario o contraseña incorrectos, intente nuevamente.
+    </div>
     <button type="submit">Iniciar sesión</button>
 </form>  

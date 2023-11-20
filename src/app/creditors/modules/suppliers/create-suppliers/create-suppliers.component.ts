@@ -5,7 +5,8 @@ import { Api_Service } from 'src/app/creditors/services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/creditors/services/modal.service';
 import { Router } from '@angular/router';
-
+import { Response } from 'src/app/interfaces/response';
+import { AlertService } from 'src/app/services/alert.service';
 @Component({
   selector: 'app-create-suppliers',
   templateUrl: './create-suppliers.component.html',
@@ -18,7 +19,8 @@ export class CreateSuppliersComponent extends AbcComponentService<Supplier>
   constructor(private api : Api_Service<Supplier>,
     private builder : FormBuilder,
     private modal_service : ModalService,
-    private router : Router
+    private router : Router,
+
       ){
     super(api)
 
@@ -32,31 +34,29 @@ export class CreateSuppliersComponent extends AbcComponentService<Supplier>
 
 
   send(){
-
-    if(this.form_supplier.valid){
-
-      this.create_or_update("suppliers_create", this.form_supplier.value)
-        .then((status : boolean)=>{
-          if(status){
-            this.reload_list("suppliers/")
-            this.router.navigate(["deudas/provedores"])
-            this.close_form()
-          }else{
-            this.form_supplier.markAllAsTouched()
-          }
-        }).catch((error)=>{
-          console.error("Error al crear proveedor" + error)
-        })
-
-
-    }else{
-
-      this.form_supplier.markAllAsTouched()
-    }
+    
+    // if(this.form_supplier.valid){
+      this.create_or_update("suppliers_create", this.form_supplier)
+      .then((res : Response)=>{
+        if(res.Status){
+          this.reload_list("suppliers/")
+          this.router.navigate(["deudas/provedores/"])
+          // this.alert.set_alert({message:"Proovedor creado correctamente.", status : true, class:"alert-success"})
+          this.close_form()
+        }
+      },(res : Response)=>{ 
+        console.error(res)
+        this.form_supplier.markAllAsTouched()
+      }
+      ).catch((error)=>{
+        console.error("Error al crear proveedor" + error)
+      })
+ 
   }
 
   close_form(){
 
     this.modal_service.open_modal("modal_create_suppliers", false)
   }
+
 }

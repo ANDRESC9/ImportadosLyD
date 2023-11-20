@@ -5,6 +5,7 @@ import { Response } from 'src/app/interfaces/response';
 import { AbcComponentService } from 'src/app/ABC/abc-component.service'; 
 import { Generics } from 'src/app/credits/interfaces/Generics';
 import { ModalService } from '../../services/modal.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-suppliers',
@@ -18,7 +19,7 @@ export class SuppliersComponent extends AbcComponentService<Supplier> implements
 
   constructor(
     private api : Api_Service<Supplier>,
-    private modal_service : ModalService
+    private modal_service : ModalService,
     
     ){
     super(api)

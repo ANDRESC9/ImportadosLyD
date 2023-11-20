@@ -7,6 +7,8 @@ import { Response } from 'src/app/interfaces/response';
 import { Debtor } from '../interfaces/debtor';
 import { Credit } from '../interfaces/credit';
 import { DateServicesService } from 'src/app/services/date-services.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +19,16 @@ export class DebtorsService {
   private credit_history$! : BehaviorSubject<Response>
   private debtor! : Debtor
   private debtor$! : BehaviorSubject<Debtor>
+  private options: { headers: HttpHeaders } = {
+    headers: new HttpHeaders()
+  };
+  constructor(protected http : HttpClient, private conf : ApiConfigService, private date : DateServicesService, private session : SessionService) { 
 
-  constructor(protected http : HttpClient, private conf : ApiConfigService, private date : DateServicesService) { 
+    this.options = {
+      headers: new HttpHeaders({
+        'Authorization': 'token ' + this.session.get_cookie("token")
+      })
+    }
 
     this.credit_history$ = new BehaviorSubject<Response>({
       Status : false,
@@ -36,7 +46,7 @@ export class DebtorsService {
 
   load_history(){
 
-    this.http.get<Response>(this.conf.base_url+"debtorscredits_credit_history/")
+    this.http.get<Response>(this.conf.base_url+"debtorscredits_credit_history/", this.options)
       .subscribe((response : Response)=>{
         
         this.credit_history = response
@@ -51,7 +61,7 @@ export class DebtorsService {
 
   filter_history(data : any)  {
 
-      this.http.post<Response>(this.conf.base_url + "debtorscredits_filter_history/", data)
+      this.http.post<Response>(this.conf.base_url + "debtorscredits_filter_history/", data, this.options)
         .subscribe((res : Response)=>{
           console.log(res)
           if(res.Status){
@@ -66,13 +76,13 @@ export class DebtorsService {
   create_debtor(data : any) : Observable<Response>
   {
 
-    return this.http.post<Response>(this.conf.base_url + "debtors_create", data)
+    return this.http.post<Response>(this.conf.base_url + "debtors_create", data, this.options)
   }
 
   update_debtor(data : any) : Observable<Response>
   {
 
-    return this.http.post<Response>(this.conf.base_url + "debtors_update/", data)
+    return this.http.post<Response>(this.conf.base_url + "debtors_update/", data, this.options)
   }
 
   set_debtor(debtor : Debtor){
@@ -94,12 +104,8 @@ export class DebtorsService {
       date: this.date.now()
     };
     
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.http.post<Response>(this.conf.base_url + "debtorscredits_payoff_credit/", data, options)
+
+    return this.http.post<Response>(this.conf.base_url + "debtorscredits_payoff_credit/", data, this.options)
       
   }
 

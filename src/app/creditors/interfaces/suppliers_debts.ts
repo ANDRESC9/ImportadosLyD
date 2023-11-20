@@ -7,3 +7,5 @@ export interface Supplier_debts{
     name_supplier : string
 }
 
+
+

@@ -17,6 +17,7 @@ export class ModalService {
     "modal_create_suppliers_debts" : new BehaviorSubject<boolean>(false),
     "modal_paidoff_suppliers_debts" : new BehaviorSubject<boolean>(false),
     "modal_pass_suppliers_debts" : new BehaviorSubject<boolean>(false),
+    "modal_paid_suppliers_debts_filter" : new BehaviorSubject<boolean>(false),
   }
 
   constructor() {

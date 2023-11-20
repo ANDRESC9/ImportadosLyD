@@ -1,0 +1,37 @@
+<!-- <div *ngIf="!is_load" class="load">
+    <img src="../../../assets/gift/loader.svg" alt="">
+</div> -->
+<section class="table_container">
+    <div class="filter" >
+        <img src="../../../assets/icon/icon_go_back.png" alt="Atrás" (click)="ngOnInit()">
+        <span>Deudas Pagadas</span>
+        <img src="../../../assets/icon/icon_filter.png" alt="Filtro" (click)="open_modal_filter()">
+    </div>
+    <table  class="table_style">
+        <thead>
+            <tr>
+                <th class="column_id justify_center">Nº Deuda</th>
+                <th class="justify_center">Fecha Deuda</th>
+                <th class="justify_center">Valor</th>
+                <th class="justify_center">Nombre</th>  
+                <th class="justify_center">Pago completado</th> 
+            </tr>
+        </thead> 
+        <tbody>
+            <tr  *ngFor="let debt of debts_paids | paginate: { itemsPerPage: total_size, currentPage: currentPage }" >
+                <td data-label="Nº Crédito" class="column_id justify_center">{{debt.id_suppliers_debts}}</td>
+                <td data-label="Fecha de crédito" class="justify_center">{{debt.date_debts}}</td>
+                <td data-label="Valor" class="justify_left">{{debt.value}}</td>
+                <td data-label="Nombre" class="justify_left">{{debt.name_supplier}}</td>
+                <td data-label="Pago completado" class="justify_center">{{debt.date_paid_off}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pagination_style">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+</section>
+
+<section class="hidden show_table" [ngClass]="{'show_table': open_paid_filter_modal}">
+    <app-filter-paids-suppliers></app-filter-paids-suppliers>
+</section>

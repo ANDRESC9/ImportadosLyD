@@ -6,6 +6,7 @@ import { Supplier_debts } from 'src/app/creditors/interfaces/suppliers_debts';
 import { Api_Service } from 'src/app/creditors/services/api.service';
 import { ModalService } from 'src/app/creditors/services/modal.service';
 import { Response } from 'src/app/interfaces/response';
+import { ValidatorsCA } from 'src/app/utils/ValidatorsCA';
 @Component({
   selector: 'app-filter-suppliers-debts',
   templateUrl: './filter-suppliers-debts.component.html',
@@ -23,7 +24,7 @@ export class FilterSuppliersDebtsComponent{
 
     this.form_filter_suppliers_debts = this.builder.group({
 
-      option : ["" ,[Validators.required]],
+      option : ["" ,[Validators.required , ValidatorsCA.requiredSelected]],
       value: ["", [Validators.required]] 
     })
   }
@@ -34,17 +35,18 @@ export class FilterSuppliersDebtsComponent{
 
     this.suscription =  this.api.get_all("selects")
       .subscribe((res : Response)=>{
-        console.log(res)
+        //console.log(res)
         this.suppliers = res.Data
       })
   }
   send(){
-
+    
+    const value_to_string = this.form_filter_suppliers_debts.value.value.toString();
+    this.form_filter_suppliers_debts.value.value = value_to_string 
+    console.log(this.form_filter_suppliers_debts.value)
     if(this.form_filter_suppliers_debts.valid){
 
-      this.form_filter_suppliers_debts.value.option = "'" + this.form_filter_suppliers_debts.value.option + "'"
-      this.form_filter_suppliers_debts.value.value = "'" + this.form_filter_suppliers_debts.value.value + "'"
-
+      
       this.api.filter("suppliersdebts_filter", this.form_filter_suppliers_debts.value)
         .then((status : boolean)=>{
 

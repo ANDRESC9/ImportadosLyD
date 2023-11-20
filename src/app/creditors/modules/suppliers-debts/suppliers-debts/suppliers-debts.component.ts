@@ -28,7 +28,7 @@ export class SuppliersDebtsComponent extends AbcComponentService<Supplier_debts>
     this.api.get_all()
       .subscribe((res: Response)=>{
         this.suppliers_debts = res.Data
-        console.log(res.Data)
+        //console.log(res.Data)
       })
     
   }
@@ -67,10 +67,13 @@ export class SuppliersDebtsComponent extends AbcComponentService<Supplier_debts>
   }
   pass(supplier_debts : Supplier_debts){
 
+    this.set_details(supplier_debts.id_suppliers_debts, "id_suppliers_debts")  
+    
     this.modal_services.open_modal("modal_pass_suppliers_debts", true)
     this.modal_services.get_modal_status$("modal_pass_suppliers_debts")
       .subscribe((sta : boolean)=>{
         this.open_pass_modal = sta
+        
       })
   }
   pay_off(supplier_debts : Supplier_debts){}

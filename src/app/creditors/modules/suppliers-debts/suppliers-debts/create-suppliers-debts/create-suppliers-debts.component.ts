@@ -20,7 +20,7 @@ export class CreateSuppliersDebtsComponent extends AbcComponentService<Supplier_
 
   form_suppliers_debts! : FormGroup
   suscription! : Subscription
-  suppliers! : Supplier[]
+  suppliers! : Array<Supplier>
   constructor(private builder : FormBuilder,
     private api : Api_Service<Supplier_debts>,
     private modal_service : ModalService,
@@ -30,7 +30,7 @@ export class CreateSuppliersDebtsComponent extends AbcComponentService<Supplier_
       ){
     super(api)
     this.form_suppliers_debts = this.builder.group({
-      supplier_fk : ["",[ValidatorsCA.requiredSelected]],
+      supplier_fk : ["",[Validators.required,ValidatorsCA.requiredSelected]],
       value: ["",[Validators.required, Validators.min(1000), Validators.max(100000000), Validators.pattern('^[0-9]*$')]],
       date_debts : [""]
     })
@@ -48,35 +48,39 @@ export class CreateSuppliersDebtsComponent extends AbcComponentService<Supplier_
 
   send(){
 
-    if(this.form_suppliers_debts.valid){
-      this.form_suppliers_debts. value.date_debts = this.date.now()
-      console.log(this.form_suppliers_debts.value)
-      this.create_or_update("suppliersdebts_create",this.form_suppliers_debts.value)
-        .then((sta : boolean)=>{
-          console.log(sta)
-          if(sta){
-            this.reload_list("suppliersdebts/")
-            this.router.navigate(["deudas/lista_deudas"])
-            this.close_window()
-          }
-        })
-      
-    }else{
+    this.form_suppliers_debts. value.date_debts = this.date.now()
+
+    this.create_or_update("suppliersdebts_create",this.form_suppliers_debts)
+    .then((res : Response)=>{
+      console.log(res)
+      if(res.Status){
+        this.reload_list("suppliersdebts/")
+        this.router.navigate(["/deudas/lista_deudas"])
+        this.close_window()
+        this.suscription.unsubscribe()
+      }else{
+        this.form_suppliers_debts.markAllAsTouched()
+      }
+    }, (res : Response)=> {
 
       this.form_suppliers_debts.markAllAsTouched()
-    }
+      console.error(res.Messague)
+    })
 
+      
   }
   close_window(){
 
     this.modal_service.open_modal("modal_create_suppliers_debts", false)
-    this.form_suppliers_debts.reset()
+   this.form_suppliers_debts.reset()
+    
   }
 
   ngOnDestroy(){
 
-    this.suscription.unsubscribe()
-    this.api.clearData("selects")
+    // this.form_suppliers_debts.reset()
+    // // this.suscription.unsubscribe()
+    // this.api.clearData("selects")
   }
 
 }

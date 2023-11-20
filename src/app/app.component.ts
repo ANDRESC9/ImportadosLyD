@@ -13,6 +13,7 @@ export class AppComponent {
   hiddenMenu : boolean = true;
   widthContent : boolean = true;
   anchoPantalla: number;
+  on_login : boolean = false;
   constructor(private loader : LoaderService) {
     this.anchoPantalla = window.innerWidth;
   }

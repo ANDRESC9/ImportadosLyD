@@ -7,7 +7,7 @@
         <span><strong>Saldo actual:</strong>&nbsp;{{form_paid_off_debts.value.balance}}</span>
         <div class="pass_style">
             <span><strong>*Abono:</strong>&nbsp;</span>
-            <input type="number" id="cantidad" formControlName="pass" (keyup)="validate_pass(form_paid_off_debts.value.balance)" required>
+            <input type="number" id="cantidad" formControlName="pass" (keyup)="validate_pass(form_paid_off_debts.value.pass)" required>
         </div>
         <div *ngIf="form_paid_off_debts.get('pass')?.invalid && form_paid_off_debts.get('pass')?.touched">
             <div class="validation_message" *ngIf="form_paid_off_debts.get('pass')?.hasError('required')">

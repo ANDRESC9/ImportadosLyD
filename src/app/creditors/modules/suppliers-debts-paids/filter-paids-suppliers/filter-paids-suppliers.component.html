@@ -1,0 +1,40 @@
+<!-- <div class="load" *ngIf="loader_status">
+    <img src="../../../assets/gift/loader.svg" alt="">
+</div> -->
+<form class="form_style" [formGroup]="form_paid_debts_filter" (ngSubmit)="send()">
+    <h2>Filtrar</h2>
+    <div class="show_info">
+        <span>Seleccione una opción para filtrar</span>
+        <select name="" id="" formControlName="option">
+            <option value="" selected>Seleccione</option>
+            <option value="date_debts">Fecha crédito</option>
+            <option value="suppliers_fk">Deudor</option>
+            <option value="id_suppliers_debts">Número de crédito</option>
+        </select>
+        <div *ngIf="form_paid_debts_filter.get('option')?.invalid && form_paid_debts_filter.get('option')?.touched">
+            <div class="validation_message" *ngIf="form_paid_debts_filter.get('option')?.hasError('requiredSelected')">
+                Por favor, seleccione una opción.
+            </div>        
+        </div>
+    </div>
+
+    <div class="filter_info" *ngIf="form_paid_debts_filter.value.option == 'date_debts'">
+        <span class="filter_name">Seleccione una fecha</span>
+        <input type="date" formControlName="value">
+    </div> 
+
+    <div class="filter_info" *ngIf="form_paid_debts_filter.value.option == 'suppliers_fk'">
+        <span class="filter_name">Seleccione un nombre</span>
+        <select name="" id="" formControlName="value">
+            <option value="" selected>Seleccione</option>
+            <option *ngFor="let sup of suppliers" value='{{sup.id_suppliers}}'>{{sup.name_supplier}}</option>
+        </select>
+    </div>
+
+    <div class="filter_info" *ngIf="form_paid_debts_filter.value.option == 'id_suppliers_debts'">
+        <span class="filter_name">Ingrese el número del crédito</span>
+        <input type="number" formControlName="value">
+    </div>
+    <button>Filtrar</button>
+    <span class="close" (click)="close_modal_filter()"><img src="../../../assets/icon/cerrar.png" alt=""></span>
+</form>

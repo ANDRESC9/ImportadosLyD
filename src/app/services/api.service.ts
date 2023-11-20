@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap, BehaviorSubject } from 'rxjs';
 import { Response } from '../interfaces/response';
 import { Debtor } from '../credits/interfaces/debtor';
 import { Credit } from '../credits/interfaces/credit';
 import { ApiConfigService } from './api-config.service';
+import { Token } from '@angular/compiler';
+import { AuthService } from './auth.service';
+import { SessionService } from './session.service';
 
 //Inyecta dependencias de la raíz
 @Injectable({
@@ -24,9 +27,18 @@ export class ApiService <Model> {
 
   private model_filter! : Response
   private model_filter$!: BehaviorSubject<Response>
+  private options: { headers: HttpHeaders } = {
+    headers: new HttpHeaders()
+  };
 
-  constructor(protected http : HttpClient, private conf : ApiConfigService) {
+  constructor(protected http : HttpClient, private conf : ApiConfigService, private session : SessionService) {
 
+     this.options = {
+      headers: new HttpHeaders({
+        'Authorization': 'token ' + this.session.get_cookie("token")
+      })
+    };
+    
     this.model_filter$ = new BehaviorSubject<Response>({
       Status : false,
       Messague : "",
@@ -52,11 +64,14 @@ export class ApiService <Model> {
       date_last_pass : new Date(),
       date_paid_off : new Date()
     });
+
+    
    }
 
   getAllPost(url : string) {
 
-    this.http.get<Response>(this.conf.base_url+url)
+
+    this.http.get<Response>(this.conf.base_url+url,this.options)
     .subscribe((response : Response)=>{
 
       this.records = response
@@ -78,7 +93,7 @@ export class ApiService <Model> {
 
   load_debtors(action : string){
 
-    this.http.get<Response>(this.conf.base_url + action)
+    this.http.get<Response>(this.conf.base_url + action, this.options)
     .subscribe((response : Response)=>{
 
       this.debtors = response.Data
@@ -97,13 +112,13 @@ export class ApiService <Model> {
 
   create(url : string, server : any) {
 
-    return this.http.post<Response>(url, server)
+    return this.http.post<Response>(url, server, this.options)
     
   }
 
   delete(params : any) : Observable<Response>{
 
-    return this.http.post<Response>(this.conf.base_url + "records/delete_soft", params);
+    return this.http.post<Response>(this.conf.base_url + "records/delete_soft", params, this.options);
   }
 
 
@@ -111,7 +126,7 @@ export class ApiService <Model> {
 
   load_filter_model(url : string){
 
-    this.http.get<Response>(this.conf.base_url + url)
+    this.http.get<Response>(this.conf.base_url + url, this.options)
       .subscribe((res : Response)=>{
         this.model_filter = res
         this.model_filter$.next(this.model_filter)
@@ -127,7 +142,7 @@ export class ApiService <Model> {
 
   set_filter_credits_table(data: any, filter_url : string ): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      this.http.post<Response>(this.conf.base_url + filter_url, data)
+      this.http.post<Response>(this.conf.base_url + filter_url, data, this.options)
         .subscribe((res: Response) => {
           console.log(res)
           if (res.Status) {
@@ -146,7 +161,7 @@ export class ApiService <Model> {
   set_filter_debtors(data: string) :Promise<boolean>{
 
     return new Promise<boolean>((resolve, reject) =>{
-      this.http.post<Response>(this.conf.base_url + "debtors_filter/", data)
+      this.http.post<Response>(this.conf.base_url + "debtors_filter/", data, this.options)
         .subscribe((response : Response)=>{
           if(response.Status){
             this.debtors = response.Data
