@@ -5,8 +5,7 @@ import { Supplier } from 'src/app/creditors/interfaces/supplier';
 import { Api_Service } from 'src/app/creditors/services/api.service';
 import { ModalService } from 'src/app/creditors/services/modal.service';
 import { Response } from 'src/app/interfaces/response';
-import { AlertService } from 'src/app/services/alert.service';
-import { ApiService } from 'src/app/services/api.service';
+
 @Component({
   selector: 'app-edit-supplier',
   templateUrl: './edit-supplier.component.html',
@@ -49,7 +48,7 @@ export class EditSupplierComponent extends AbcComponentService<Supplier> {
     
     if(this.form_supplier_edit.valid){
 
-      this.create_or_update("suppliers_update", this.form_supplier_edit.value)
+      this.create_or_update({url:"suppliers_update", form:this.form_supplier_edit.value})
         .then((res : Response)=>{
           if(res.Status){
             this.reload_list("suppliers/")

@@ -17,6 +17,9 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main/main.component';
 import { authGuard } from './Guard/auth.guard';
 import { AccessDeniedComponent } from './main/access-denied/access-denied.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { ProductsComponent } from './inventory/Modules/products/products.component';
+import { CreateInventoryComponent } from './inventory/Modules/create-inventory/create-inventory.component';
 const routes: Routes = [
   // { path: '', component: WelcomeScreenComponent },
   // { path: '**', component: LoginComponent},
@@ -45,6 +48,16 @@ const routes: Routes = [
         {path: 'provedores', component: SuppliersComponent},
         {path: 'deudas_pagadas', component: SuppliersDebtsPaidsComponent},
         {path: 'historial_deudas', component: HistorySuppliersDebtsComponent}
+      ]
+      
+    },
+    {
+      path: 'inventario',
+      component: InventoryComponent,
+      children: [
+        {path: 'productos', component: ProductsComponent},
+        {path: 'crear_inventario', component: CreateInventoryComponent}
+
       ]
       
     },

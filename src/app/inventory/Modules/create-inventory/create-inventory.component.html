@@ -1,0 +1,20 @@
+<div *ngFor="let form of form_groups">
+
+    <form action="" [formGroup]="form.formGroup">
+        <input type="text" formControlName="id">
+        <input type="text" formControlName="product_name">
+        <input type="number" formControlName="amount" >
+        <input type="number" formControlName="box_price" (focusout) ="update_total(form)">
+        <input type="number" formControlName="total_value">
+     
+    </form>
+    
+</div>
+
+<button *ngIf="on_create_today" (click)="send()">Enviar</button>
+<button style="background-color: green;" *ngIf="!on_create_today" (click)="update_inventory()">Actualizar</button>
+<div class="total_price">
+    
+    <h5>Total precio: {{Total_price}}</h5>
+    {{on_create_today}}
+</div>

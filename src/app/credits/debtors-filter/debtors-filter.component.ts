@@ -34,7 +34,7 @@ export class DebtorsFilterComponent {
       if(this.form_filter_debtors.valid){
 
       let value = this.form_filter_debtors.value
-      value.name = "'" + value.name + "'"
+      //value.name = "'" + value.name + "'"
       this.api.set_filter_debtors(value)
         .then((status : boolean)=>{
           if(status){

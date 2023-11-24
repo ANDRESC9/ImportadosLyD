@@ -37,9 +37,11 @@ import { FilterPaidsSuppliersComponent } from './creditors/modules/suppliers-deb
 import { MainComponent } from './main/main/main.component';
 import { AccessDeniedComponent } from './main/access-denied/access-denied.component';
 import { HistorySuppliersDebtsComponent } from './creditors/modules/history-suppliers-debts/history-suppliers-debts.component';
-
-
-
+import { ProductsComponent } from './inventory/Modules/products/products.component';
+import { CreateProductComponent } from './inventory/Modules/products/create-product/create-product.component';
+import { FilterProductComponent } from './inventory/Modules/products/filter-product/filter-product.component';
+import { EditProductComponent } from './inventory/Modules/products/edit-product/edit-product.component';
+import { CreateInventoryComponent } from './inventory/Modules/create-inventory/create-inventory.component';
 
 
 @NgModule({
@@ -76,7 +78,13 @@ import { HistorySuppliersDebtsComponent } from './creditors/modules/history-supp
     FilterPaidsSuppliersComponent,
     MainComponent,
     AccessDeniedComponent,
-    HistorySuppliersDebtsComponent
+    HistorySuppliersDebtsComponent,
+    ProductsComponent,
+    CreateProductComponent,
+    FilterProductComponent,
+    EditProductComponent,
+    CreateInventoryComponent
+
 
 
   ],

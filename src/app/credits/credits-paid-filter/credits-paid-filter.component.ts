@@ -45,9 +45,6 @@ export class CreditsPaidFilterComponent {
     this.loader_status = true
     if(this.form_filter_paid.valid){
       let values = this.form_filter_paid.value
-      values.option = "'" + values.option + "'"
-      values.value = "'" + values.value + "'"
-
       this.api.set_filter_credits_table(values, "debtorscredits_paids_filter/")
         .then((status : boolean)=>{
           if(status){

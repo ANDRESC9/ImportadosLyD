@@ -50,7 +50,7 @@ export class CreateSuppliersDebtsComponent extends AbcComponentService<Supplier_
 
     this.form_suppliers_debts. value.date_debts = this.date.now()
 
-    this.create_or_update("suppliersdebts_create",this.form_suppliers_debts)
+    this.create_or_update({url:"suppliersdebts_create",form:this.form_suppliers_debts})
     .then((res : Response)=>{
       console.log(res)
       if(res.Status){

@@ -19,6 +19,11 @@ export class AbcComponentService<model> {
   public open_pass_modal : boolean = false
   public open_paid_filter_modal : boolean = false 
   public details! : model
+
+  // Inventory modals state
+  public open_create_product_modal : boolean = false
+  public open_edit_product_modal : boolean = false
+  public open_filter_product_modal : boolean = false
   private response! : Response
   public alert = inject(AlertService)
   constructor(private api_ : Api_Service<model>) {
@@ -54,12 +59,12 @@ export class AbcComponentService<model> {
 
   delete(id : any, url_reload : string, delete_params : {}){
 
-    if(window.confirm("¿Estás seguro de que deseas eliminar a este deudor?")){
+    if(window.confirm("¿Estás seguro de que desea eliminar este registro?")){
       
       this.api_.delete(delete_params)
         .subscribe((response : Response) =>{
   
-          // console.log(response.Messague)
+          console.log(response.Messague)
           if(response.Status){
   
             this.api_.load_all(url_reload)
@@ -83,11 +88,36 @@ export class AbcComponentService<model> {
   }
 
 
-  create_or_update(url: string, data: any): Promise<Response> {
+  create_or_update(options : {url: string; form? : FormGroup; data_dict? : any[]}): Promise<Response> {
     return new Promise<Response>((resolve, reject) => {
-      if(data.valid){
+      if(options.data_dict && options.data_dict.length > 0){
+        this.api_.update(options.url, options.data_dict).subscribe(
+          (res: Response) => {
+            if (res.Status) {
+              resolve(res);
+  
+              this.alert.set_alert({
+                message : "Registro creado correctamente.",
+                status : true,
+                class: "alert-success"
+              })
+            }else{
+              this.alert.set_alert(
+                {message:"Error: Se a presentado un error al momento de guardar el inventario actual.",
+                 status : true,
+                 class:"alert-danger"
+                })
+            }
+          },
+          (error: any) => {
+            console.error('Error al actualizar:', error);
+            reject(false);
+          }
+        );
+      }
+      if(options.form && options.form!.valid){
 
-        this.api_.update(url, data.value).subscribe(
+        this.api_.update(options.url, options.form!.value).subscribe(
           (res: Response) => {
             if (res.Status) {
               resolve(res);
@@ -131,6 +161,26 @@ export class AbcComponentService<model> {
 
     this.api_.load_all(url)
     this.api_.load_all(url, "selects")
+  }
+
+  send_data_with_object(options : {url: string; object: {}}) : Promise<Response>{
+
+    return new Promise<Response>((resolve, reject)=>{
+
+      if(options.object){
+
+        this.api_.create(options.url, options.object)
+          .subscribe((res : Response)=>{
+            if(res.Status){
+              resolve(res)
+            }else{
+
+              reject(res)
+            }
+          })
+      }
+    })
+    
   }
 
       

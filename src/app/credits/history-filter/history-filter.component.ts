@@ -54,10 +54,11 @@ export class HistoryFilterComponent {
     
     setTimeout(()=>{
       if(this.form_filter_history.valid){
-        this.form_filter_history.value.option = "'"+ this.form_filter_history.value.option + "'"
-        this.form_filter_history.value.value = "'"+ this.form_filter_history.value.value + "'"
+
+        this.form_filter_history.value.value = this.form_filter_history.value.value.toString()
   
         if(this.form_filter_history.valid){
+          console.log(this.form_filter_history.value)
           this.debtor_service.filter_history( this.form_filter_history.value)
           this.modal_services.set_modal_filter_Status(false)
           

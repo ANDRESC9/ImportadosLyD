@@ -23,10 +23,11 @@ export class FilterSuppliersComponent extends AbcComponentService<Supplier> {
   }
 
   send(){
-    
-    this.form_filter_supplier.value.name = "'" + this.form_filter_supplier.value.name + "'"
+
+    //this.form_filter_supplier.value.name = "'" + this.form_filter_supplier.value.name + "'"
 
     if(this.form_filter_supplier.valid){
+
       this.send_data_form(this.form_filter_supplier,"suppliers_filter")
       this.close_modal_filter()
     }

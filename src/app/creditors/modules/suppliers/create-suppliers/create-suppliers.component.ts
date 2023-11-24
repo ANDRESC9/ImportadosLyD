@@ -36,7 +36,7 @@ export class CreateSuppliersComponent extends AbcComponentService<Supplier>
   send(){
     
     // if(this.form_supplier.valid){
-      this.create_or_update("suppliers_create", this.form_supplier)
+      this.create_or_update({url:"suppliers_create", form:this.form_supplier})
       .then((res : Response)=>{
         if(res.Status){
           this.reload_list("suppliers/")

@@ -43,7 +43,7 @@ export class SuppliersComponent extends AbcComponentService<Supplier> implements
   }
 
    open_filter(): void {
-
+    alert("asdasdasdas")
     this.modal_service.open_modal("modal_filter_suppliers", true)
 
     this.modal_service.get_modal_status$("modal_filter_suppliers")

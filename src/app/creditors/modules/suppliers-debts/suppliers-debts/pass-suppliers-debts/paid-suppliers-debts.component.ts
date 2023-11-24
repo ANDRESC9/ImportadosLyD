@@ -62,7 +62,7 @@ export class PaidSuppliersDebtsComponent extends AbcComponentService<Supplier_de
       delete this.form_paid_off_debts.value.name_supplier
       delete this.form_paid_off_debts.value.balance
 
-      this.create_or_update("suppliers_debts_pass", this.form_paid_off_debts)
+      this.create_or_update({url:"suppliers_debts_pass", form:this.form_paid_off_debts})
         .then((res : Response)=>{
           
           if(res.Status){

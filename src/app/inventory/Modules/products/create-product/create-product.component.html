@@ -1,0 +1,30 @@
+<form class="form_style" [formGroup]="form_product" (ngSubmit)="send()">
+    <h2>Nuevo Producto</h2>
+    <input type="text"  formControlName="names" placeholder="*Producto" required>
+    <div *ngIf="form_product.get('names')?.invalid && form_product.get('names')?.touched">
+        <div class="validation_message" *ngIf="form_product.get('names')?.hasError('required')">
+            Por favor, ingrese un nombre.
+        </div>
+        <div class="validation_message" *ngIf="form_product.get('names')?.errors?.['minlength']">
+            El nombre debe tener al menos 3 caracteres.
+        </div>
+        <div class="validation_message" *ngIf="form_product.get('names')?.errors?.['maxlength']">
+            El nombre no debe superar los 50 caracteres.
+        </div>         
+    </div>
+
+    <input type="number"  formControlName="trays" placeholder="*Bandejas por caja" required>
+    <div *ngIf="form_product.get('trays')?.invalid && form_product.get('trays')?.touched">
+        <div class="validation_message" *ngIf="form_product.get('trays')?.hasError('required')">
+            Por favor, ingrese un nombre.
+        </div>
+        <div class="validation_message" *ngIf="form_product.get('trays')?.errors?.['pattern']">
+            Debe ingresar un valor numerico
+        </div>
+         
+    </div>
+
+    <button type="submit">Enviar</button>
+    <span class="required_fields">Todos los campos con (*) son obligatorios</span>
+    <span (click)="close_form()" class="close"><img src="../../../assets/icon/cerrar.png" alt=""></span>
+</form>  

@@ -14,7 +14,7 @@ export class Api_Service<model>{
   public subject_details! : model[]
   private subject_details$! : BehaviorSubject<any[]>
   private subject_select$! : BehaviorSubject<Response>
-  private options: { headers: HttpHeaders } = {
+  public options: { headers: HttpHeaders } = {
     headers: new HttpHeaders()
   };
 
@@ -134,6 +134,7 @@ export class Api_Service<model>{
 
       this.http.post<Response>(this.con.base_url + url, data , this.options)
       .subscribe((res : Response)=>{
+        
         console.log(res)
         if(res.Status){
           this.subject = res   
