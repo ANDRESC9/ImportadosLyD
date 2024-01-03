@@ -163,7 +163,7 @@ export class AbcComponentService<model> {
     this.api_.load_all(url, "selects")
   }
 
-  send_data_with_object(options : {url: string; object: {}}) : Promise<Response>{
+  async send_data_with_object(options : {url: string; object: {}}) : Promise<Response>{
 
     return new Promise<Response>((resolve, reject)=>{
 

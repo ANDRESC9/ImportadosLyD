@@ -26,7 +26,8 @@ export class CreateProductComponent extends AbcComponentService<Product> {
     this.form_product = this.builder.group({
 
       names : ["", [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      trays : ["", [Validators.required, Validators.pattern('^[0-9]*$')]]
+      trays : ["", [Validators.required, Validators.pattern('^[0-9]*$')]],
+      box_value : ["", [Validators.required, Validators.pattern('^[0-9]*$')]]
     })
 
 

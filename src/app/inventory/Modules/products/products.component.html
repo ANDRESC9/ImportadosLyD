@@ -11,6 +11,8 @@
                 <th class="column_id justify_center">Nº Producto</th> 
                 <th class="justify_center">Producto</th>  
                 <th class="column_icon justify_center">Bandejas por caja</th>
+                <th class="column_icon justify_center">Precio caja</th>
+                <th class="column_icon justify_center">Precio Unidad</th>
                 <th class="column_icon justify_center">Editar</th> 
                 <th class="column_icon justify_center">Eliminar</th>
             </tr> 
@@ -20,6 +22,8 @@
                 <td data-label="Nº Deudor" class="column_id justify_center">{{pro.id_product}}</td> 
                 <td data-label="Nombre" class="justify_center">{{pro.product_name}}</td>
                 <td data-label="Nombre" class="justify_center">{{pro.trays_per_box}}</td>
+                <td data-label="Nombre" class="justify_center">{{pro.box_value | currency:'USD':'symbol':'1.2-2'}}</td>
+                <td data-label="Nombre" class="justify_center">{{pro.unit_product_value | currency:'USD':'symbol':'1.2-2'}}</td>
                 <td data-label="Editar" class="column_icon justify_center"><span (click)="open_modal_edit(pro)"><img src="../../../assets/icon/icon_edit.png" alt=""></span></td>
                 <td data-label="Eliminar" class="column_icon justify_center"><span (click)="delete_record(pro.id_product)"><img src="../../../assets/icon/icon_delete.png" alt=""></span></td>
             </tr>

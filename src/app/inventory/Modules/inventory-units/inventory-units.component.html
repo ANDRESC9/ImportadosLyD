@@ -1,51 +1,39 @@
 <!-- 
-<div class="excel_table">
-    <table>
-        <thead>
-            <th>Id</th>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio caja</th>
-            <th>Total</th>
-        </thead>
-    </table>
-</div>
-<div *ngFor="let form of form_groups">
+
+<div *ngFor="let form of form_groups_unit">
 
     
     <form class="form_excel" action="" [formGroup]="form.formGroup">
         <input type="text" formControlName="id">
         <input type="text" formControlName="product_name">
         <input type="number" formControlName="amount" (focusout)="update_total(form)">
-        <input type="number" formControlName="box_price" (focusout)="update_total(form)">
-        <input class="total_excel" type="number" formControlName="total_value" >
+        <input type="number" formControlName="box_price">
+        <input type="number" formControlName="unit_value">
+        <input class="total_excel" type="number" formControlName="total_value">
      
     </form>
     
 </div>
-
-<button *ngIf="on_create_today" (click)="send('caja')">Enviar</button>
-<button style="background-color: green;" *ngIf="!on_create_today" (click)="update_inventory('caja')">Actualizar</button>
-
-<br> -->
+{{on_create_today_unit}}
+<button *ngIf="on_create_today_unit" (click)="send('unidad')">Enviar</button>
+<button style="background-color: green;" *ngIf="!on_create_today_unit" (click)="update_inventory()">Actualizar</button> -->
 <div>
     <table class="table_style">
         <thead>
             <th>Fecha</th>
-            <th>Total Inventario caja</th>
+            <th>Total Inventario unidades</th>
 
         </thead>
         <tbody>
             <tr>
                 <td>{{current_date}}</td>
-                <td><strong>{{Total_price | currency:'USD':'symbol':'1.2-2'}}</strong></td>
+                <td><strong>{{Total_price_unit | currency:'USD':'symbol':'1.2-2'}}</strong></td>
             </tr>
         </tbody>
     </table>
 </div>
-
 <div>
-    <form class="form_excel"  *ngIf="form_groups.length > 0">
+    <form class="form_excel"  *ngIf="form_groups_unit.length > 0">
         <table class="table_style">
             <thead>
                 <tr>
@@ -53,15 +41,17 @@
                     <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Precio caja</th>
+                    <th>Precio unidad</th>
                     <th>Total</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let form of form_groups" [formGroup]="form.formGroup">
+                <tr *ngFor="let form of form_groups_unit" [formGroup]="form.formGroup">
                     <td><input type="text" formControlName="id"></td>
                     <td><input type="text" formControlName="product_name"></td>
                     <td><input type="number" formControlName="amount" (focusout)="update_total(form)"></td>
-                    <td><input type="number" formControlName="box_price" (focusout)="update_total(form)"></td>
+                    <td><input type="number" formControlName="box_price"></td>
+                    <td><input type="number" formControlName="unit_value"></td>
                     <td><input class="total_excel" type="number" formControlName="total_value"></td>
                 </tr>
             </tbody>
@@ -69,9 +59,7 @@
         
     </form>
 
-    <button *ngIf="on_create_today" (click)="send()">Enviar</button>
-    <button style="background-color: green;" *ngIf="!on_create_today" (click)="update_inventory()">Actualizar</button>
+    <button *ngIf="on_create_today_unit" (click)="send('unidad')">Enviar</button>
+    <button style="background-color: green;" *ngIf="!on_create_today_unit" (click)="update_inventory()">Actualizar</button>
     
 </div>
-
-

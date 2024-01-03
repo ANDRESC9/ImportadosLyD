@@ -24,6 +24,17 @@
          
     </div>
 
+    <input type="number"  formControlName="box_value" placeholder="*Valor caja" required>
+    <div *ngIf="form_product.get('box_value')?.invalid && form_product.get('box_value')?.touched">
+        <div class="validation_message" *ngIf="form_product.get('box_value')?.hasError('required')">
+            Por favor, ingrese un valor.
+        </div>
+        <div class="validation_message" *ngIf="form_product.get('box_value')?.errors?.['pattern']">
+            Debe ingresar un valor numerico
+        </div>
+         
+    </div>
+
     <button type="submit">Enviar</button>
     <span class="required_fields">Todos los campos con (*) son obligatorios</span>
     <span (click)="close_form()" class="close"><img src="../../../assets/icon/cerrar.png" alt=""></span>

@@ -10,6 +10,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { Inventory } from '../../interfaces/Inventory';
 import { DateServicesService } from 'src/app/services/date-services.service';
 import { InventoryApiService } from '../../Services/inventory-api.service';
+import { Profit } from '../../interfaces/Profit';
 
 @Component({
   selector: 'app-create-inventory',
@@ -20,66 +21,107 @@ export class CreateInventoryComponent extends AbcComponentService<Inventory> {
   products! : Product[]
   subs! : Subscription 
   form_groups: { id: number; formGroup: FormGroup }[] = [];
-  current_date : Date = new Date()
-  Total_price! : number;
+  current_date! : string
+  Total_price : number = 0;
   data_info : Inventory[] = []
   on_create_today : boolean = false
   inventory_info! : {product: Product[]; inventory: Inventory[]}
-
+  form_group_leng : number = 0
+  last_total : number = 0
+  profit! : Profit
+  subs_profit! : Subscription
   constructor(private modal_service : ModalInventoryService,
     private api : Api_Service<Inventory>,
     private builder : FormBuilder,
     private cdr: ChangeDetectorRef,
     private date : DateServicesService,
     private api_inventory : InventoryApiService
+
        ){
     super(api)
     
     this.inventory_info = {product: {} as Product[], inventory: {} as Inventory[]}
+    this.current_date = this.date.now()
     
   }
-  ngOnInit(){
+  async ngOnInit(){
+    this.subs_profit = this.api_inventory.get_profit$()
+      .subscribe((pro : Profit)=>{
+        this.profit = pro
+      })
+    try {
 
-    this.products = []
-    this.form_groups = []
-    this.api.load_all("products/")
-    this.load_inventory()
+      await this.api.load_all("products/");
+      await this.chek_date();
+      await this.load_inventory();
+      
+    } catch (error) {
+      console.error("Error during initialization:", error);
+    }
 
+    
   }
 
-  update_total(form_: { id: number; formGroup: FormGroup }) {
-    this.Total_price = 0;
-    this.form_groups.forEach((form: { id: number; formGroup: FormGroup }) => {
+  private chargue_info_to_send(){
+
+      this.data_info = [] //Se reinicia la informacion a enviar, para que no se acomule.
+      this.form_groups.forEach((form : {id: number; formGroup: FormGroup})=>{
+      delete form.formGroup.value.product_name
+      form.formGroup.value as Inventory
+
+      this.data_info.push(form.formGroup.value)
+    })
+    
+    
+    
+  }
+  private async update_total_inventary(){
+    this.Total_price = 0
+    this.form_groups.forEach((form: { id: number; formGroup: FormGroup })=>{
       let total = form.formGroup.value.total_value as number
       this.Total_price += total
 
+    })
+
+    this.profit.total_box = this.Total_price
+    this.api_inventory.update_profit("total_box",this.profit)
+  }
+
+  async update_total(form_: { id: number; formGroup: FormGroup }) {
+    
+    this.Total_price = 0;
+    this.form_groups.forEach((form: { id: number; formGroup: FormGroup }) => {
+      
       if (form.id === form_.id) {
         form.formGroup.patchValue({
           total_value: form.formGroup.value.amount * form.formGroup.value.box_price
         });
       }
-    });
+
+      let total = form.formGroup.value.total_value as number
+      this.Total_price += total
+    })
+    this.profit.total_box = this.Total_price
+    this.api_inventory.update_profit("total_box",this.profit)
+
   }
 
+
   async send(){
-    
+
     await this.chek_date()
     
-    this.data_info = []
     if(this.on_create_today){
 
-      this.form_groups.forEach((form : {id: number; formGroup: FormGroup})=>{
-        delete form.formGroup.value.product_name
-        form.formGroup.value as Inventory
-  
-        this.data_info.push(form.formGroup.value)
-      })
+      this.chargue_info_to_send()
+      
       console.log(this.data_info)
       this.create_or_update({url: "Inventorybox_create",data_dict : this.data_info})
         .then((res : Response)=>{
           if(res.Status){
 
             this.on_create_today = false
+            this.form_groups = [] //Si se crea correctamente, se reinician los formularios
           }
         })
     }else{
@@ -90,80 +132,121 @@ export class CreateInventoryComponent extends AbcComponentService<Inventory> {
     this.on_create_today = false
   }
 
-  ngOnDestroy(){
-
-    this.subs.unsubscribe()
-  }
-
   async chek_date(){
-    this.send_data_with_object(
+    const res = await  this.send_data_with_object(
       {
         url:"Inventorybox_check_date",
 
         object:{date_: this.date.now()} as {date_ : string}
 
-      }).then((res : Response)=>{
-        console.log(res)
-        if(res.Data == ""){
-          this.on_create_today = true
-        }else{
-          this.on_create_today = false
-        }
       })
+
+      if (res.Data == "") {
+        this.on_create_today = true;
+      } else {
+        this.on_create_today = false;
+      }
   }
 
   async load_inventory(){
 
-    await this.chek_date()
+    this.inventory_info.product = []
+    this.form_groups = []
+    this.products = []
+
+    //console.log(this.form_groups)
     
     this.subs = this.api.get_all()
-      .subscribe((res : Response)=>{
-        console.log(res)
-        this.inventory_info.product = res.Data
-        this.form_groups = []
-        this.products = res.Data
+      .subscribe(async (res : Response)=>{
 
+        this.inventory_info.product = res.Data
+        this.products = res.Data
+        
         if(this.on_create_today){
-          for(let pro of this.inventory_info.product){
+          this.inventory_info.product = []
+          this.form_groups = []
+
+          //cargando productos de inventario de cajas
+          for(let pro of res.Data){
             let new_form = this.builder.group({
               id : [pro.id_product],
               product_name : [pro.product_name],
               amount : [0],
-              box_price: [0],
+              box_price: [pro.box_value],
               date_inventory : [this.date.now()],
-              total_value: [2]
+              total_value: [0]
               
             })
             this.form_groups.push({ id: pro.id_product, formGroup: new_form })
           }
-        }else{
+        }  
 
-          this.api_inventory.load_inventory("Inventorybox/")
-          this.api_inventory.get_inventory_subject$()
-            .subscribe((res : Response)=>{
-              this.inventory_info.inventory = res.Data
-              const consolidate_inventory_info = [...this.inventory_info.product, ...this.inventory_info.inventory]
-              console.log(consolidate_inventory_info)
-              for(let pro of this.inventory_info.product){
+
+      })
+
+      if(!this.on_create_today){
+        
+        this.products = []
+
+        await this.api_inventory.load_inventory("Inventorybox/",{date_: this.date.now()} as {date_ : string})
+        
+        this.subs = this.api_inventory.get_inventory_subject$()
+          .subscribe(async(res : Response)=>{
+
+            if(res.Status){
+            this.inventory_info.inventory = res.Data
+            this.form_groups = []  
+              for(let pro of res.Data){
+
+                //console.log(num)
                 let new_form = this.builder.group({
-                  id : [pro.id_product],
+                  id : [pro.id],
                   product_name : [pro.product_name],
-                  amount : [this.inventory_info.inventory],
-                  box_price: [0],
+                  amount : [pro.amount],
+                  box_price: [pro.box_price],
                   date_inventory : [this.date.now()],
-                  total_value: [2]
+                  total_value: [pro.total_value]
                   
                 })
                 this.form_groups.push({ id: pro.id_product, formGroup: new_form })
+                this.form_group_leng = this.form_groups.length
               }
-            })
-        }
-             
-      })
+
+              this.update_total_inventary()
+            }else{
+
+            }
+            
+          })
+                 
+      }
+     
   }
 
   update_inventory(){
+    
+    this.chargue_info_to_send()
+    console.log(this.data_info)
+    if(!this.on_create_today){
 
-
+      this.create_or_update({url:"Inventorybox_update", data_dict: this.data_info })
+        .then((res:Response)=>{
+          console.log(res)
+        })
+    }
   }
+
+  ngOnDestroy(){
+
+    
+    if(this.subs != null){
+      this.subs.unsubscribe()
+    }
+    // if(this.subs_profit != null){
+    //   this.subs_profit.unsubscribe()
+    // }
+    
+  }
+
+  
 }

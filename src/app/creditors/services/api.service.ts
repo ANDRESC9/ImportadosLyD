@@ -43,7 +43,7 @@ export class Api_Service<model>{
     
   }
   // OBTENER TODOS LOS REGISTROS
-  load_all(url : string, type : string = "table"){
+  async load_all(url : string, type : string = "table"){
 
     if(type == "table"){
         this.http.get<Response>(this.con.base_url +url, this.options)
@@ -149,8 +149,9 @@ export class Api_Service<model>{
       })
     })
     
-    
   }
+
+
 }
 
 

@@ -42,6 +42,8 @@ import { CreateProductComponent } from './inventory/Modules/products/create-prod
 import { FilterProductComponent } from './inventory/Modules/products/filter-product/filter-product.component';
 import { EditProductComponent } from './inventory/Modules/products/edit-product/edit-product.component';
 import { CreateInventoryComponent } from './inventory/Modules/create-inventory/create-inventory.component';
+import { InventoryUnitsComponent } from './inventory/Modules/inventory-units/inventory-units.component';
+import { ConsolidatedComponent } from './inventory/Modules/consolidated/consolidated.component';
 
 
 @NgModule({
@@ -83,7 +85,9 @@ import { CreateInventoryComponent } from './inventory/Modules/create-inventory/c
     CreateProductComponent,
     FilterProductComponent,
     EditProductComponent,
-    CreateInventoryComponent
+    CreateInventoryComponent,
+    InventoryUnitsComponent,
+    ConsolidatedComponent
 
 
 

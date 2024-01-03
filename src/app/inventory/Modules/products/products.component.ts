@@ -23,7 +23,7 @@ export class ProductsComponent extends AbcComponentService<Product> {
     
     this.api.load_all("products/")
 
-    this.api.get_all()
+    this.subs= this.api.get_all()
       .subscribe((res : Response)=>{
   
           console.log(res.Data)

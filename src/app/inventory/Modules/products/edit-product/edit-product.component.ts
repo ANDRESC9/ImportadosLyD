@@ -26,7 +26,8 @@ export class EditProductComponent extends AbcComponentService<Product> {
     this.form_product_edit = this.builder.group({
       id : ["" , Validators.required],
       names : ["",Validators.required],
-      trays : [""],
+      trays : ["",Validators.required],
+      box_value : ["",Validators.required],
 
     })
 
@@ -40,7 +41,8 @@ export class EditProductComponent extends AbcComponentService<Product> {
           this.form_product_edit.patchValue({
             id : pro_.id_product,
             names : pro_.product_name,
-            trays : pro_.trays_per_box
+            trays : pro_.trays_per_box,
+            box_value: pro_.box_value,
 
            }) 
         })

@@ -20,6 +20,8 @@ import { AccessDeniedComponent } from './main/access-denied/access-denied.compon
 import { InventoryComponent } from './inventory/inventory.component';
 import { ProductsComponent } from './inventory/Modules/products/products.component';
 import { CreateInventoryComponent } from './inventory/Modules/create-inventory/create-inventory.component';
+import { InventoryUnitsComponent } from './inventory/Modules/inventory-units/inventory-units.component';
+import { ConsolidatedComponent } from './inventory/Modules/consolidated/consolidated.component';
 const routes: Routes = [
   // { path: '', component: WelcomeScreenComponent },
   // { path: '**', component: LoginComponent},
@@ -56,7 +58,9 @@ const routes: Routes = [
       component: InventoryComponent,
       children: [
         {path: 'productos', component: ProductsComponent},
-        {path: 'crear_inventario', component: CreateInventoryComponent}
+        {path: 'crear_inventario', component: CreateInventoryComponent},
+        {path: 'crear_inventario_unidades', component: InventoryUnitsComponent},
+        {path: 'ganancias', component: ConsolidatedComponent}
 
       ]
       
